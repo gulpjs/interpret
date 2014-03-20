@@ -9,7 +9,7 @@ This is used by [rechoir](http://github.com/tkellen/node-rechoir) for registerin
 ## API
 
 ### extensions
-Map file types to modules which provide a [require.extension] loader.
+Map file types to modules which provide a [require.extensions] loader.
 ```js
 {
   '.co': 'coco',
@@ -43,3 +43,5 @@ If a module does not automatically register itself with [require.extensions], us
   }
 }
 ```
+
+[require.extensions]: http://nodejs.org/api/globals.html#globals_require_extensions
