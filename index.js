@@ -1,12 +1,12 @@
 exports.extensions = {
   '.co': 'coco',
-  '.coffee': 'coffee-script',
+  '.coffee': 'coffee-script/register',
   '.csv': 'require-csv',
-  '.iced': 'iced-coffee-script',
+  '.iced': 'iced-coffee-script/register',
   '.ini': 'require-ini',
   '.js': null,
   '.json': null,
-  '.litcoffee': 'coffee-script',
+  '.litcoffee': 'coffee-script/register',
   '.ls': 'livescript',
   '.toml': 'toml-require',
   '.xml': 'require-xml',
@@ -15,12 +15,6 @@ exports.extensions = {
 };
 
 exports.register = {
-  'coffee-script': function (module) {
-    module.register();
-  },
-  'iced-coffee-script': function (module) {
-    module.register();
-  },
   'toml-require': function (module) {
     module.install();
   }

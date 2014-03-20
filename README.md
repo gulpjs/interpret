@@ -13,13 +13,13 @@ Map file types to modules which provide a [require.extensions] loader.
 ```js
 {
   '.co': 'coco',
-  '.coffee': 'coffee-script',
+  '.coffee': 'coffee-script/require',
   '.csv': 'require-csv',
-  '.iced': 'iced-coffee-script',
+  '.iced': 'iced-coffee-script/require',
   '.ini': 'require-ini',
   '.js': null,
   '.json': null,
-  '.litcoffee': 'coffee-script',
+  '.litcoffee': 'coffee-script/require',
   '.ls': 'livescript',
   '.toml': 'toml-require',
   '.xml': 'require-xml',
@@ -29,15 +29,9 @@ Map file types to modules which provide a [require.extensions] loader.
 ```
 
 ### register
-If a module does not automatically register itself with [require.extensions], use one of these methods.
+Check here to see if setup is needed for the module register itself with [require.extensions].  If a method is returned, call it with the module.
 ```js
 {
-  'coffee-script': function (module) {
-    module.register();
-  },
-  'iced-coffee-script': function (module) {
-    module.register();
-  },
   'toml-require': function (module) {
     module.install();
   }
