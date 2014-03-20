@@ -1,0 +1,6 @@
+[data]
+  trueKey = true
+  falseKey = false
+
+[data.subKey]
+subProp = 1
