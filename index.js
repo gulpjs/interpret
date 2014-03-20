@@ -1,4 +1,4 @@
-const known = {
+exports.extensions = {
   '.co': 'coco',
   '.coffee': 'coffee-script',
   '.csv': 'require-csv',
@@ -14,7 +14,7 @@ const known = {
   '.yml': 'require-yaml'
 };
 
-const install = {
+exports.register = {
   'coffee-script': function (module) {
     module.register();
   },
@@ -23,16 +23,5 @@ const install = {
   },
   'toml-require': function (module) {
     module.install();
-  }
-};
-
-module.exports = function (ext) {
-  var moduleName = known[ext];
-  if (moduleName) {
-    var compiler = require(moduleName);
-    var register = install[moduleName];
-    if (register) {
-      register(compiler);
-    }
   }
 };

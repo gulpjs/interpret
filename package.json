@@ -1,7 +1,7 @@
 {
   "name": "interpret",
-  "description": "Require anything.",
-  "version": "0.1.0",
+  "description": "A dictionary of file extensions and associated module loaders.",
+  "version": "0.2.0",
   "homepage": "https://github.com/tkellen/node-interpret",
   "author": {
     "name": "Tyler Kellen",
@@ -21,25 +21,6 @@
     }
   ],
   "main": "index.js",
-  "scripts": {
-    "test": "mocha -R spec test/index.js"
-  },
-  "engines": {
-    "node": ">= 0.10"
-  },
-  "devDependencies": {
-    "mocha": "~1.17.1",
-    "chai": "~1.9.0",
-    "coco": "^0.9.1",
-    "coffee-script": "^1.7.1",
-    "require-csv": "0.0.1",
-    "iced-coffee-script": "^1.7.1-b",
-    "require-ini": "0.0.1",
-    "toml-require": "^1.0.1",
-    "require-xml": "0.0.1",
-    "require-yaml": "0.0.1",
-    "LiveScript": "^1.2.0"
-  },
   "keywords": [
     "coco",
     "coffee-script",

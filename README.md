@@ -1,23 +1,45 @@
-# interpret [![Build Status](https://secure.travis-ci.org/tkellen/node-interpret.png)](http://travis-ci.org/tkellen/node-interpret)
-> Require anything.
+# interpret
+> A dictionary of file extensions and associated module loaders.
 
 [![NPM](https://nodei.co/npm/interpret.png)](https://nodei.co/npm/interpret/)
 
-## What is it?
-This module will find, require and register any file type the npm ecosystem has a module loader for.  Once this is done, you can require the provided file type natively.
-
-**Currently supported extensions:**
-
-`.co, .coco, .coffee, .iced, .ini, .js, .json, .litcoffee, .ls, .toml, .xml, .yaml, .yml`
+## What is it
+This is used by [rechoir](http://github.com/tkellen/node-rechoir) for registering module loaders.
 
 ## API
 
-### learn(extension)
-This method will look for a module loader associated with the provided extension and attempt to require it.  If necessary, it will also run any setup required to register it with [require.extensions](http://nodejs.org/api/globals.html#globals_require_extensions).  If calling is successful (aka: it doesn't throw), you can now require files with the provided extension natively.
-
-## Usage
+### extensions
+Map file types to modules which provide a [require.extension] loader.
 ```js
-var interpret = require('interpret');
-interpret('.coffee');
-require('file.coffee');
+{
+  '.co': 'coco',
+  '.coffee': 'coffee-script',
+  '.csv': 'require-csv',
+  '.iced': 'iced-coffee-script',
+  '.ini': 'require-ini',
+  '.js': null,
+  '.json': null,
+  '.litcoffee': 'coffee-script',
+  '.ls': 'livescript',
+  '.toml': 'toml-require',
+  '.xml': 'require-xml',
+  '.yaml': 'require-yaml',
+  '.yml': 'require-yaml'
+}
+```
+
+### register
+If a module does not automatically register itself with [require.extensions], use one of these methods.
+```js
+{
+  'coffee-script': function (module) {
+    module.register();
+  },
+  'iced-coffee-script': function (module) {
+    module.register();
+  },
+  'toml-require': function (module) {
+    module.install();
+  }
+}
 ```
