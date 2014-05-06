@@ -45,6 +45,7 @@ Extensions which are javascript variants.
 {
   '.co': 'coco',
   '.coffee': 'coffee-script/register',
+  '.iced': 'iced-coffee-script/register',
   '.js': null,
   '.litcoffee': 'coffee-script/register',
   '.ls': 'livescript'
