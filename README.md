@@ -13,13 +13,13 @@ Map file types to modules which provide a [require.extensions] loader.
 ```js
 {
   '.co': 'coco',
-  '.coffee': 'coffee-script/require',
+  '.coffee': 'coffee-script/register',
   '.csv': 'require-csv',
-  '.iced': 'iced-coffee-script/require',
+  '.iced': 'iced-coffee-script/register',
   '.ini': 'require-ini',
   '.js': null,
   '.json': null,
-  '.litcoffee': 'coffee-script/require',
+  '.litcoffee': 'coffee-script/register',
   '.ls': 'livescript',
   '.toml': 'toml-require',
   '.xml': 'require-xml',
