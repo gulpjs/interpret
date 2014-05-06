@@ -23,6 +23,7 @@ var register = {
 var jsVariantExtensions = [
   '.co',
   '.coffee',
+  '.iced',
   '.js',
   '.litcoffee',
   '.ls'
