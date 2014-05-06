@@ -1,4 +1,4 @@
-exports.extensions = {
+var extensions = {
   '.co': 'coco',
   '.coffee': 'coffee-script/register',
   '.csv': 'require-csv',
@@ -14,8 +14,25 @@ exports.extensions = {
   '.yml': 'require-yaml'
 };
 
-exports.register = {
+var register = {
   'toml-require': function (module) {
     module.install();
   }
+};
+
+var jsVariantExtensions = [
+  '.co',
+  '.coffee',
+  '.js',
+  '.litcoffee',
+  '.ls'
+];
+
+module.exports = {
+  extensions: extensions,
+  register: register,
+  jsVariants: jsVariantExtensions.reduce(function (result, ext) {
+    result[ext] = extensions[ext];
+    return result;
+  }, {})
 };

@@ -38,4 +38,17 @@ Check here to see if setup is needed for the module register itself with [requir
 }
 ```
 
+### jsVariants
+Extensions which are javascript variants.
+
+```js
+{
+  '.co': 'coco',
+  '.coffee': 'coffee-script/register',
+  '.js': null,
+  '.litcoffee': 'coffee-script/register',
+  '.ls': 'livescript'
+}
+```
+
 [require.extensions]: http://nodejs.org/api/globals.html#globals_require_extensions

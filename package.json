@@ -1,7 +1,7 @@
 {
   "name": "interpret",
   "description": "A dictionary of file extensions and associated module loaders.",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "homepage": "https://github.com/tkellen/node-interpret",
   "author": {
     "name": "Tyler Kellen",
