@@ -1,3 +1,7 @@
+v0.3.3:
+  date: 2014-06-02
+  changes:
+    - Fix casing on livescript dependency.
 v0.3.0:
   date: 2014-04-20
   changes:
