@@ -7,7 +7,7 @@ var extensions = {
   '.js': null,
   '.json': null,
   '.litcoffee': 'coffee-script/register',
-  '.ls': 'livescript',
+  '.ls': 'LiveScript',
   '.toml': 'toml-require',
   '.xml': 'require-xml',
   '.yaml': 'require-yaml',
