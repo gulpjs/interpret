@@ -1,3 +1,7 @@
+v0.3.4:
+  date: 2014-06-27
+  changes:
+    - Make .js first jsVariant entry.
 v0.3.3:
   date: 2014-06-02
   changes:
