@@ -21,10 +21,10 @@ var register = {
 };
 
 var jsVariantExtensions = [
+  '.js',
   '.co',
   '.coffee',
   '.iced',
-  '.js',
   '.litcoffee',
   '.ls'
 ];
