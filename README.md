@@ -19,6 +19,7 @@ Map file types to modules which provide a [require.extensions] loader.
   '.ini': 'require-ini',
   '.js': null,
   '.json': null,
+  '.jsx': 'node-jsx',
   '.litcoffee': 'coffee-script/register',
   '.ls': 'livescript',
   '.toml': 'toml-require',
@@ -43,10 +44,11 @@ Extensions which are javascript variants.
 
 ```js
 {
+  '.js': null,
   '.co': 'coco',
   '.coffee': 'coffee-script/register',
   '.iced': 'iced-coffee-script/register',
-  '.js': null,
+  '.jsx': 'node-jsx',
   '.litcoffee': 'coffee-script/register',
   '.ls': 'livescript'
 }
