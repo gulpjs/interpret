@@ -6,6 +6,7 @@ var extensions = {
   '.ini': 'require-ini',
   '.js': null,
   '.json': null,
+  '.jsx': 'node-jsx',
   '.litcoffee': 'coffee-script/register',
   '.ls': 'LiveScript',
   '.toml': 'toml-require',
@@ -15,6 +16,9 @@ var extensions = {
 };
 
 var register = {
+  'node-jsx': function (module) {
+    module.install({ extension: '.jsx', harmony: true });
+  },
   'toml-require': function (module) {
     module.install();
   }
@@ -25,6 +29,7 @@ var jsVariantExtensions = [
   '.co',
   '.coffee',
   '.iced',
+  '.jsx',
   '.litcoffee',
   '.ls'
 ];
