@@ -14,6 +14,7 @@ Map file types to modules which provide a [require.extensions] loader.
 {
   '.co': 'coco',
   '.coffee': 'coffee-script/register',
+  '.coffee.md': 'coffee-script/register',
   '.csv': 'require-csv',
   '.iced': 'iced-coffee-script/register',
   '.ini': 'require-ini',
@@ -47,6 +48,7 @@ Extensions which are javascript variants.
   '.js': null,
   '.co': 'coco',
   '.coffee': 'coffee-script/register',
+  '.coffee.md': 'coffee-script/register',
   '.iced': 'iced-coffee-script/register',
   '.jsx': 'node-jsx',
   '.litcoffee': 'coffee-script/register',
