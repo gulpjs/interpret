@@ -24,6 +24,7 @@ Map file types to modules which provide a [require.extensions] loader.
   '.litcoffee': 'coffee-script/register',
   '.ls': 'livescript',
   '.toml': 'toml-require',
+  '.ts': 'typescript-require',
   '.xml': 'require-xml',
   '.yaml': 'require-yaml',
   '.yml': 'require-yaml'
@@ -52,7 +53,8 @@ Extensions which are javascript variants.
   '.iced': 'iced-coffee-script/register',
   '.jsx': 'node-jsx',
   '.litcoffee': 'coffee-script/register',
-  '.ls': 'livescript'
+  '.ls': 'livescript',
+  '.ts': 'typescript-require'
 }
 ```
 
