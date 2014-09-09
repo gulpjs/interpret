@@ -4,7 +4,7 @@
 [![NPM](https://nodei.co/npm/interpret.png)](https://nodei.co/npm/interpret/)
 
 ## What is it
-This is used by [rechoir](http://github.com/tkellen/node-rechoir) for registering module loaders.
+This is used by [Liftoff](http://github.com/tkellen/node-liftoff) to automatically require dependencies for configuration files, and by [rechoir](http://github.com/tkellen/node-rechoir) for registering module loaders.
 
 ## API
 
