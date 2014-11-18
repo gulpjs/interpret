@@ -1,4 +1,5 @@
 var extensions = {
+  '.cjsx': 'node-cjsx',
   '.co': 'coco',
   '.coffee': 'coffee-script/register',
   '.coffee.md': 'coffee-script/register',
@@ -18,6 +19,9 @@ var extensions = {
 };
 
 var register = {
+  'node-cjsx': function (module) {
+    module.transform();
+  },
   'node-jsx': function (module) {
     module.install({ extension: '.jsx', harmony: true });
   },
@@ -28,6 +32,7 @@ var register = {
 
 var jsVariantExtensions = [
   '.js',
+  '.cjsx',
   '.co',
   '.coffee',
   '.coffee.md',
