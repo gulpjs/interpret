@@ -1,4 +1,5 @@
 var extensions = {
+  '.cjsx': 'node-cjsx/register',
   '.co': 'coco',
   '.coffee': 'coffee-script/register',
   '.coffee.md': 'coffee-script/register',
@@ -28,6 +29,7 @@ var register = {
 
 var jsVariantExtensions = [
   '.js',
+  '.cjsx',
   '.co',
   '.coffee',
   '.coffee.md',

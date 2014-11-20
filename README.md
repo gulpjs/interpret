@@ -12,6 +12,7 @@ This is used by [Liftoff](http://github.com/tkellen/node-liftoff) to automatical
 Map file types to modules which provide a [require.extensions] loader.
 ```js
 {
+  '.cjsx': 'node-cjsx/register',
   '.co': 'coco',
   '.coffee': 'coffee-script/register',
   '.coffee.md': 'coffee-script/register',
@@ -46,6 +47,7 @@ Extensions which are javascript variants.
 
 ```js
 {
+  '.cjsx': 'node-cjsx/register',
   '.js': null,
   '.co': 'coco',
   '.coffee': 'coffee-script/register',
