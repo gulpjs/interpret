@@ -1,3 +1,7 @@
+v0.3.8:
+  date: 2014-11-20
+  changes:
+    - Add support for [cjsx](https://github.com/jsdf/coffee-react).
 v0.3.7:
   date: 2014-09-08
   changes:
