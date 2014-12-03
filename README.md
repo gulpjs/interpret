@@ -61,3 +61,43 @@ Extensions which are javascript variants.
 ```
 
 [require.extensions]: http://nodejs.org/api/globals.html#globals_require_extensions
+
+
+### Example Usage
+```js
+const interpret = require('interpret');
+const path = require('path');
+const resolve = require('resolve');
+
+// register support for a defined extension
+function register(filepath, cwd) {
+  // find the extension of the requested filename
+  var ext = path.extname(filepath);
+  // see if this extension is already supported
+  if (Object.keys(require.extensions).indexOf(ext) !== -1) {
+    return;
+  }
+  // if no cwd is specified, assume we want to use the
+  // directory the requested file exists in
+  if (!cwd) {
+    cwd = path.dirname(path.resolve(filepath));
+  }
+  // find out which module is needed to read this extension
+  var moduleName = interpret.extensions[ext];
+  // if a module exists for this extension, make it usable
+  if (moduleName) {
+    // find the module relative to cwd that can add support for this extension
+    var module = resolve.sync(moduleName, {basedir: cwd})
+    // require it
+    var compiler = require(module);
+    // see if there is a method needed beyond requiring to enable support
+    var register = interpret.register[moduleName];
+    // if there is, run it
+    if (register) {
+      register(compiler);
+    }
+  }
+}
+```
+
+Note: this is more or less exactly how [rechoir](http://github.com/tkellen/node-rechoir) works.
