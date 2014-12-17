@@ -22,6 +22,7 @@ Map file types to modules which provide a [require.extensions] loader.
   '.ini': 'require-ini',
   '.js': null,
   '.json': null,
+  '.json5': 'json5/lib/require',
   '.jsx': 'node-jsx',
   '.litcoffee': 'coffee-script/register',
   '.liticed': 'iced-coffee-script/register',
