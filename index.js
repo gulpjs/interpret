@@ -24,6 +24,19 @@ var extensions = {
   '.yml': 'require-yaml'
 };
 
+function registerCoffee(module, options) {
+  // make sure that both pre 1.7.x and newer versions 
+  // of coffee-script will work
+  if (options && options.packagePath) {
+    try {
+      require(path.join(options.packagePath, 'register'));
+    }
+    catch (e) {
+      ; // ignore, we are using an older version of coffee-script
+    }
+  }
+}
+
 var register = {
   'node-jsx': function (module, options) {
     module.install({ extension: '.jsx', harmony: true });
@@ -31,30 +44,8 @@ var register = {
   'toml-require': function (module, options) {
     module.install();
   },
-  'coffee-script': function (module, options) {
-    // make sure that both pre 1.7.x and newer versions 
-    // of coffee-script will work
-    if (options && options.packagePath) {
-      try {
-        require(path.join(options.packagePath, 'register'));
-      }
-      catch (e) {
-        ; // ignore, we are using an older version of coffee-script
-      }
-    }
-  },
-  'iced-coffee-script': function (module, options) {
-    // make sure that both pre 1.7.x and newer versions 
-    // of iced-coffee-script will work
-    if (options && options.packagePath) {
-      try {
-        require(path.join(options.packagePath, 'register'));
-      }
-      catch (e) {
-        ; // ignore, we are using an older version of iced-coffee-script
-      }
-    }
-  }
+  'coffee-script': registerCoffee,
+  'iced-coffee-script': registerCoffee
 };
 
 var jsVariantExtensions = [
