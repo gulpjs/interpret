@@ -1,19 +1,22 @@
+const path = require('path');
+
 var extensions = {
   '.cjsx': 'node-cjsx/register',
   '.co': 'coco',
-  '.coffee': 'coffee-script/register',
-  '.coffee.md': 'coffee-script/register',
+  '.coffee': 'coffee-script',
+  '.coffee.md': 'coffee-script',
   '.csv': 'require-csv',
-  '.iced': 'iced-coffee-script/register',
-  '.iced.md': 'iced-coffee-script/register',
+  '.iced': 'iced-coffee-script',
+  '.iced.md': 'iced-coffee-script',
   '.ini': 'require-ini',
   '.js': null,
   '.json': null,
   '.json5': 'json5/lib/require',
   '.jsx': 'node-jsx',
-  '.litcoffee': 'coffee-script/register',
-  '.liticed': 'iced-coffee-script/register',
+  '.litcoffee': 'coffee-script',
+  '.liticed': 'iced-coffee-script',
   '.ls': 'LiveScript',
+  '.node' : null,
   '.toml': 'toml-require',
   '.ts': 'typescript-require',
   '.xml': 'require-xml',
@@ -21,13 +24,28 @@ var extensions = {
   '.yml': 'require-yaml'
 };
 
+function registerCoffee(module, options) {
+  // make sure that both pre 1.7.x and newer versions 
+  // of coffee-script will work
+  if (options && options.packagePath) {
+    try {
+      require(path.join(options.packagePath, 'register'));
+    }
+    catch (e) {
+      ; // ignore, we are using an older version of coffee-script
+    }
+  }
+}
+
 var register = {
-  'node-jsx': function (module) {
+  'node-jsx': function (module, options) {
     module.install({ extension: '.jsx', harmony: true });
   },
-  'toml-require': function (module) {
+  'toml-require': function (module, options) {
     module.install();
-  }
+  },
+  'coffee-script': registerCoffee,
+  'iced-coffee-script': registerCoffee
 };
 
 var jsVariantExtensions = [
@@ -42,6 +60,7 @@ var jsVariantExtensions = [
   '.litcoffee',
   '.liticed',
   '.ls',
+  '.node',
   '.ts'
 ];
 
