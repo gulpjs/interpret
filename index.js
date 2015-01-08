@@ -1,17 +1,35 @@
 var extensions = {
   '.cjsx': 'node-cjsx/register',
   '.co': 'coco',
-  '.coffee': 'coffee-script/register',
-  '.coffee.md': 'coffee-script/register',
+  '.coffee': {
+    module: 'coffee-script/register',
+    legacyModules: ['coffee-script']
+  },
+  '.coffee.md': {
+    module: 'coffee-script/register',
+    legacyModules: ['coffee-script']
+  },
   '.csv': 'require-csv',
-  '.iced': 'iced-coffee-script/register',
-  '.iced.md': 'iced-coffee-script/register',
+  '.iced': {
+    module: 'iced-coffee-script/register',
+    legacyModules: ['iced-coffee-script']
+  },
+  '.iced.md': {
+    module: 'iced-coffee-script/register',
+    legacyModules: ['iced-coffee-script']
+  },
   '.ini': 'require-ini',
   '.js': null,
   '.json': null,
   '.json5': 'json5/lib/require',
-  '.jsx': 'node-jsx',
-  '.litcoffee': 'coffee-script/register',
+  '.jsx': {
+    module: 'node-jsx',
+    options: {
+      extension: '.jsx',
+      harmony: true
+    }
+  },
+  '.litcoffee': 'coffee-script/register', // TODO: litcoffee wasn't available in old coffee-script, correct?
   '.liticed': 'iced-coffee-script/register',
   '.ls': 'LiveScript',
   '.toml': 'toml-require',
@@ -22,8 +40,8 @@ var extensions = {
 };
 
 var register = {
-  'node-jsx': function (module) {
-    module.install({ extension: '.jsx', harmony: true });
+  'node-jsx': function (module, options) {
+    module.install(options);
   },
   'toml-require': function (module) {
     module.install();
