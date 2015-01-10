@@ -35,12 +35,39 @@ Map file types to modules which provide a [require.extensions] loader.
 }
 ```
 
+### legacy
+Check here to see if a legacy module should be loaded upon failure to load the main module.  If a legacy module is available
+it is recommended to use `try/catch` around the `require`s to avoid crashing the process upon failure to load the main module.
+```js
+{
+  '.coffee': 'coffee-script' // old versions of coffee-script didn't have the `register` module
+}
+```
+
 ### register
 Check here to see if setup is needed for the module register itself with [require.extensions].  If a method is returned, call it with the module.
 ```js
 {
   'toml-require': function (module) {
     module.install();
+  }
+}
+```
+
+### configurations
+These configuration options will be passed into any `register` function available for the a certain module.
+```js
+// configurations
+{
+  'node-jsx': {
+    extension: '.jsx',
+    harmony: true
+  }
+}
+// register
+{
+  'node-jsx': function (module, config) {
+    module.install(config);
   }
 }
 ```
@@ -92,14 +119,16 @@ function register(filepath, cwd) {
   // if a module exists for this extension, make it usable
   if (moduleName) {
     // find the module relative to cwd that can add support for this extension
-    var module = resolve.sync(moduleName, {basedir: cwd})
+    // optionally deal with legacy modules here
+    var module = resolve.sync(moduleName, {basedir: cwd});
     // require it
     var compiler = require(module);
     // see if there is a method needed beyond requiring to enable support
     var register = interpret.register[moduleName];
+    var config = interpret.configurations[moduleName];
     // if there is, run it
     if (register) {
-      register(compiler);
+      register(compiler, config);
     }
   }
 }

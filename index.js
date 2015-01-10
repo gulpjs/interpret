@@ -22,8 +22,8 @@ var extensions = {
 };
 
 var register = {
-  'node-jsx': function (module, options) {
-    module.install(options);
+  'node-jsx': function (module, config) {
+    module.install(config);
   },
   'toml-require': function (module) {
     module.install();
