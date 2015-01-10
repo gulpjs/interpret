@@ -1,3 +1,7 @@
+v0.4.1:
+  date: 2014-01-10
+  changes:
+    - Add support for 6to5 (es6)
 v0.4.0:
   date: 2014-01-09
   changes:
