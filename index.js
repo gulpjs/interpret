@@ -11,7 +11,7 @@ var extensions = {
   '.json': null,
   '.json5': 'json5/lib/require',
   '.jsx': 'node-jsx',
-  '.litcoffee': 'coffee-script/register', // TODO: litcoffee wasn't available in old coffee-script, correct?
+  '.litcoffee': 'coffee-script/register',
   '.liticed': 'iced-coffee-script/register',
   '.ls': 'LiveScript',
   '.toml': 'toml-require',
@@ -34,11 +34,12 @@ var legacyModules = {
   '.coffee': 'coffee-script',
   '.coffee.md': 'coffee-script',
   '.iced': 'iced-coffee-script',
-  '.iced.md': 'iced-coffee-script'
+  // .iced.md and .liticed weren't available before the register module
+  '.litcoffee': 'coffee-script'
 };
 
 var configurations = {
-  '.jsx': {
+  'node-jsx': {
     extension: '.jsx',
     harmony: true
   }
