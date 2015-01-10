@@ -22,11 +22,26 @@ var extensions = {
 };
 
 var register = {
-  'node-jsx': function (module) {
-    module.install({ extension: '.jsx', harmony: true });
+  'node-jsx': function (module, config) {
+    module.install(config);
   },
   'toml-require': function (module) {
     module.install();
+  }
+};
+
+var legacyModules = {
+  '.coffee': 'coffee-script',
+  '.coffee.md': 'coffee-script',
+  '.iced': 'iced-coffee-script',
+  // .iced.md and .liticed weren't available before the register module
+  '.litcoffee': 'coffee-script'
+};
+
+var configurations = {
+  'node-jsx': {
+    extension: '.jsx',
+    harmony: true
   }
 };
 
@@ -47,6 +62,8 @@ var jsVariantExtensions = [
 
 module.exports = {
   extensions: extensions,
+  legacy: legacyModules,
+  configurations: configurations,
   register: register,
   jsVariants: jsVariantExtensions.reduce(function (result, ext) {
     result[ext] = extensions[ext];
