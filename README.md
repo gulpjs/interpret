@@ -55,7 +55,7 @@ Check here to see if setup is needed for the module register itself with [requir
 ```
 
 ### configurations
-These configuration options will be passed into any `register` function available for the a certain module.
+These configuration options should be passed into any `register` function with the same key.
 ```js
 // configurations
 {
