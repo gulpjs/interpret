@@ -20,6 +20,7 @@ var extensions = {
   '.ls': 'LiveScript',
   '.toml': 'toml-require',
   '.ts': 'typescript-require',
+  '.wisp': 'wisp/engine/node',
   '.xml': 'require-xml',
   '.yaml': 'require-yaml',
   '.yml': 'require-yaml'
@@ -63,7 +64,8 @@ var jsVariantExtensions = [
   '.litcoffee',
   '.liticed',
   '.ls',
-  '.ts'
+  '.ts',
+  '.wisp'
 ];
 
 module.exports = {
