@@ -1,5 +1,9 @@
+v0.4.2:
+  date: 2015-01-16
+  changes:
+    - Add support for wisp.
 v0.4.1:
-  date: 2014-01-10
+  date: 2015-01-10
   changes:
     - Add support for 6to5 (es6)
 v0.4.0:

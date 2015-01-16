@@ -1,7 +1,7 @@
 {
   "name": "interpret",
   "description": "A dictionary of file extensions and associated module loaders.",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "homepage": "https://github.com/tkellen/node-interpret",
   "author": {
     "name": "Tyler Kellen",
@@ -47,6 +47,7 @@
     "toml",
     "ts",
     "typescript",
+    "wisp",
     "xml",
     "yaml",
     "yml"
