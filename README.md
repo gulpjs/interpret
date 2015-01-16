@@ -31,6 +31,7 @@ Map file types to modules which provide a [require.extensions] loader.
   '.ls': 'LiveScript',
   '.toml': 'toml-require',
   '.ts': 'typescript-require',
+  '.wisp': 'wisp/engine/node',
   '.xml': 'require-xml',
   '.yaml': 'require-yaml',
   '.yml': 'require-yaml'
@@ -90,7 +91,8 @@ Extensions which are javascript variants.
   '.litcoffee': 'coffee-script/register',
   '.liticed': 'iced-coffee-script/register',
   '.ls': 'livescript',
-  '.ts': 'typescript-require'
+  '.ts': 'typescript-require',
+  '.wisp': 'wisp/engine/node'
 }
 ```
 
