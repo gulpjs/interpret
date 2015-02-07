@@ -19,7 +19,7 @@ var extensions = {
   '.liticed': 'iced-coffee-script/register',
   '.ls': 'LiveScript',
   '.toml': 'toml-require',
-  '.ts': 'typescript-require',
+  '.ts': 'typescript-register',
   '.wisp': 'wisp/engine/node',
   '.xml': 'require-xml',
   '.yaml': 'require-yaml',
@@ -40,7 +40,9 @@ var legacyModules = {
   '.coffee.md': 'coffee-script',
   '.iced': 'iced-coffee-script',
   // .iced.md and .liticed weren't available before the register module
-  '.litcoffee': 'coffee-script'
+  '.litcoffee': 'coffee-script',
+  // typescript-require is for versions of TypeScript before 1.4
+  '.ts': 'typescript-require'
 };
 
 var configurations = {
