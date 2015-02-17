@@ -1,13 +1,10 @@
 var extensions = {
+  '.babel.js': 'babel/register',
   '.cjsx': 'node-cjsx/register',
   '.co': 'coco',
   '.coffee': 'coffee-script/register',
   '.coffee.md': 'coffee-script/register',
   '.csv': 'require-csv',
-  // if 6to5 is loaded, .js files will be transpiled also
-  // even though we don't load it for .js files
-  '.es': '6to5/register',
-  '.es6': '6to5/register',
   '.iced': 'iced-coffee-script/register',
   '.iced.md': 'iced-coffee-script/register',
   '.ini': 'require-ini',
@@ -27,6 +24,13 @@ var extensions = {
 };
 
 var register = {
+  'babel/register': function (module, config) {
+    module(config);
+    // cleanup the sadness
+    delete require.extensions['.es'];
+    delete require.extensions['.es6'];
+    delete require.extensions['.jsx'];
+  },
   'node-jsx': function (module, config) {
     module.install(config);
   },
@@ -46,6 +50,9 @@ var legacyModules = {
 };
 
 var configurations = {
+  'babel/register': {
+    extensions: '.js'
+  },
   'node-jsx': {
     extension: '.jsx',
     harmony: true
@@ -54,12 +61,11 @@ var configurations = {
 
 var jsVariantExtensions = [
   '.js',
+  '.babel.js',
   '.cjsx',
   '.co',
   '.coffee',
   '.coffee.md',
-  '.es',
-  '.es6',
   '.iced',
   '.iced.md',
   '.jsx',
