@@ -1,3 +1,11 @@
+v0.5.0:
+  date: 2015-02-27
+  changes:
+    - Refactor es6 support via Babel (formerly 6to5)
+v0.4.3:
+  date: 2015-02-09
+  changes:
+    - Switch support from typescript-require to typescript-register.
 v0.4.2:
   date: 2015-01-16
   changes:

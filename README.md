@@ -12,13 +12,12 @@ This is used by [Liftoff](http://github.com/tkellen/node-liftoff) to automatical
 Map file types to modules which provide a [require.extensions] loader.
 ```js
 {
+  '.babel.js': 'babel/register',
   '.cjsx': 'node-cjsx/register',
   '.co': 'coco',
   '.coffee': 'coffee-script/register',
   '.coffee.md': 'coffee-script/register',
   '.csv': 'require-csv',
-  '.es': '6to5/register',
-  '.es6': '6to5/register',
   '.iced': 'iced-coffee-script/register',
   '.iced.md': 'iced-coffee-script/register',
   '.ini': 'require-ini',
@@ -30,7 +29,7 @@ Map file types to modules which provide a [require.extensions] loader.
   '.liticed': 'iced-coffee-script/register',
   '.ls': 'LiveScript',
   '.toml': 'toml-require',
-  '.ts': 'typescript-require',
+  '.ts': 'typescript-register',
   '.wisp': 'wisp/engine/node',
   '.xml': 'require-xml',
   '.yaml': 'require-yaml',
@@ -80,8 +79,9 @@ Extensions which are javascript variants.
 
 ```js
 {
-  '.cjsx': 'node-cjsx/register',
   '.js': null,
+  '.babel.js': 'babel/register',
+  '.cjsx': 'node-cjsx/register',
   '.co': 'coco',
   '.coffee': 'coffee-script/register',
   '.coffee.md': 'coffee-script/register',
@@ -90,8 +90,8 @@ Extensions which are javascript variants.
   '.jsx': 'node-jsx',
   '.litcoffee': 'coffee-script/register',
   '.liticed': 'iced-coffee-script/register',
-  '.ls': 'livescript',
-  '.ts': 'typescript-require',
+  '.ls': 'LiveScript',
+  '.ts': 'typescript-register',
   '.wisp': 'wisp/engine/node'
 }
 ```
