@@ -51,6 +51,8 @@ var legacyModules = {
 
 var configurations = {
   'babel/register': {
+    // register on .js extension due to https://github.com/joyent/node/blob/v0.12.0/lib/module.js#L353
+    // which only captures the final extension (.babel.js -> .js)
     extensions: '.js'
   },
   'node-jsx': {
