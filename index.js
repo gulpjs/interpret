@@ -15,6 +15,7 @@ var extensions = {
   '.litcoffee': 'coffee-script/register',
   '.liticed': 'iced-coffee-script/register',
   '.ls': 'LiveScript',
+  '.node': null,
   '.toml': 'toml-require',
   '.ts': 'typescript-register',
   '.wisp': 'wisp/engine/node',
