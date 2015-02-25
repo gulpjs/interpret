@@ -25,11 +25,17 @@ var extensions = {
 
 var register = {
   'babel/register': function (module, config) {
+    // get potentially changed loaders
+    var es = require.extensions['.es'];
+    var es6 = require.extensions['.es6'];
+    var jsx = require.extensions['.jsx'];
+    
     module(config);
+    
     // cleanup the sadness
-    delete require.extensions['.es'];
-    delete require.extensions['.es6'];
-    delete require.extensions['.jsx'];
+    if (es !== undefined) require.extensions['.es'] = es;
+    if (es6 !== undefined) require.extensions['.es6'] = es6;
+    if (jsx !== undefined) require.extensions['.jsx'] = jsx;
   },
   'node-jsx': function (module, config) {
     module.install(config);
