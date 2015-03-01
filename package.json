@@ -22,6 +22,7 @@
   ],
   "main": "index.js",
   "keywords": [
+    "cirru-script",
     "cjsx",
     "co",
     "coco",

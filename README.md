@@ -13,6 +13,7 @@ Map file types to modules which provide a [require.extensions] loader.
 ```js
 {
   '.babel.js': 'babel/register',
+  '.cirru': 'cirru-script/lib/register',
   '.cjsx': 'node-cjsx/register',
   '.co': 'coco',
   '.coffee': 'coffee-script/register',
@@ -81,6 +82,7 @@ Extensions which are javascript variants.
 {
   '.js': null,
   '.babel.js': 'babel/register',
+  '.cirru': 'cirru-script/lib/register',
   '.cjsx': 'node-cjsx/register',
   '.co': 'coco',
   '.coffee': 'coffee-script/register',
