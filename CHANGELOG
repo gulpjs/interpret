@@ -1,3 +1,7 @@
+v0.5.1:
+  date: 2015-03-01
+  changes:
+    - Add support for CirruScript.
 v0.5.0:
   date: 2015-02-27
   changes:
