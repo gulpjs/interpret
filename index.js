@@ -1,5 +1,6 @@
 var extensions = {
   '.babel.js': 'babel/register',
+  '.cirru': 'cirru-script/lib/register',
   '.cjsx': 'node-cjsx/register',
   '.co': 'coco',
   '.coffee': 'coffee-script/register',
@@ -65,6 +66,7 @@ var configurations = {
 var jsVariantExtensions = [
   '.js',
   '.babel.js',
+  '.cirru',
   '.cjsx',
   '.co',
   '.coffee',
