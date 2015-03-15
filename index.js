@@ -28,10 +28,6 @@ var extensions = {
 var register = {
   'babel/register': function (module, config) {
     module(config);
-    // cleanup the sadness
-    delete require.extensions['.es'];
-    delete require.extensions['.es6'];
-    delete require.extensions['.jsx'];
   },
   'node-jsx': function (module, config) {
     module.install(config);
