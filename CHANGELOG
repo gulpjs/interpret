@@ -1,3 +1,8 @@
+v0.6.0:
+  date: 2015-05-19
+  changes:
+    - Combine fallbacks and loaders into `extensions`.
+    - Provide implementation guidance.
 v0.5.1:
   date: 2015-03-01
   changes:
