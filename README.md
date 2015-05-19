@@ -28,7 +28,7 @@ Map file types to modules which provide a [require.extensions] loader.
   '.jsx': 'node-jsx',
   '.litcoffee': 'coffee-script/register',
   '.liticed': 'iced-coffee-script/register',
-  '.ls': 'LiveScript',
+  '.ls': 'livescript',
   '.toml': 'toml-require',
   '.ts': 'typescript-register',
   '.wisp': 'wisp/engine/node',
@@ -44,6 +44,7 @@ it is recommended to use `try/catch` around the `require`s to avoid crashing the
 ```js
 {
   '.coffee': 'coffee-script' // old versions of coffee-script didn't have the `register` module
+  '.ls': 'LiveScript' // pre 1.4.0 versions of livescript were packaged as LiveScript
 }
 ```
 
@@ -92,7 +93,7 @@ Extensions which are javascript variants.
   '.jsx': 'node-jsx',
   '.litcoffee': 'coffee-script/register',
   '.liticed': 'iced-coffee-script/register',
-  '.ls': 'LiveScript',
+  '.ls': 'livescript',
   '.ts': 'typescript-register',
   '.wisp': 'wisp/engine/node'
 }

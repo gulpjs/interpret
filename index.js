@@ -15,7 +15,7 @@ var extensions = {
   '.jsx': 'node-jsx',
   '.litcoffee': 'coffee-script/register',
   '.liticed': 'iced-coffee-script/register',
-  '.ls': 'LiveScript',
+  '.ls': 'livescript',
   '.node': null,
   '.toml': 'toml-require',
   '.ts': 'typescript-register',
@@ -43,6 +43,8 @@ var legacyModules = {
   '.iced': 'iced-coffee-script',
   // .iced.md and .liticed weren't available before the register module
   '.litcoffee': 'coffee-script',
+  // livescript < 1.4.0 was packaged as "LiveScript"
+  '.ls': 'LiveScript',  
   // typescript-require is for versions of TypeScript before 1.4
   '.ts': 'typescript-require'
 };
