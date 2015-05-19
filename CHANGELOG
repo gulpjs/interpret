@@ -1,3 +1,7 @@
+v0.5.3:
+  date: 2015-05-19
+  changes:
+    - Switch support for LiveScript to livescript due to package rename see http://livescript.net/blog/livescript-1.4.0-source-maps-more.html .
 v0.5.1:
   date: 2015-03-01
   changes:
