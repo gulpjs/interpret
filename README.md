@@ -30,7 +30,7 @@ Map file types to modules which provide a [require.extensions] loader.
   '.coffee.md': ['coffee-script/register', 'coffee-script'],
   '.csv': 'require-csv',
   '.iced': ['iced-coffee-script/register', 'iced-coffee-script'],
-  '.iced.md': ['iced-coffee-script/register', 'iced-coffee-script'],
+  '.iced.md': 'iced-coffee-script/register',
   '.ini': 'require-ini',
   '.js': null,
   '.json': null,
@@ -38,7 +38,7 @@ Map file types to modules which provide a [require.extensions] loader.
   '.jsx': [
     {
       module: 'babel/register',
-      function (module) {
+      register: function (module) {
         module({
           extensions: '.jsx'
         });
@@ -55,7 +55,7 @@ Map file types to modules which provide a [require.extensions] loader.
     }
   ],
   '.litcoffee': ['coffee-script/register', 'coffee-script'],
-  '.liticed': ['iced-coffee-script/register', 'iced-coffee-script'],
+  '.liticed': 'iced-coffee-script/register',
   '.ls': ['livescript', 'LiveScript'],
   '.node': null,
   '.toml': {
