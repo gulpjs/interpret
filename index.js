@@ -16,7 +16,7 @@ const extensions = {
   '.coffee.md': ['coffee-script/register', 'coffee-script'],
   '.csv': 'require-csv',
   '.iced': ['iced-coffee-script/register', 'iced-coffee-script'],
-  '.iced.md': ['iced-coffee-script/register', 'iced-coffee-script'],
+  '.iced.md': 'iced-coffee-script/register',
   '.ini': 'require-ini',
   '.js': null,
   '.json': null,
@@ -41,7 +41,7 @@ const extensions = {
     }
   ],
   '.litcoffee': ['coffee-script/register', 'coffee-script'],
-  '.liticed': ['iced-coffee-script/register', 'iced-coffee-script'],
+  '.liticed': 'iced-coffee-script/register',
   '.ls': ['livescript', 'LiveScript'],
   '.node': null,
   '.toml': {
