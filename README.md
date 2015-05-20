@@ -58,7 +58,12 @@ Map file types to modules which provide a [require.extensions] loader.
   '.liticed': ['iced-coffee-script/register', 'iced-coffee-script'],
   '.ls': ['livescript', 'LiveScript'],
   '.node': null,
-  '.toml': 'toml-require',
+  '.toml': {
+    module: 'toml-require',
+    register: function (module) {
+      module.install();
+    }
+  },
   '.ts': ['typescript-register', 'typescript-require'],
   '.wisp': 'wisp/engine/node',
   '.xml': 'require-xml',
