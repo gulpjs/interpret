@@ -25,7 +25,7 @@ const extensions = {
   '.coffee': ['coffee-script/register', 'coffee-script'],
   '.coffee.md': ['coffee-script/register', 'coffee-script'],
   '.csv': 'require-csv',
-  '.eg': ['earlgrey/register', 'earlgrey'],
+  '.eg': 'earlgrey/register',
   '.iced': ['iced-coffee-script/register', 'iced-coffee-script'],
   '.iced.md': 'iced-coffee-script/register',
   '.ini': 'require-ini',
