@@ -1,3 +1,7 @@
+v0.6.5:
+  date: 2015-07-22
+  changes:
+    - add support for typescript 1.5 via typescript-node
 v0.6.4:
   date: 2015-07-07
   changes:
