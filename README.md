@@ -65,7 +65,8 @@ Map file types to modules which provide a [require.extensions] loader.
       module.install();
     }
   },
-  '.ts': ['typescript-register', 'typescript-require'],
+  '.ts': ['typescript-node/register', 'typescript-register', 'typescript-require'],
+  '.tsx': ['typescript-node/register'],
   '.wisp': 'wisp/engine/node',
   '.xml': 'require-xml',
   '.yaml': 'require-yaml',
