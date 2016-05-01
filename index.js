@@ -27,6 +27,16 @@ const extensions = {
       }
     }
   ],
+  '.buble.js': [
+    {
+      module: 'buble/register',
+      register: function (module) {
+        module({
+          extensions: '.js'
+        });
+      }
+    }
+  ],
   '.cirru': 'cirru-script/lib/register',
   '.cjsx': 'node-cjsx/register',
   '.co': 'coco',
@@ -96,6 +106,7 @@ const extensions = {
 const jsVariantExtensions = [
   '.js',
   '.babel.js',
+  '.buble.js',
   '.cirru',
   '.cjsx',
   '.co',
