@@ -1,32 +1,25 @@
-const extensions = {
-  '.babel.js': [
-    {
-      module: 'babel-register',
-      register: function (module) {
-        module({
-          // register on .js extension due to https://github.com/joyent/node/blob/v0.12.0/lib/module.js#L353
-          // which only captures the final extension (.babel.js -> .js)
-          extensions: '.js'
-        });
-      }
-    },
-    {
-      module: 'babel-core/register',
-      register: function (module) {
-        module({
-          extensions: '.js'
-        });
-      }
-    },
-    {
-      module: 'babel/register',
-      register: function (module) {
-        module({
-          extensions: '.js'
-        });
-      }
+const babelModules = ['babel-register', 'babel-core/register', 'babel/register'];
+
+function babelRegistrations(ext) {
+  function register(module) {
+    module({extensions: ext});
+  }
+  
+  function toBabelRegistration(moduleName) {
+    return {
+      module: moduleName,
+      register: register,
     }
-  ],
+  }
+
+  return babelModules.map(toBabelRegistration);
+}
+
+
+const extensions = {
+  // register on .js extension due to https://github.com/joyent/node/blob/v0.12.0/lib/module.js#L353
+  // which only captures the final extension (.babel.js -> .js)
+  '.babel.js': babelRegistrations('.js'),
   '.buble.js': [
     {
       module: 'buble/register',
@@ -44,47 +37,23 @@ const extensions = {
   '.coffee.md': ['coffee-script/register', 'coffee-script'],
   '.csv': 'require-csv',
   '.eg': 'earlgrey/register',
+  '.es': babelRegistrations('.es'),
+  '.es6': babelRegistrations('.es6'),
   '.iced': ['iced-coffee-script/register', 'iced-coffee-script'],
   '.iced.md': 'iced-coffee-script/register',
   '.ini': 'require-ini',
   '.js': null,
   '.json': null,
   '.json5': 'json5/lib/require',
-  '.jsx': [
-    {
-      module: 'babel-register',
-      register: function (module) {
-        module({
-          extensions: '.jsx'
-        });
-      }
-    },
-    {
-      module: 'babel-core/register',
-      register: function (module) {
-        module({
-          extensions: '.jsx'
-        });
-      }
-    },
-    {
-      module: 'babel/register',
-      register: function (module) {
-        module({
-          extensions: '.jsx'
-        });
-      },
-    },
-    {
-      module: 'node-jsx',
-      register: function (module) {
-        module.install({
-          extension: '.jsx',
-          harmony: true
-        });
-      }
+  '.jsx': babelRegistrations('.jsx').concat([{
+    module: 'node-jsx',
+    register: function (module) {
+      module.install({
+        extension: '.jsx',
+        harmony: true
+      });
     }
-  ],
+  }]),
   '.litcoffee': ['coffee-script/register', 'coffee-script'],
   '.liticed': 'iced-coffee-script/register',
   '.ls': ['livescript', 'LiveScript'],
