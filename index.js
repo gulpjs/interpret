@@ -6,7 +6,8 @@ const extensions = {
         module({
           // register on .js extension due to https://github.com/joyent/node/blob/v0.12.0/lib/module.js#L353
           // which only captures the final extension (.babel.js -> .js)
-          extensions: '.js'
+          extensions: '.js',
+          only: /\.babel\.js$/
         });
       }
     },
@@ -14,7 +15,8 @@ const extensions = {
       module: 'babel-core/register',
       register: function (module) {
         module({
-          extensions: '.js'
+          extensions: '.js',
+          only: /\.babel\.js$/
         });
       }
     },
@@ -22,7 +24,8 @@ const extensions = {
       module: 'babel/register',
       register: function (module) {
         module({
-          extensions: '.js'
+          extensions: '.js',
+          only: /\.babel\.js$/
         });
       }
     }
