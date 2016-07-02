@@ -1,3 +1,9 @@
+const path = require('path');
+const endsInBabelJsRe = /\.babel\.js$/;
+function ignoreNonBabelAndNodeModules(file) {
+  if(!endsInBabelJsRe.test(file)) return true;
+  if(path.relative(process.cwd(), file).split(path.sep).indexOf('node_modules') >= 0) return true;
+}
 const extensions = {
   '.babel.js': [
     {
@@ -7,7 +13,7 @@ const extensions = {
           // register on .js extension due to https://github.com/joyent/node/blob/v0.12.0/lib/module.js#L353
           // which only captures the final extension (.babel.js -> .js)
           extensions: '.js',
-          only: /\.babel\.js$/
+          ignore: ignoreNonBabelAndNodeModules
         });
       }
     },
@@ -16,7 +22,7 @@ const extensions = {
       register: function (module) {
         module({
           extensions: '.js',
-          only: /\.babel\.js$/
+          ignore: ignoreNonBabelAndNodeModules
         });
       }
     },
@@ -25,7 +31,7 @@ const extensions = {
       register: function (module) {
         module({
           extensions: '.js',
-          only: /\.babel\.js$/
+          ignore: ignoreNonBabelAndNodeModules
         });
       }
     }
