@@ -53,6 +53,14 @@ const extensions = {
   '.json5': 'json5/lib/require',
   '.jsx': [
     {
+      module: '@babel/register',
+      register: function (module) {
+        module({
+          extensions: '.jsx'
+        });
+      }
+    },
+    {
       module: 'babel-register',
       register: function (module) {
         module({
