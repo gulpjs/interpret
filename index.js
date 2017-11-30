@@ -11,8 +11,6 @@ var extensions = {
     {
       module: 'babel-register',
       register: function(module) {
-        // register on .js extension due to https://github.com/joyent/node/blob/v0.12.0/lib/module.js#L353
-        // which only captures the final extension (.babel.js -> .js)
         module({ extensions: '.js' });
       },
     },
@@ -26,6 +24,14 @@ var extensions = {
       module: 'babel/register',
       register: function(module) {
         module({ extensions: '.js' });
+      },
+    },
+  ],
+  '.babel.ts': [
+    {
+      module: '@babel/register',
+      register: function(module) {
+        module({ extensions: '.ts' });
       },
     },
   ],
@@ -85,8 +91,28 @@ var extensions = {
       module.install();
     },
   },
-  '.ts': ['ts-node/register', 'typescript-node/register', 'typescript-register', 'typescript-require'],
-  '.tsx': ['ts-node/register', 'typescript-node/register'],
+  '.ts': [
+    'ts-node/register',
+    'typescript-node/register',
+    'typescript-register',
+    'typescript-require',
+    {
+      module: '@babel/register',
+      register: function(module) {
+        module({ extensions: '.ts' });
+      },
+    },
+  ],
+  '.tsx': [
+    'ts-node/register',
+    'typescript-node/register',
+    {
+      module: '@babel/register',
+      register: function(module) {
+        module({ extensions: '.tsx' });
+      },
+    },
+  ],
   '.wisp': 'wisp/engine/node',
   '.xml': 'require-xml',
   '.yaml': 'require-yaml',
@@ -96,6 +122,7 @@ var extensions = {
 var jsVariantExtensions = [
   '.js',
   '.babel.js',
+  '.babel.ts',
   '.buble.js',
   '.cirru',
   '.cjsx',
@@ -110,6 +137,7 @@ var jsVariantExtensions = [
   '.liticed',
   '.ls',
   '.ts',
+  '.tsx',
   '.wisp',
 ];
 
