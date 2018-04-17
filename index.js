@@ -104,8 +104,22 @@ const extensions = {
       module.install();
     }
   },
-  '.ts': ['ts-node/register', 'typescript-node/register', 'typescript-register', 'typescript-require'],
-  '.tsx': ['ts-node/register', 'typescript-node/register'],
+  '.ts': [{
+      module: 'ts-node/register',
+      register: function (module) {
+        module.register({
+          transpileOnly: true // fast transpile, rather than full typecheck
+        });
+      }
+    }, 'typescript-node/register', 'typescript-register', 'typescript-require'],
+  '.tsx': [{
+      module: 'ts-node/register',
+      register: function (module) {
+        module.register({
+          transpileOnly: true // fast transpile, rather than full typecheck
+        });
+      }
+    }, 'typescript-node/register'],
   '.wisp': 'wisp/engine/node',
   '.xml': 'require-xml',
   '.yaml': 'require-yaml',
