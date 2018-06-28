@@ -1,7 +1,14 @@
-# interpret
-> A dictionary of file extensions and associated module loaders.
+<p align="center">
+  <a href="http://gulpjs.com">
+    <img height="257" width="114" src="https://raw.githubusercontent.com/gulpjs/artwork/master/gulp-2x.png">
+  </a>
+</p>
 
-[![NPM](https://nodei.co/npm/interpret.png)](https://nodei.co/npm/interpret/)
+# interpret
+
+[![NPM version][npm-image]][npm-url] [![Downloads][downloads-image]][npm-url] [![Travis Build Status][travis-image]][travis-url] [![AppVeyor Build Status][appveyor-image]][appveyor-url] [![Coveralls Status][coveralls-image]][coveralls-url] [![Gitter chat][gitter-image]][gitter-url]
+
+A dictionary of file extensions and associated module loaders.
 
 ## What is it
 This is used by [Liftoff](http://github.com/tkellen/node-liftoff) to automatically require dependencies for configuration files, and by [rechoir](http://github.com/tkellen/node-rechoir) for registering module loaders.
@@ -143,3 +150,19 @@ Consumers should use the exported `extensions` or `jsVariants` object to determi
 4. If the value is an array, iterate over it, attempting step #2 or #3 until one of the attempts does not throw.
 
 [require.extensions]: http://nodejs.org/api/globals.html#globals_require_extensions
+
+[downloads-image]: http://img.shields.io/npm/dm/interpret.svg
+[npm-url]: https://www.npmjs.com/package/interpret
+[npm-image]: http://img.shields.io/npm/v/interpret.svg
+
+[travis-url]: https://travis-ci.org/gulpjs/interpret
+[travis-image]: http://img.shields.io/travis/gulpjs/interpret.svg?label=travis-ci
+
+[appveyor-url]: https://ci.appveyor.com/project/gulpjs/interpret
+[appveyor-image]: https://img.shields.io/appveyor/ci/gulpjs/interpret.svg?label=appveyor
+
+[coveralls-url]: https://coveralls.io/r/gulpjs/interpret
+[coveralls-image]: http://img.shields.io/coveralls/gulpjs/interpret/master.svg
+
+[gitter-url]: https://gitter.im/gulpjs/gulp
+[gitter-image]: https://badges.gitter.im/gulpjs/gulp.svg

@@ -1,41 +1,33 @@
-const extensions = {
+var extensions = {
   '.babel.js': [
     {
       module: '@babel/register',
-      register: function (module) {
-        module({
-          // register on .js extension due to https://github.com/joyent/node/blob/v0.12.0/lib/module.js#L353
-          // which only captures the final extension (.babel.js -> .js)
-          extensions: '.js'
-        });
-      }
+      register: function(module) {
+        // register on .js extension due to https://github.com/joyent/node/blob/v0.12.0/lib/module.js#L353
+        // which only captures the final extension (.babel.js -> .js)
+        module({ extensions: '.js' });
+      },
     },
     {
       module: 'babel-register',
-      register: function (module) {
-        module({
-          // register on .js extension due to https://github.com/joyent/node/blob/v0.12.0/lib/module.js#L353
-          // which only captures the final extension (.babel.js -> .js)
-          extensions: '.js'
-        });
-      }
+      register: function(module) {
+        // register on .js extension due to https://github.com/joyent/node/blob/v0.12.0/lib/module.js#L353
+        // which only captures the final extension (.babel.js -> .js)
+        module({ extensions: '.js' });
+      },
     },
     {
       module: 'babel-core/register',
-      register: function (module) {
-        module({
-          extensions: '.js'
-        });
-      }
+      register: function(module) {
+        module({ extensions: '.js' });
+      },
     },
     {
       module: 'babel/register',
-      register: function (module) {
-        module({
-          extensions: '.js'
-        });
-      }
-    }
+      register: function(module) {
+        module({ extensions: '.js' });
+      },
+    },
   ],
   '.buble.js': 'buble/register',
   '.cirru': 'cirru-script/lib/register',
@@ -54,45 +46,34 @@ const extensions = {
   '.jsx': [
     {
       module: '@babel/register',
-      register: function (module) {
-        module({
-          extensions: '.jsx'
-        });
-      }
+      register: function(module) {
+        module({ extensions: '.jsx' });
+      },
     },
     {
       module: 'babel-register',
-      register: function (module) {
-        module({
-          extensions: '.jsx'
-        });
-      }
+      register: function(module) {
+        module({ extensions: '.jsx' });
+      },
     },
     {
       module: 'babel-core/register',
-      register: function (module) {
-        module({
-          extensions: '.jsx'
-        });
-      }
+      register: function(module) {
+        module({ extensions: '.jsx' });
+      },
     },
     {
       module: 'babel/register',
-      register: function (module) {
-        module({
-          extensions: '.jsx'
-        });
+      register: function(module) {
+        module({ extensions: '.jsx' });
       },
     },
     {
       module: 'node-jsx',
-      register: function (module) {
-        module.install({
-          extension: '.jsx',
-          harmony: true
-        });
-      }
-    }
+      register: function(module) {
+        module.install({ extension: '.jsx', harmony: true });
+      },
+    },
   ],
   '.litcoffee': ['coffeescript/register', 'coffee-script/register', 'coffeescript', 'coffee-script'],
   '.liticed': 'iced-coffee-script/register',
@@ -100,19 +81,19 @@ const extensions = {
   '.node': null,
   '.toml': {
     module: 'toml-require',
-    register: function (module) {
+    register: function(module) {
       module.install();
-    }
+    },
   },
   '.ts': ['ts-node/register', 'typescript-node/register', 'typescript-register', 'typescript-require'],
   '.tsx': ['ts-node/register', 'typescript-node/register'],
   '.wisp': 'wisp/engine/node',
   '.xml': 'require-xml',
   '.yaml': 'require-yaml',
-  '.yml': 'require-yaml'
+  '.yml': 'require-yaml',
 };
 
-const jsVariantExtensions = [
+var jsVariantExtensions = [
   '.js',
   '.babel.js',
   '.buble.js',
@@ -129,13 +110,13 @@ const jsVariantExtensions = [
   '.liticed',
   '.ls',
   '.ts',
-  '.wisp'
+  '.wisp',
 ];
 
 module.exports = {
   extensions: extensions,
-  jsVariants: jsVariantExtensions.reduce(function (result, ext) {
+  jsVariants: jsVariantExtensions.reduce(function(result, ext) {
     result[ext] = extensions[ext];
     return result;
-  }, {})
+  }, {}),
 };
