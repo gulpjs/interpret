@@ -43,6 +43,15 @@ var extensions = {
   '.coffee.md': ['coffeescript/register', 'coffee-script/register', 'coffeescript', 'coffee-script'],
   '.csv': 'require-csv',
   '.eg': 'earlgrey/register',
+  '.esm.js': {
+    module: 'esm',
+    register: function(hook) {
+      // register on .js extension due to https://github.com/joyent/node/blob/v0.12.0/lib/module.js#L353
+      // which only captures the final extension (.babel.js -> .js)
+      var esmLoader = hook(module);
+      require.extensions['.js'] = esmLoader('module')._extensions['.js'];
+    },
+  },
   '.iced': ['iced-coffee-script/register', 'iced-coffee-script'],
   '.iced.md': 'iced-coffee-script/register',
   '.ini': 'require-ini',
@@ -130,6 +139,7 @@ var jsVariantExtensions = [
   '.coffee',
   '.coffee.md',
   '.eg',
+  '.esm.js',
   '.iced',
   '.iced.md',
   '.jsx',
