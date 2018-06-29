@@ -2,36 +2,36 @@ var extensions = {
   '.babel.js': [
     {
       module: '@babel/register',
-      register: function(module) {
+      register: function(hook) {
         // register on .js extension due to https://github.com/joyent/node/blob/v0.12.0/lib/module.js#L353
         // which only captures the final extension (.babel.js -> .js)
-        module({ extensions: '.js' });
+        hook({ extensions: '.js' });
       },
     },
     {
       module: 'babel-register',
-      register: function(module) {
-        module({ extensions: '.js' });
+      register: function(hook) {
+        hook({ extensions: '.js' });
       },
     },
     {
       module: 'babel-core/register',
-      register: function(module) {
-        module({ extensions: '.js' });
+      register: function(hook) {
+        hook({ extensions: '.js' });
       },
     },
     {
       module: 'babel/register',
-      register: function(module) {
-        module({ extensions: '.js' });
+      register: function(hook) {
+        hook({ extensions: '.js' });
       },
     },
   ],
   '.babel.ts': [
     {
       module: '@babel/register',
-      register: function(module) {
-        module({ extensions: '.ts' });
+      register: function(hook) {
+        hook({ extensions: '.ts' });
       },
     },
   ],
@@ -61,32 +61,32 @@ var extensions = {
   '.jsx': [
     {
       module: '@babel/register',
-      register: function(module) {
-        module({ extensions: '.jsx' });
+      register: function(hook) {
+        hook({ extensions: '.jsx' });
       },
     },
     {
       module: 'babel-register',
-      register: function(module) {
-        module({ extensions: '.jsx' });
+      register: function(hook) {
+        hook({ extensions: '.jsx' });
       },
     },
     {
       module: 'babel-core/register',
-      register: function(module) {
-        module({ extensions: '.jsx' });
+      register: function(hook) {
+        hook({ extensions: '.jsx' });
       },
     },
     {
       module: 'babel/register',
-      register: function(module) {
-        module({ extensions: '.jsx' });
+      register: function(hook) {
+        hook({ extensions: '.jsx' });
       },
     },
     {
       module: 'node-jsx',
-      register: function(module) {
-        module.install({ extension: '.jsx', harmony: true });
+      register: function(hook) {
+        hook.install({ extension: '.jsx', harmony: true });
       },
     },
   ],
@@ -96,8 +96,8 @@ var extensions = {
   '.node': null,
   '.toml': {
     module: 'toml-require',
-    register: function(module) {
-      module.install();
+    register: function(hook) {
+      hook.install();
     },
   },
   '.ts': [
@@ -107,8 +107,8 @@ var extensions = {
     'typescript-require',
     {
       module: '@babel/register',
-      register: function(module) {
-        module({ extensions: '.ts' });
+      register: function(hook) {
+        hook({ extensions: '.ts' });
       },
     },
   ],
@@ -117,8 +117,8 @@ var extensions = {
     'typescript-node/register',
     {
       module: '@babel/register',
-      register: function(module) {
-        module({ extensions: '.tsx' });
+      register: function(hook) {
+        hook({ extensions: '.tsx' });
       },
     },
   ],
