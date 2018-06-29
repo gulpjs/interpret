@@ -23,48 +23,38 @@ Map file types to modules which provide a [require.extensions] loader.
   '.babel.js': [
     {
       module: '@babel/register',
-      register: function (module) {
-        module({
-          // register on .js extension due to https://github.com/joyent/node/blob/v0.12.0/lib/module.js#L353
-          // which only captures the final extension (.babel.js -> .js)
-          extensions: '.js'
-        });
-      }
+      register: function(hook) {
+        // register on .js extension due to https://github.com/joyent/node/blob/v0.12.0/lib/module.js#L353
+        // which only captures the final extension (.babel.js -> .js)
+        hook({ extensions: '.js' });
+      },
     },
     {
       module: 'babel-register',
-      register: function (module) {
-        module({
-          extensions: '.js'
-        });
-      }
+      register: function(hook) {
+        hook({ extensions: '.js' });
+      },
     },
     {
       module: 'babel-core/register',
-      register: function (module) {
-        module({
-          extensions: '.js'
-        });
-      }
+      register: function(hook) {
+        hook({ extensions: '.js' });
+      },
     },
     {
       module: 'babel/register',
-      register: function (module) {
-        module({
-          extensions: '.js'
-        });
-      }
-    }
+      register: function(hook) {
+        hook({ extensions: '.js' });
+      },
+    },
   ],
   '.babel.ts': [
     {
       module: '@babel/register',
-      register: function (module) {
-        module({
-          extensions: '.ts'
-        });
-      }
-    }
+      register: function(hook) {
+        hook({ extensions: '.ts' });
+      },
+    },
   ],
   '.buble.js': 'buble/register',
   '.cirru': 'cirru-script/lib/register',
@@ -74,6 +64,15 @@ Map file types to modules which provide a [require.extensions] loader.
   '.coffee.md': ['coffeescript/register', 'coffee-script/register', 'coffeescript', 'coffee-script'],
   '.csv': 'require-csv',
   '.eg': 'earlgrey/register',
+  '.esm.js': {
+    module: 'esm',
+    register: function(hook) {
+      // register on .js extension due to https://github.com/joyent/node/blob/v0.12.0/lib/module.js#L353
+      // which only captures the final extension (.babel.js -> .js)
+      var esmLoader = hook(module);
+      require.extensions['.js'] = esmLoader('module')._extensions['.js'];
+    },
+  },
   '.iced': ['iced-coffee-script/register', 'iced-coffee-script'],
   '.iced.md': 'iced-coffee-script/register',
   '.ini': 'require-ini',
@@ -83,45 +82,34 @@ Map file types to modules which provide a [require.extensions] loader.
   '.jsx': [
     {
       module: '@babel/register',
-      register: function (module) {
-        module({
-          extensions: '.jsx'
-        });
-      }
+      register: function(hook) {
+        hook({ extensions: '.jsx' });
+      },
     },
     {
       module: 'babel-register',
-      register: function (module) {
-        module({
-          extensions: '.jsx'
-        });
-      }
+      register: function(hook) {
+        hook({ extensions: '.jsx' });
+      },
     },
     {
       module: 'babel-core/register',
-      register: function (module) {
-        module({
-          extensions: '.jsx'
-        });
-      }
+      register: function(hook) {
+        hook({ extensions: '.jsx' });
+      },
     },
     {
       module: 'babel/register',
-      register: function (module) {
-        module({
-          extensions: '.jsx'
-        });
+      register: function(hook) {
+        hook({ extensions: '.jsx' });
       },
     },
     {
       module: 'node-jsx',
-      register: function (module) {
-        module.install({
-          extension: '.jsx',
-          harmony: true
-        });
-      }
-    }
+      register: function(hook) {
+        hook.install({ extension: '.jsx', harmony: true });
+      },
+    },
   ],
   '.litcoffee': ['coffeescript/register', 'coffee-script/register', 'coffeescript', 'coffee-script'],
   '.liticed': 'iced-coffee-script/register',
@@ -129,9 +117,9 @@ Map file types to modules which provide a [require.extensions] loader.
   '.node': null,
   '.toml': {
     module: 'toml-require',
-    register: function (module) {
-      module.install();
-    }
+    register: function(hook) {
+      hook.install();
+    },
   },
   '.ts': [
     'ts-node/register',
@@ -140,30 +128,26 @@ Map file types to modules which provide a [require.extensions] loader.
     'typescript-require',
     {
       module: '@babel/register',
-      register: function (module) {
-        module({
-          extensions: '.ts'
-        });
-      }
-    }
+      register: function(hook) {
+        hook({ extensions: '.ts' });
+      },
+    },
   ],
   '.tsx': [
     'ts-node/register',
     'typescript-node/register',
     {
       module: '@babel/register',
-      register: function (module) {
-        module({
-          extensions: '.tsx'
-        });
-      }
-    }
+      register: function(hook) {
+        hook({ extensions: '.tsx' });
+      },
+    },
   ],
   '.wisp': 'wisp/engine/node',
   '.xml': 'require-xml',
   '.yaml': 'require-yaml',
-  '.yml': 'require-yaml'
-};
+  '.yml': 'require-yaml',
+}
 ```
 
 ### jsVariants
