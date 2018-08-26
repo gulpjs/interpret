@@ -102,6 +102,7 @@ var extensions = {
   },
   '.ts': [
     'ts-node/register',
+    'typescript-support',
     'typescript-node/register',
     'typescript-register',
     'typescript-require',
@@ -114,6 +115,7 @@ var extensions = {
   ],
   '.tsx': [
     'ts-node/register',
+    'typescript-support',
     'typescript-node/register',
     {
       module: '@babel/register',
