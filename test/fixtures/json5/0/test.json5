@@ -1,0 +1,10 @@
+{
+  "data": {
+    "trueKey": true,
+    "falseKey": false,
+    "subKey": {
+      "subProp": 1
+    }
+  }
+  /* omg, a comment in json?? */
+}

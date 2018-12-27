@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "typescript": "1.5.3",
+    "typescript-node": "^0.1.3"
+  }
+}

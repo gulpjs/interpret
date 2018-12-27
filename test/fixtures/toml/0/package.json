@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "toml-require": "^1.1.0"
+  }
+}

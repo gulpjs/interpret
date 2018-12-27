@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "typescript-require": "^0.2.10"
+  }
+}

@@ -29,3 +29,5 @@ node_modules
 
 # Garbage files
 .DS_Store
+tmp
+egcache
