@@ -113,8 +113,12 @@ describe('interpret.extenstions', function() {
     it('can require ' + extension + ' using ' + name + ' (' + idx + ')', function(done) {
       var minVersion = minVersions[module];
 
-      if (minVersion && (nodeVersion.major < minVersion.major || nodeVersion.minor < minVersion.minor)) {
-        this.skip();
+      if (minVersion) {
+        if (nodeVersion.major === 0 && nodeVersion.minor < minVersion.minor) {
+          this.skip();
+        } else if (nodeVersion.major < minVersion.major) {
+          this.skip();
+        }
       }
 
       this.timeout(0);
