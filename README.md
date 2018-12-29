@@ -78,7 +78,7 @@ Map file types to modules which provide a [require.extensions] loader.
   '.ini': 'require-ini',
   '.js': null,
   '.json': null,
-  '.json5': 'json5/lib/require',
+  '.json5': ['json5/lib/register', 'json5/lib/require'],
   '.jsx': [
     {
       module: '@babel/register',
