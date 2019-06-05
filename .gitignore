@@ -31,3 +31,6 @@ node_modules
 .DS_Store
 tmp
 egcache
+
+# Created in fixtures directories by test
+package-lock.json
