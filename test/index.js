@@ -182,6 +182,17 @@ describe('interpret.extenstions', function() {
           };
           expect(require(fixture)).toEqual(JSON.stringify(expected));
           break;
+
+        case '.toml':
+          expected = Object.create(null);
+          expected.data = Object.create(null);
+          expected.data.trueKey = true;
+          expected.data.falseKey = false;
+          expected.data.subKey = Object.create(null);
+          expected.data.subKey.subProp = 1;
+          expect(require(fixture)).toEqual(expected);
+          break;
+
         default:
           expected = {
             data: {
