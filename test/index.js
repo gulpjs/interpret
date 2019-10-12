@@ -60,7 +60,7 @@ var minVersions = {
   'require-xml': { major: 6, minor: 0 },
 };
 
-describe('interpret.extenstions', function() {
+describe('interpret.extensions', function() {
 
   beforeEach(cleanup);
 
