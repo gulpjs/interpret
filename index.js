@@ -1,29 +1,49 @@
+var path = require('path');
+
+var endsInBabelJs = /\.babel\.[jt]s(x)$/;
+
+function ignoreNonBabelAndNodeModules(file) {
+  return !endsInBabelJs.test(file) &&
+    path.relative(process.cwd(), file).split(path.sep).indexOf('node_modules') >= 0;
+}
+
 var extensions = {
   '.babel.js': [
     {
       module: '@babel/register',
       register: function(hook) {
-        // register on .js extension due to https://github.com/joyent/node/blob/v0.12.0/lib/module.js#L353
-        // which only captures the final extension (.babel.js -> .js)
-        hook({ extensions: '.js' });
+        hook({
+          extensions: '.js',
+          rootMode: 'upward-optional',
+          ignore: [ignoreNonBabelAndNodeModules],
+        });
       },
     },
     {
       module: 'babel-register',
       register: function(hook) {
-        hook({ extensions: '.js' });
+        hook({
+          extensions: '.js',
+          ignore: ignoreNonBabelAndNodeModules,
+        });
       },
     },
     {
       module: 'babel-core/register',
       register: function(hook) {
-        hook({ extensions: '.js' });
+        hook({
+          extensions: '.js',
+          ignore: ignoreNonBabelAndNodeModules,
+        });
       },
     },
     {
       module: 'babel/register',
       register: function(hook) {
-        hook({ extensions: '.js' });
+        hook({
+          extensions: '.js',
+          ignore: ignoreNonBabelAndNodeModules,
+        });
       },
     },
   ],
@@ -31,7 +51,11 @@ var extensions = {
     {
       module: '@babel/register',
       register: function(hook) {
-        hook({ extensions: '.ts' });
+        hook({
+          extensions: '.ts',
+          rootMode: 'upward-optional',
+          ignore: [ignoreNonBabelAndNodeModules],
+        });
       },
     },
   ],
@@ -62,25 +86,38 @@ var extensions = {
     {
       module: '@babel/register',
       register: function(hook) {
-        hook({ extensions: '.jsx' });
+        hook({
+          extensions: '.jsx',
+          rootMode: 'upward-optional',
+          ignore: [ignoreNonBabelAndNodeModules],
+        });
       },
     },
     {
       module: 'babel-register',
       register: function(hook) {
-        hook({ extensions: '.jsx' });
+        hook({
+          extensions: '.jsx',
+          ignore: ignoreNonBabelAndNodeModules,
+        });
       },
     },
     {
       module: 'babel-core/register',
       register: function(hook) {
-        hook({ extensions: '.jsx' });
+        hook({
+          extensions: '.jsx',
+          ignore: ignoreNonBabelAndNodeModules,
+        });
       },
     },
     {
       module: 'babel/register',
       register: function(hook) {
-        hook({ extensions: '.jsx' });
+        hook({
+          extensions: '.jsx',
+          ignore: ignoreNonBabelAndNodeModules,
+        });
       },
     },
     {
@@ -108,7 +145,11 @@ var extensions = {
     {
       module: '@babel/register',
       register: function(hook) {
-        hook({ extensions: '.ts' });
+        hook({
+          extensions: '.ts',
+          rootMode: 'upward-optional',
+          ignore: [ignoreNonBabelAndNodeModules],
+        });
       },
     },
   ],
@@ -118,7 +159,11 @@ var extensions = {
     {
       module: '@babel/register',
       register: function(hook) {
-        hook({ extensions: '.tsx' });
+        hook({
+          extensions: '.tsx',
+          rootMode: 'upward-optional',
+          ignore: [ignoreNonBabelAndNodeModules],
+        });
       },
     },
   ],
