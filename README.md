@@ -13,6 +13,12 @@ A dictionary of file extensions and associated module loaders.
 ## What is it
 This is used by [Liftoff](http://github.com/tkellen/node-liftoff) to automatically require dependencies for configuration files, and by [rechoir](http://github.com/tkellen/node-rechoir) for registering module loaders.
 
+## interpret for enterprise
+
+Available as part of the Tidelift Subscription
+
+The maintainers of interpret and thousands of other packages are working with Tidelift to deliver commercial support and maintenance for the open source dependencies you use to build your applications. Save time, reduce risk, and improve code health, while paying the maintainers of the exact dependencies you use. [Learn more.](https://tidelift.com/subscription/pkg/npm-interpret?utm_source=npm-interpret&utm_medium=referral&utm_campaign=enterprise&utm_term=repo)
+
 ## API
 
 ### extensions
@@ -182,11 +188,3 @@ Consumers should use the exported `extensions` or `jsVariants` object to determi
 
 [gitter-url]: https://gitter.im/gulpjs/gulp
 [gitter-image]: https://badges.gitter.im/gulpjs/gulp.svg
-
----
-
-<div align="center">
-  <b><a href="https://tidelift.com/subscription/pkg/npm-interpret?utm_source=npm-interpret&utm_medium=referral&utm_campaign=readme">Get supported interpret with the Tidelift Subscription</a></b>
-  <br>
-  <sub>Tidelift gives software development teams a single source for purchasing and maintaining their software, with professional grade assurances from the experts who know it best, while seamlessly integrating with existing tools.</sub>
-</div>
