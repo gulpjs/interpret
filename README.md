@@ -79,6 +79,7 @@ Map file types to modules which provide a [require.extensions] loader.
   ],
   '.buble.js': 'buble/register',
   '.cirru': 'cirru-script/lib/register',
+  '.cjs': null,
   '.cjsx': 'node-cjsx/register',
   '.co': 'coco',
   '.coffee': ['coffeescript/register', 'coffee-script/register', 'coffeescript', 'coffee-script'],
