@@ -146,7 +146,7 @@ var extensions = {
       module: '@babel/register',
       register: function(hook) {
         hook({
-          extensions: '.ts',
+          extensions: ['.ts', '.tsx'],
           rootMode: 'upward-optional',
           ignore: [ignoreNonBabelAndNodeModules],
         });
@@ -160,7 +160,7 @@ var extensions = {
       module: '@babel/register',
       register: function(hook) {
         hook({
-          extensions: '.tsx',
+          extensions: ['.ts', '.tsx'],
           rootMode: 'upward-optional',
           ignore: [ignoreNonBabelAndNodeModules],
         });
