@@ -152,6 +152,7 @@ var extensions = {
         });
       },
     },
+    '@ts-tools/node/r',
   ],
   '.tsx': [
     'ts-node/register',
@@ -166,6 +167,7 @@ var extensions = {
         });
       },
     },
+    '@ts-tools/node/r',
   ],
   '.wisp': 'wisp/engine/node',
   '.xml': 'require-xml',
