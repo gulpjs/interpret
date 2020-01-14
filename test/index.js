@@ -58,6 +58,7 @@ var minVersions = {
   'ts-node': { major: 4, minor: 0 },
   wisp: { major: 0, minor: 12 },
   'require-xml': { major: 6, minor: 0 },
+  '@ts-tools/node/r': { major: 6, minor: 0 },
 };
 
 describe('interpret.extensions', function() {
