@@ -134,7 +134,12 @@ var extensions = {
   '.toml': {
     module: 'toml-require',
     register: function(hook) {
+      try {
       hook.install();
+      } catch (error) {
+        console.log(error);
+        throw error;
+      }
     },
   },
   '.ts': [
