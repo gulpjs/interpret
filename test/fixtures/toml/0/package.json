@@ -1,5 +1,5 @@
 {
   "dependencies": {
-    "toml-require": "^1.1.0"
+    "toml-require": "^1.2.0"
   }
 }
