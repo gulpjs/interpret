@@ -58,6 +58,7 @@ var minVersions = {
   'ts-node': { major: 4, minor: 0 },
   wisp: { major: 0, minor: 12 },
   'require-xml': { major: 6, minor: 0 },
+  'toml-require': { major: 6, minor: 0 },
 };
 
 describe('interpret.extensions', function() {
@@ -127,6 +128,7 @@ describe('interpret.extensions', function() {
 
       process.chdir(path.join(__dirname, fixtureDir));
 
+      shell.exec('trash node_modules', { silent: true });
       shell.exec('npm install', { silent: true });
 
       // TODO: log failures

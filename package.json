@@ -31,10 +31,11 @@
     "eslint-config-gulp": "^3.0.1",
     "expect": "^1.20.2",
     "mocha": "^3.5.3",
+    "nyc": "^10.3.2",
     "parse-node-version": "^1.0.0",
     "rechoir": "^0.7.0",
-    "nyc": "^10.3.2",
-    "shelljs": "0.7.5"
+    "shelljs": "0.7.5",
+    "trash-cli": "^3.0.0"
   },
   "keywords": [
     "cirru-script",
