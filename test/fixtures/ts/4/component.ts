@@ -1,5 +1,3 @@
-import data from "./data"
-
 const React = {
   createElement(Component: () => any) {
     return Component()
@@ -17,4 +15,4 @@ const Component = () => {
 }
 
 // Test TSX syntax.
-export default <Component {...data} />
+export default <Component />
