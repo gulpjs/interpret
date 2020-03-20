@@ -1,5 +1,15 @@
-import Component from "./component"
+var test = {
+  data: {
+    trueKey: true,
+    falseKey: false,
+    subKey: {
+      subProp: 1
+    }
+  }
+};
 
-var test = { ...Component }
+var main = {
+  default: test
+};
 
-export default test
+export = main;
