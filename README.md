@@ -126,6 +126,7 @@ Map file types to modules which provide a [require.extensions] loader.
     'typescript-node/register',
     'typescript-register',
     'typescript-require',
+    'sucrase/register/ts',
     {
       module: '@babel/register',
       register: function(hook) {
@@ -136,6 +137,7 @@ Map file types to modules which provide a [require.extensions] loader.
   '.tsx': [
     'ts-node/register',
     'typescript-node/register',
+    'sucrase/register',
     {
       module: '@babel/register',
       register: function(hook) {

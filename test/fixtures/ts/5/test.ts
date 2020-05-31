@@ -8,8 +8,4 @@ var test = {
   }
 };
 
-var main = {
-  default: test
-};
-
-export = main;
+export default test;
