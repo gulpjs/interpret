@@ -142,6 +142,7 @@ var extensions = {
     'typescript-node/register',
     'typescript-register',
     'typescript-require',
+    'sucrase/register/ts',
     {
       module: '@babel/register',
       register: function(hook) {
@@ -156,6 +157,7 @@ var extensions = {
   '.tsx': [
     'ts-node/register',
     'typescript-node/register',
+    'sucrase/register',
     {
       module: '@babel/register',
       register: function(hook) {
