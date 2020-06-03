@@ -62,7 +62,11 @@ var minVersions = {
   'toml-require': { major: 6, minor: 0 },
 };
 
-describe('interpret.extenstions', function() {
+var maxVersions = {
+  'typescript-require': { major: 10, minor: 0 },
+};
+
+describe('interpret.extensions', function() {
 
   beforeEach(cleanup);
 
@@ -117,6 +121,14 @@ describe('interpret.extenstions', function() {
 
       if (minVersion && (nodeVersion.major < minVersion.major || nodeVersion.minor < minVersion.minor)) {
         this.skip();
+      }
+
+      var maxVersion = maxVersions[module];
+
+      if (maxVersion) {
+        if (nodeVersion.major > maxVersion.major) {
+          this.skip();
+        }
       }
 
       this.timeout(0);
