@@ -59,10 +59,10 @@ var minVersions = {
   'ts-node': { major: 4, minor: 0 },
   wisp: { major: 0, minor: 12 },
   'require-xml': { major: 6, minor: 0 },
-  'toml-require': { major: 6, minor: 0 },
 };
 
 var maxVersions = {
+  'toml-require': { major: 0, minor: 0 },
   'typescript-require': { major: 10, minor: 0 },
 };
 
