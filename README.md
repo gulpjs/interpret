@@ -114,6 +114,7 @@ Map file types to modules which provide a [require.extensions] loader.
   '.litcoffee': ['coffeescript/register', 'coffee-script/register', 'coffeescript', 'coffee-script'],
   '.liticed': 'iced-coffee-script/register',
   '.ls': ['livescript', 'LiveScript'],
+  '.mjs': '/absolute/path/to/interpret/mjs-stub.js',
   '.node': null,
   '.toml': {
     module: 'toml-require',

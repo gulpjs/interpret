@@ -15,7 +15,8 @@
   "main": "index.js",
   "files": [
     "LICENSE",
-    "index.js"
+    "index.js",
+    "mjs-stub.js"
   ],
   "scripts": {
     "lint": "eslint .",

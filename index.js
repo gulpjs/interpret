@@ -1,3 +1,7 @@
+var path = require('path');
+
+var mjsStub = path.join(__dirname, 'mjs-stub');
+
 var extensions = {
   '.babel.js': [
     {
@@ -93,6 +97,7 @@ var extensions = {
   '.litcoffee': ['coffeescript/register', 'coffee-script/register', 'coffeescript', 'coffee-script'],
   '.liticed': 'iced-coffee-script/register',
   '.ls': ['livescript', 'LiveScript'],
+  '.mjs': mjsStub,
   '.node': null,
   '.toml': {
     module: 'toml-require',
@@ -148,6 +153,7 @@ var jsVariantExtensions = [
   '.litcoffee',
   '.liticed',
   '.ls',
+  '.mjs',
   '.ts',
   '.tsx',
   '.wisp',
