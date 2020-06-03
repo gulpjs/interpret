@@ -1,6 +1,6 @@
 {
   "name": "interpret",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "description": "A dictionary of file extensions and associated module loaders.",
   "author": "Gulp Team <team@gulpjs.com> (http://gulpjs.com/)",
   "contributors": [
