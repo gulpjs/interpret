@@ -2,6 +2,8 @@ var path = require('path');
 
 var endsInBabelJs = /\.babel\.[jt]s(x)$/;
 
+var mjsStub = path.join(__dirname, 'mjs-stub');
+
 function ignoreNonBabelAndNodeModules(file) {
   return !endsInBabelJs.test(file) &&
     path.relative(process.cwd(), file).split(path.sep).indexOf('node_modules') >= 0;
@@ -130,6 +132,7 @@ var extensions = {
   '.litcoffee': ['coffeescript/register', 'coffee-script/register', 'coffeescript', 'coffee-script'],
   '.liticed': 'iced-coffee-script/register',
   '.ls': ['livescript', 'LiveScript'],
+  '.mjs': mjsStub,
   '.node': null,
   '.toml': {
     module: 'toml-require',
@@ -193,6 +196,7 @@ var jsVariantExtensions = [
   '.litcoffee',
   '.liticed',
   '.ls',
+  '.mjs',
   '.ts',
   '.tsx',
   '.wisp',

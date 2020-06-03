@@ -84,6 +84,11 @@ describe('interpret.extensions', function() {
       return attempts;
     }
 
+    // We will handle the .mjs tests separately
+    if (ext === '.mjs') {
+      return attempts;
+    }
+
     modules.forEach(function(mod, idx) {
       if (mod && typeof mod !== 'string') {
         mod = mod.module;
@@ -220,9 +225,71 @@ describe('interpret.extensions', function() {
           };
           expect(require(fixture)).toEqual(expected);
       }
-
       done();
     });
+  });
+
+  it('does not error with the .mjs extension', function(done) {
+    var ext = '.mjs';
+    var fixture = './fixtures/' + ext.slice(1) + '/0/test' + ext;
+
+    var result = rechoir.prepare(extensions, fixture);
+
+    expect(Array.isArray(result)).toEqual(true);
+    expect(result[0].moduleName).toEqual(path.join(__dirname, '../mjs-stub'));
+    done();
+  });
+
+  it('the module can be loaded with import(), ignoring the loader', function() {
+    if (nodeVersion.major < 12) {
+      this.skip();
+    }
+
+    var ext = '.mjs';
+    var fixture = './fixtures/' + ext.slice(1) + '/0/test' + ext;
+
+    rechoir.prepare(extensions, fixture);
+
+    var expected = {
+      data: {
+        trueKey: true,
+        falseKey: false,
+        subKey: {
+          subProp: 1,
+        },
+      },
+    };
+
+    // This avoid SyntaxError when parsing on old node versions
+    var imprt = new Function('a', 'return import(a)');
+
+    return imprt(fixture)
+      .then(function(result) {
+        expect(result.default).toEqual(expected);
+      });
+  });
+
+  it('stubs .mjs extension with null on old node that do not care about it', function(done) {
+    if (nodeVersion.major > 10) {
+      this.skip();
+    }
+
+    var ext = '.mjs';
+    var fixture = './fixtures/' + ext.slice(1) + '/1/test' + ext;
+
+    rechoir.prepare(extensions, fixture);
+
+    var expected = {
+      data: {
+        trueKey: true,
+        falseKey: false,
+        subKey: {
+          subProp: 1,
+        },
+      },
+    };
+    expect(require(fixture)).toEqual(expected);
+    done();
   });
 
 });
