@@ -157,6 +157,7 @@ Map file types to modules which provide a [require.extensions] loader.
     },
   },
   '.ts': [
+    'ts-node/register/transpile-only',
     'ts-node/register',
     'typescript-node/register',
     'typescript-register',
@@ -174,6 +175,7 @@ Map file types to modules which provide a [require.extensions] loader.
     },
   ],
   '.tsx': [
+    'ts-node/register/transpile-only',
     'ts-node/register',
     'typescript-node/register',
     'sucrase/register',

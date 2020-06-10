@@ -141,6 +141,7 @@ var extensions = {
     },
   },
   '.ts': [
+    'ts-node/register/transpile-only',
     'ts-node/register',
     'typescript-node/register',
     'typescript-register',
@@ -158,6 +159,7 @@ var extensions = {
     },
   ],
   '.tsx': [
+    'ts-node/register/transpile-only',
     'ts-node/register',
     'typescript-node/register',
     'sucrase/register',
