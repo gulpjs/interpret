@@ -109,6 +109,7 @@ var extensions = {
       });
     },
   },
+  '.cjs': null,
   '.coffee': 'coffeescript/register',
   '.coffee.md': 'coffeescript/register',
   '.esbuild.js': {
@@ -339,6 +340,7 @@ var jsVariantExtensions = [
   '.esbuild.jsx',
   '.esbuild.ts',
   '.esbuild.tsx',
+  '.cjs',
   '.coffee',
   '.coffee.md',
   '.esm.js',
