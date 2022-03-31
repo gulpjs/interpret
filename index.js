@@ -9,6 +9,8 @@ function ignoreNonBabelAndNodeModules(file) {
     path.relative(process.cwd(), file).split(path.sep).indexOf('node_modules') >= 0;
 }
 
+var esbuildTarget = 'node' + process.version.slice(1);
+
 var extensions = {
   '.babel.js': [
     {
@@ -147,6 +149,15 @@ var extensions = {
     'typescript-require',
     'sucrase/register/ts',
     {
+      module: 'esbuild-register/dist/node',
+      register: function(mod) {
+        mod.register({
+          extensions: ['.ts'],
+          target: esbuildTarget,
+        });
+      },
+    },
+    {
       module: '@babel/register',
       register: function(hook) {
         hook({
@@ -161,6 +172,15 @@ var extensions = {
     'ts-node/register',
     'typescript-node/register',
     'sucrase/register',
+    {
+      module: 'esbuild-register/dist/node',
+      register: function(mod) {
+        mod.register({
+          extensions: ['.tsx'],
+          target: esbuildTarget,
+        });
+      },
+    },
     {
       module: '@babel/register',
       register: function(hook) {
