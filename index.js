@@ -9,8 +9,6 @@ function ignoreNonBabelAndNodeModules(file) {
     path.relative(process.cwd(), file).split(path.sep).indexOf('node_modules') >= 0;
 }
 
-var esbuildTarget = 'node' + process.version.slice(1);
-
 var extensions = {
   '.babel.js': [
     {
@@ -153,7 +151,7 @@ var extensions = {
       register: function(mod) {
         mod.register({
           extensions: ['.ts'],
-          target: esbuildTarget,
+          target: 'node' + process.version.slice(1),
         });
       },
     },
@@ -177,7 +175,7 @@ var extensions = {
       register: function(mod) {
         mod.register({
           extensions: ['.tsx'],
-          target: esbuildTarget,
+          target: 'node' + process.version.slice(1),
         });
       },
     },
