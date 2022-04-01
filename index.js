@@ -147,6 +147,15 @@ var extensions = {
     'typescript-require',
     'sucrase/register/ts',
     {
+      module: 'esbuild-register/dist/node',
+      register: function(mod) {
+        mod.register({
+          extensions: ['.ts'],
+          target: 'node' + process.version.slice(1),
+        });
+      },
+    },
+    {
       module: '@babel/register',
       register: function(hook) {
         hook({
@@ -161,6 +170,15 @@ var extensions = {
     'ts-node/register',
     'typescript-node/register',
     'sucrase/register',
+    {
+      module: 'esbuild-register/dist/node',
+      register: function(mod) {
+        mod.register({
+          extensions: ['.tsx'],
+          target: 'node' + process.version.slice(1),
+        });
+      },
+    },
     {
       module: '@babel/register',
       register: function(hook) {
