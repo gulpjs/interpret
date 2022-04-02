@@ -283,7 +283,13 @@ var extensions = {
 var jsVariantExtensions = [
   '.js',
   '.babel.js',
+  '.babel.jsx',
   '.babel.ts',
+  '.babel.tsx',
+  '.esbuild.js',
+  '.esbuild.jsx',
+  '.esbuild.ts',
+  '.esbuild.tsx',
   '.buble.js',
   '.cirru',
   '.cjsx',
