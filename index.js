@@ -19,6 +19,11 @@ function ignoreNonBabelAndNodeModules(file) {
     path.relative(process.cwd(), file).split(path.sep).indexOf('node_modules') >= 0;
 }
 
+// Not part of the above check because it seems broken
+function isNodeModules(file) {
+  return path.relative(process.cwd(), file).split(path.sep).indexOf('node_modules') >= 0;
+}
+
 var extensions = {
   '.babel.js': [
     {
@@ -246,6 +251,16 @@ var extensions = {
         });
       },
     },
+    {
+      module: '@swc/register',
+      register: function(hook) {
+        hook({
+          extensions: '.ts',
+          only: [endsInTs],
+          ignore: [isNodeModules],
+        });
+      },
+    },
   ],
   '.tsx': [
     'ts-node/register',
@@ -270,6 +285,16 @@ var extensions = {
           hookMatcher: function(file) {
             return endsInTsx.test(file);
           },
+        });
+      },
+    },
+    {
+      module: '@swc/register',
+      register: function(hook) {
+        hook({
+          extensions: '.tsx',
+          only: [endsInTsx],
+          ignore: [isNodeModules],
         });
       },
     },
