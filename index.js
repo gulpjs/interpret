@@ -1,5 +1,7 @@
 var path = require('path');
 
+var endsInTs = /\.ts$/;
+var endsInTsx = /\.tsx$/;
 var endsInBabelJs = /\.babel\.[jt]s(x)$/;
 
 var mjsStub = path.join(__dirname, 'mjs-stub');
@@ -162,6 +164,9 @@ var extensions = {
         mod.register({
           extensions: ['.ts'],
           target: 'node' + process.version.slice(1),
+          hookMatcher: function(file) {
+            return endsInTs.test(file);
+          },
         });
       },
     },
@@ -186,6 +191,9 @@ var extensions = {
         mod.register({
           extensions: ['.tsx'],
           target: 'node' + process.version.slice(1),
+          hookMatcher: function(file) {
+            return endsInTsx.test(file);
+          },
         });
       },
     },
