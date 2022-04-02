@@ -1,8 +1,10 @@
 var path = require('path');
 
+var endsInJsx = /\.jsx$/;
 var endsInTs = /\.ts$/;
 var endsInTsx = /\.tsx$/;
-var endsInBabelJs = /\.babel\.[jt]s(x)$/;
+var endsInBabelJs = /\.babel\.js$/;
+var endsInBabelTs = /\.babel\.ts$/;
 var endsInEsbuildJs = /\.esbuild\.js$/;
 var endsInEsbuildJsx = /\.esbuild\.jsx$/;
 var endsInEsbuildTs = /\.esbuild\.ts$/;
@@ -23,7 +25,7 @@ var extensions = {
         hook({
           extensions: '.js',
           rootMode: 'upward-optional',
-          ignore: [ignoreNonBabelAndNodeModules],
+          overrides: [{ only: [endsInBabelJs] }],
         });
       },
     },
@@ -62,7 +64,7 @@ var extensions = {
         hook({
           extensions: '.ts',
           rootMode: 'upward-optional',
-          ignore: [ignoreNonBabelAndNodeModules],
+          overrides: [{ only: [endsInBabelTs] }],
         });
       },
     },
@@ -145,7 +147,7 @@ var extensions = {
         hook({
           extensions: '.jsx',
           rootMode: 'upward-optional',
-          ignore: [ignoreNonBabelAndNodeModules],
+          overrides: [{ only: [endsInJsx] }],
         });
       },
     },
@@ -206,7 +208,7 @@ var extensions = {
         hook({
           extensions: '.ts',
           rootMode: 'upward-optional',
-          ignore: [ignoreNonBabelAndNodeModules],
+          overrides: [{ only: [endsInTs] }],
         });
       },
     },
@@ -233,7 +235,7 @@ var extensions = {
         hook({
           extensions: '.tsx',
           rootMode: 'upward-optional',
-          ignore: [ignoreNonBabelAndNodeModules],
+          overrides: [{ only: [endsInTsx] }],
         });
       },
     },
