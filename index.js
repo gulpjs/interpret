@@ -3,6 +3,10 @@ var path = require('path');
 var endsInTs = /\.ts$/;
 var endsInTsx = /\.tsx$/;
 var endsInBabelJs = /\.babel\.[jt]s(x)$/;
+var endsInEsbuildJs = /\.esbuild\.js$/;
+var endsInEsbuildJsx = /\.esbuild\.jsx$/;
+var endsInEsbuildTs = /\.esbuild\.ts$/;
+var endsInEsbuildTsx = /\.esbuild\.tsx$/;
 
 var mjsStub = path.join(__dirname, 'mjs-stub');
 
@@ -71,11 +75,59 @@ var extensions = {
   '.coffee.md': ['coffeescript/register', 'coffee-script/register', 'coffeescript', 'coffee-script'],
   '.csv': 'require-csv',
   '.eg': 'earlgrey/register',
+  '.esbuild.js': {
+    module: 'esbuild-register/dist/node',
+    register: function(mod) {
+      mod.register({
+        extensions: ['.js'],
+        target: 'node' + process.version.slice(1),
+        hookMatcher: function(file) {
+          return endsInEsbuildJs.test(file);
+        },
+      });
+    },
+  },
+  '.esbuild.jsx': {
+    module: 'esbuild-register/dist/node',
+    register: function(mod) {
+      mod.register({
+        extensions: ['.jsx'],
+        target: 'node' + process.version.slice(1),
+        hookMatcher: function(file) {
+          return endsInEsbuildJsx.test(file);
+        },
+      });
+    },
+  },
+  '.esbuild.ts': {
+    module: 'esbuild-register/dist/node',
+    register: function(mod) {
+      mod.register({
+        extensions: ['.ts'],
+        target: 'node' + process.version.slice(1),
+        hookMatcher: function(file) {
+          return endsInEsbuildTs.test(file);
+        },
+      });
+    },
+  },
+  '.esbuild.tsx': {
+    module: 'esbuild-register/dist/node',
+    register: function(mod) {
+      mod.register({
+        extensions: ['.tsx'],
+        target: 'node' + process.version.slice(1),
+        hookMatcher: function(file) {
+          return endsInEsbuildTsx.test(file);
+        },
+      });
+    },
+  },
   '.esm.js': {
     module: 'esm',
     register: function(hook) {
       // register on .js extension due to https://github.com/joyent/node/blob/v0.12.0/lib/module.js#L353
-      // which only captures the final extension (.babel.js -> .js)
+      // which only captures the final extension (.esm.js -> .js)
       var esmLoader = hook(module);
       require.extensions['.js'] = esmLoader('module')._extensions['.js'];
     },

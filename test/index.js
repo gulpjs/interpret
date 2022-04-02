@@ -156,6 +156,10 @@ describe('interpret.extensions', function() {
         case '.ts':
         case '.tsx':
         case '.esm.js':
+        case '.esbuild.js':
+        case '.esbuild.jsx':
+        case '.esbuild.ts':
+        case '.esbuild.tsx':
           expected = {
             default: {
               data: {
