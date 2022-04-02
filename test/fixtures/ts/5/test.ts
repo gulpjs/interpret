@@ -1,5 +1,5 @@
 import Component from "./component"
 
-var test = { ...Component }
+var test: typeof Component = { ...Component }
 
 export default test

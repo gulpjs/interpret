@@ -1,9 +1,13 @@
+var trueKey: boolean = true;
+var falseKey: boolean = false;
+var subProp: number = 1;
+
 var test = {
   data: {
-    trueKey: true,
-    falseKey: false,
+    trueKey: trueKey,
+    falseKey: falseKey,
     subKey: {
-      subProp: 1
+      subProp: subProp
     }
   }
 };

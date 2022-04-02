@@ -4,8 +4,8 @@ function add(x: number, y: number): number {
 
 export default {
   data: {
-    trueKey: true,
-    falseKey: false,
+    trueKey: true as boolean,
+    falseKey: false as boolean,
     subKey: {
       subProp: add(0.5, 0.5),
     },

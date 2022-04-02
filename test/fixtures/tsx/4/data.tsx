@@ -1,4 +1,10 @@
-export const data = {
+export const data: {
+  trueKey: boolean,
+  falseKey: boolean,
+  subKey: {
+    subProp: number
+  }
+} = {
   trueKey: true,
   falseKey: false,
   subKey: {

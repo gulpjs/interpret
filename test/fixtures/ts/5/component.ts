@@ -6,8 +6,8 @@ const React = {
 
 // Test harmony arrow functions.
 const Component = () => {
-  var trueKey = true
-  var falseKey = false
+  var trueKey: boolean = true
+  var falseKey: boolean = false
   var subKey = { subProp: 1 }
 
   // Test harmony object short notation.
