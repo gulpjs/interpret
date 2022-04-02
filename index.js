@@ -4,7 +4,9 @@ var endsInJsx = /\.jsx$/;
 var endsInTs = /\.ts$/;
 var endsInTsx = /\.tsx$/;
 var endsInBabelJs = /\.babel\.js$/;
+var endsInBabelJsx = /\.babel\.jsx$/;
 var endsInBabelTs = /\.babel\.ts$/;
+var endsInBabelTsx = /\.babel\.tsx$/;
 var endsInEsbuildJs = /\.esbuild\.js$/;
 var endsInEsbuildJsx = /\.esbuild\.jsx$/;
 var endsInEsbuildTs = /\.esbuild\.ts$/;
@@ -57,6 +59,16 @@ var extensions = {
       },
     },
   ],
+  '.babel.jsx': {
+    module: '@babel/register',
+    register: function(hook) {
+      hook({
+        extensions: '.jsx',
+        rootMode: 'upward-optional',
+        overrides: [{ only: [endsInBabelJsx] }],
+      });
+    },
+  },
   '.babel.ts': [
     {
       module: '@babel/register',
@@ -69,6 +81,16 @@ var extensions = {
       },
     },
   ],
+  '.babel.tsx': {
+    module: '@babel/register',
+    register: function(hook) {
+      hook({
+        extensions: '.tsx',
+        rootMode: 'upward-optional',
+        overrides: [{ only: [endsInBabelTsx] }],
+      });
+    },
+  },
   '.buble.js': 'buble/register',
   '.cirru': 'cirru-script/lib/register',
   '.cjsx': 'node-cjsx/register',

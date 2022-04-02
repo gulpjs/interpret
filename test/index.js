@@ -156,6 +156,7 @@ describe('interpret.extensions', function() {
         case '.ts':
         case '.tsx':
         case '.esm.js':
+        case '.babel.tsx':
         case '.esbuild.js':
         case '.esbuild.jsx':
         case '.esbuild.ts':
