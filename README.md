@@ -138,12 +138,6 @@ Map file types to modules which provide a [require.extensions] loader.
         });
       },
     },
-    {
-      module: 'node-jsx',
-      register: function(hook) {
-        hook.install({ extension: '.jsx', harmony: true });
-      },
-    },
   ],
   '.litcoffee': ['coffeescript/register', 'coffee-script/register', 'coffeescript', 'coffee-script'],
   '.liticed': 'iced-coffee-script/register',
