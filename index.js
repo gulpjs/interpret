@@ -62,7 +62,6 @@ var extensions = {
       });
     },
   },
-  '.cirru': 'cirru-script/lib/register',
   '.cjsx': 'node-cjsx/register',
   '.co': 'coco',
   '.coffee': ['coffeescript/register', 'coffee-script/register', 'coffeescript', 'coffee-script'],
@@ -240,7 +239,6 @@ var jsVariantExtensions = [
   '.esbuild.jsx',
   '.esbuild.ts',
   '.esbuild.tsx',
-  '.cirru',
   '.cjsx',
   '.co',
   '.coffee',

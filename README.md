@@ -48,7 +48,6 @@ Map file types to modules which provide a [require.extensions] loader.
       },
     },
   ],
-  '.cirru': 'cirru-script/lib/register',
   '.cjsx': 'node-cjsx/register',
   '.co': 'coco',
   '.coffee': ['coffeescript/register', 'coffee-script/register', 'coffeescript', 'coffee-script'],
