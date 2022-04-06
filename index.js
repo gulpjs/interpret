@@ -62,7 +62,6 @@ var extensions = {
       });
     },
   },
-  '.co': 'coco',
   '.coffee': ['coffeescript/register', 'coffee-script/register', 'coffeescript', 'coffee-script'],
   '.coffee.md': ['coffeescript/register', 'coffee-script/register', 'coffeescript', 'coffee-script'],
   '.csv': 'require-csv',
@@ -238,7 +237,6 @@ var jsVariantExtensions = [
   '.esbuild.jsx',
   '.esbuild.ts',
   '.esbuild.tsx',
-  '.co',
   '.coffee',
   '.coffee.md',
   '.eg',

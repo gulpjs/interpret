@@ -48,7 +48,6 @@ Map file types to modules which provide a [require.extensions] loader.
       },
     },
   ],
-  '.co': 'coco',
   '.coffee': ['coffeescript/register', 'coffee-script/register', 'coffeescript', 'coffee-script'],
   '.coffee.md': ['coffeescript/register', 'coffee-script/register', 'coffeescript', 'coffee-script'],
   '.csv': 'require-csv',
