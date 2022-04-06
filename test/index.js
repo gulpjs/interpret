@@ -48,15 +48,7 @@ function cleanup() {
 }
 
 // These modules need newer node features
-var minVersions = {
-  '@babel/register': { major: 6, minor: 0 },
-  coffeescript: { major: 6, minor: 0 },
-  esm: { major: 6, minor: 0 },
-  json5: { major: 6, minor: 0 },
-  sucrase: { major: 8, minor: 0 },
-  'ts-node': { major: 4, minor: 0 },
-  'toml-require': { major: 6, minor: 0 },
-};
+var minVersions = {};
 
 var maxVersions = {};
 
@@ -258,5 +250,4 @@ describe('interpret.extensions', function() {
     expect(require(fixture)).toEqual(expected);
     done();
   });
-
 });
