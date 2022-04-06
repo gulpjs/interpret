@@ -50,7 +50,6 @@ function cleanup() {
 // These modules need newer node features
 var minVersions = {
   '@babel/register': { major: 6, minor: 0 },
-  buble: { major: 4, minor: 0 },
   coffeescript: { major: 6, minor: 0 },
   earlgrey: { major: 0, minor: 12 },
   esm: { major: 6, minor: 0 },

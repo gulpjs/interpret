@@ -62,7 +62,6 @@ var extensions = {
       });
     },
   },
-  '.buble.js': 'buble/register',
   '.cirru': 'cirru-script/lib/register',
   '.cjsx': 'node-cjsx/register',
   '.co': 'coco',
@@ -241,7 +240,6 @@ var jsVariantExtensions = [
   '.esbuild.jsx',
   '.esbuild.ts',
   '.esbuild.tsx',
-  '.buble.js',
   '.cirru',
   '.cjsx',
   '.co',
