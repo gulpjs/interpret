@@ -290,7 +290,6 @@ var extensions = {
     },
   ],
   '.wisp': 'wisp/engine/node',
-  '.xml': 'require-xml',
   '.yaml': 'yaml-hook/register',
   '.yml': 'yaml-hook/register',
 };

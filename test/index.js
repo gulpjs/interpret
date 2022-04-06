@@ -58,7 +58,6 @@ var minVersions = {
   sucrase: { major: 8, minor: 0 },
   'ts-node': { major: 4, minor: 0 },
   wisp: { major: 0, minor: 12 },
-  'require-xml': { major: 6, minor: 0 },
   'toml-require': { major: 6, minor: 0 },
 };
 
@@ -188,18 +187,6 @@ describe('interpret.extensions', function() {
             },
           };
           expect(require(fixture)).toEqual(expected);
-          break;
-        case '.xml':
-          expected = {
-            data: {
-              trueKey: 'true',
-              falseKey: 'false',
-              subKey: {
-                subProp: '1',
-              },
-            },
-          };
-          expect(require(fixture)).toEqual(JSON.stringify(expected));
           break;
 
         case '.toml':
