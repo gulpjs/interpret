@@ -62,7 +62,6 @@ var extensions = {
       });
     },
   },
-  '.cjsx': 'node-cjsx/register',
   '.co': 'coco',
   '.coffee': ['coffeescript/register', 'coffee-script/register', 'coffeescript', 'coffee-script'],
   '.coffee.md': ['coffeescript/register', 'coffee-script/register', 'coffeescript', 'coffee-script'],
@@ -239,7 +238,6 @@ var jsVariantExtensions = [
   '.esbuild.jsx',
   '.esbuild.ts',
   '.esbuild.tsx',
-  '.cjsx',
   '.co',
   '.coffee',
   '.coffee.md',
