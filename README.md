@@ -152,7 +152,6 @@ Map file types to modules which provide a [require.extensions] loader.
   },
   '.ts': [
     'ts-node/register',
-    'typescript-node/register',
     'typescript-register',
     'typescript-require',
     'sucrase/register/ts',
@@ -169,7 +168,6 @@ Map file types to modules which provide a [require.extensions] loader.
   ],
   '.tsx': [
     'ts-node/register',
-    'typescript-node/register',
     'sucrase/register',
     {
       module: '@babel/register',

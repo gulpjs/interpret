@@ -1,13 +1,15 @@
-function add(x: number, y: number): number {
-  return x + y;
-}
-
-export default {
+var test = {
   data: {
-    trueKey: true as boolean,
-    falseKey: false as boolean,
+    trueKey: true,
+    falseKey: false,
     subKey: {
-      subProp: add(0.5, 0.5),
-    },
-  },
+      subProp: 1
+    }
+  }
 };
+
+var main = {
+  default: test
+};
+
+export = main;

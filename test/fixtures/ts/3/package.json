@@ -1,5 +1,5 @@
 {
   "dependencies": {
-    "typescript-require": "^0.2.10"
+    "sucrase": "^3.12.1"
   }
 }

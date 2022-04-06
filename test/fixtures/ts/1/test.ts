@@ -1,19 +1,19 @@
-var test: {
+var trueKey: boolean = true;
+var falseKey: boolean = false;
+var subProp: number = 1;
+
+var test = {
   data: {
-    trueKey: boolean,
-    falseKey: boolean,
+    trueKey: trueKey,
+    falseKey: falseKey,
     subKey: {
-      subProp: number
-    }
-  }
-} = {
-  data: {
-    trueKey: true,
-    falseKey: false,
-    subKey: {
-      subProp: 1
+      subProp: subProp
     }
   }
 };
 
-export default test;
+var main = {
+  default: test
+};
+
+export = main;
