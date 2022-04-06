@@ -219,7 +219,6 @@ var extensions = {
   },
   '.ts': [
     'ts-node/register',
-    'typescript-register',
     'typescript-require',
     'sucrase/register/ts',
     {
