@@ -48,8 +48,8 @@ Map file types to modules which provide a [require.extensions] loader.
       },
     },
   ],
-  '.coffee': ['coffeescript/register', 'coffee-script/register', 'coffeescript', 'coffee-script'],
-  '.coffee.md': ['coffeescript/register', 'coffee-script/register', 'coffeescript', 'coffee-script'],
+  '.coffee': 'coffeescript/register',
+  '.coffee.md': 'coffeescript/register',
   '.csv': 'require-csv',
   '.eg': 'earlgrey/register',
   '.esm.js': {
@@ -77,7 +77,7 @@ Map file types to modules which provide a [require.extensions] loader.
       });
     },
   },
-  '.litcoffee': ['coffeescript/register', 'coffee-script/register', 'coffeescript', 'coffee-script'],
+  '.litcoffee': 'coffeescript/register',
   '.liticed': 'iced-coffee-script/register',
   '.ls': ['livescript', 'LiveScript'],
   '.mjs': '/absolute/path/to/interpret/mjs-stub.js',
