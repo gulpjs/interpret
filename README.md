@@ -26,45 +26,16 @@ Map file types to modules which provide a [require.extensions] loader.
 
 ```js
 {
-  '.babel.js': [
-    {
-      module: '@babel/register',
-      register: function(hook) {
-        hook({
-          extensions: '.js',
-          rootMode: 'upward-optional',
-          ignore: [ignoreNonBabelAndNodeModules],
-        });
-      },
+  '.babel.js': {
+    module: '@babel/register',
+    register: function(hook) {
+      hook({
+        extensions: '.js',
+        rootMode: 'upward-optional',
+        ignore: [ignoreNonBabelAndNodeModules],
+      });
     },
-    {
-      module: 'babel-register',
-      register: function(hook) {
-        hook({
-          extensions: '.js',
-          ignore: ignoreNonBabelAndNodeModules,
-        });
-      },
-    },
-    {
-      module: 'babel-core/register',
-      register: function(hook) {
-        hook({
-          extensions: '.js',
-          ignore: ignoreNonBabelAndNodeModules,
-        });
-      },
-    },
-    {
-      module: 'babel/register',
-      register: function(hook) {
-        hook({
-          extensions: '.js',
-          ignore: ignoreNonBabelAndNodeModules,
-        });
-      },
-    },
-  ],
+  },
   '.babel.ts': [
     {
       module: '@babel/register',
@@ -100,45 +71,16 @@ Map file types to modules which provide a [require.extensions] loader.
   '.js': null,
   '.json': null,
   '.json5': ['json5/lib/register', 'json5/lib/require'],
-  '.jsx': [
-    {
-      module: '@babel/register',
-      register: function(hook) {
-        hook({
-          extensions: '.jsx',
-          rootMode: 'upward-optional',
-          ignore: [ignoreNonBabelAndNodeModules],
-        });
-      },
+  '.jsx': {
+    module: '@babel/register',
+    register: function(hook) {
+      hook({
+        extensions: '.jsx',
+        rootMode: 'upward-optional',
+        ignore: [ignoreNonBabelAndNodeModules],
+      });
     },
-    {
-      module: 'babel-register',
-      register: function(hook) {
-        hook({
-          extensions: '.jsx',
-          ignore: ignoreNonBabelAndNodeModules,
-        });
-      },
-    },
-    {
-      module: 'babel-core/register',
-      register: function(hook) {
-        hook({
-          extensions: '.jsx',
-          ignore: ignoreNonBabelAndNodeModules,
-        });
-      },
-    },
-    {
-      module: 'babel/register',
-      register: function(hook) {
-        hook({
-          extensions: '.jsx',
-          ignore: ignoreNonBabelAndNodeModules,
-        });
-      },
-    },
-  ],
+  },
   '.litcoffee': ['coffeescript/register', 'coffee-script/register', 'coffeescript', 'coffee-script'],
   '.liticed': 'iced-coffee-script/register',
   '.ls': ['livescript', 'LiveScript'],

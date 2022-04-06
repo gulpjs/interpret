@@ -14,56 +14,22 @@ var endsInEsbuildTsx = /\.esbuild\.tsx$/;
 
 var mjsStub = path.join(__dirname, 'mjs-stub');
 
-function ignoreNonBabelAndNodeModules(file) {
-  return !endsInBabelJs.test(file) &&
-    path.relative(process.cwd(), file).split(path.sep).indexOf('node_modules') >= 0;
-}
-
 // Not part of the above check because it seems broken
 function isNodeModules(file) {
   return path.relative(process.cwd(), file).split(path.sep).indexOf('node_modules') >= 0;
 }
 
 var extensions = {
-  '.babel.js': [
-    {
-      module: '@babel/register',
-      register: function(hook) {
-        hook({
-          extensions: '.js',
-          rootMode: 'upward-optional',
-          overrides: [{ only: [endsInBabelJs] }],
-        });
-      },
+  '.babel.js': {
+    module: '@babel/register',
+    register: function(hook) {
+      hook({
+        extensions: '.js',
+        rootMode: 'upward-optional',
+        overrides: [{ only: [endsInBabelJs] }],
+      });
     },
-    {
-      module: 'babel-register',
-      register: function(hook) {
-        hook({
-          extensions: '.js',
-          ignore: ignoreNonBabelAndNodeModules,
-        });
-      },
-    },
-    {
-      module: 'babel-core/register',
-      register: function(hook) {
-        hook({
-          extensions: '.js',
-          ignore: ignoreNonBabelAndNodeModules,
-        });
-      },
-    },
-    {
-      module: 'babel/register',
-      register: function(hook) {
-        hook({
-          extensions: '.js',
-          ignore: ignoreNonBabelAndNodeModules,
-        });
-      },
-    },
-  ],
+  },
   '.babel.jsx': {
     module: '@babel/register',
     register: function(hook) {
@@ -167,45 +133,16 @@ var extensions = {
   '.js': null,
   '.json': null,
   '.json5': ['json5/lib/register', 'json5/lib/require'],
-  '.jsx': [
-    {
-      module: '@babel/register',
-      register: function(hook) {
-        hook({
-          extensions: '.jsx',
-          rootMode: 'upward-optional',
-          overrides: [{ only: [endsInJsx] }],
-        });
-      },
+  '.jsx': {
+    module: '@babel/register',
+    register: function(hook) {
+      hook({
+        extensions: '.jsx',
+        rootMode: 'upward-optional',
+        overrides: [{ only: [endsInJsx] }],
+      });
     },
-    {
-      module: 'babel-register',
-      register: function(hook) {
-        hook({
-          extensions: '.jsx',
-          ignore: ignoreNonBabelAndNodeModules,
-        });
-      },
-    },
-    {
-      module: 'babel-core/register',
-      register: function(hook) {
-        hook({
-          extensions: '.jsx',
-          ignore: ignoreNonBabelAndNodeModules,
-        });
-      },
-    },
-    {
-      module: 'babel/register',
-      register: function(hook) {
-        hook({
-          extensions: '.jsx',
-          ignore: ignoreNonBabelAndNodeModules,
-        });
-      },
-    },
-  ],
+  },
   '.litcoffee': ['coffeescript/register', 'coffee-script/register', 'coffeescript', 'coffee-script'],
   '.liticed': 'iced-coffee-script/register',
   '.ls': ['livescript', 'LiveScript'],
