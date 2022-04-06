@@ -62,9 +62,7 @@ var minVersions = {
   'toml-require': { major: 6, minor: 0 },
 };
 
-var maxVersions = {
-  'typescript-require': { major: 10, minor: 0 },
-};
+var maxVersions = {};
 
 describe('interpret.extensions', function() {
 
@@ -173,12 +171,7 @@ describe('interpret.extensions', function() {
               },
             },
           };
-          if (module === 'typescript-require') {
-            // This seems to cause an issue because they vm.runInNewContext so use .toMatch to compare
-            expect(require(fixture)).toMatch(expected);
-          } else {
-            expect(require(fixture)).toEqual(expected);
-          }
+          expect(require(fixture)).toEqual(expected);
           break;
         case '.csv':
           expected = [['r1c1','r1c2'], ['r2c1','r2c2']];

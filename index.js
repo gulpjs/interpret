@@ -219,7 +219,6 @@ var extensions = {
   },
   '.ts': [
     'ts-node/register',
-    'typescript-require',
     'sucrase/register/ts',
     {
       module: '@babel/register',

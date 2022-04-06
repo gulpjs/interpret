@@ -1,18 +1,24 @@
-var trueKey: boolean = true;
-var falseKey: boolean = false;
-var subProp: number = 1;
-
-var test = {
+var test: {
   data: {
-    trueKey: trueKey,
-    falseKey: falseKey,
+    trueKey: boolean,
+    falseKey: boolean,
     subKey: {
-      subProp: subProp
+      subProp: number
+    }
+  }
+} = {
+  data: {
+    trueKey: true,
+    falseKey: false,
+    subKey: {
+      subProp: 1
     }
   }
 };
 
-var main = {
+var main: {
+  default: typeof test
+} = {
   default: test
 };
 
