@@ -291,8 +291,8 @@ var extensions = {
   ],
   '.wisp': 'wisp/engine/node',
   '.xml': 'require-xml',
-  '.yaml': 'require-yaml',
-  '.yml': 'require-yaml',
+  '.yaml': 'yaml-hook/register',
+  '.yml': 'yaml-hook/register',
 };
 
 var jsVariantExtensions = [
