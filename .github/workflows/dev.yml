@@ -35,8 +35,8 @@ jobs:
       - name: Prettier
         uses: gulpjs/prettier_action@v3.0
         with:
-          commit_message: "chore: Update readme & run prettier"
-          prettier_options: "--write ."
+          commit_message: 'chore: Update readme & run prettier'
+          prettier_options: '--write .'
 
   test:
     name: Tests for Node ${{ matrix.node }} on ${{ matrix.os }}

@@ -60,6 +60,77 @@ A sample of an entry containing multiple hooks would look like:
 **Supported extensions and their hooks**
 
 ```yaml file=scripts/extensions.yaml
+.babel.js:
+  - '@babel/register'
+.babel.jsx:
+  - '@babel/register'
+.babel.ts:
+  - '@babel/register'
+.babel.tsx:
+  - '@babel/register'
+.coffee:
+  - coffeescript/register
+.coffee.md:
+  - coffeescript/register
+.esbuild.js:
+  - esbuild-register/dist/node
+.esbuild.jsx:
+  - esbuild-register/dist/node
+.esbuild.ts:
+  - esbuild-register/dist/node
+.esbuild.tsx:
+  - esbuild-register/dist/node
+.esm.js:
+  - esm
+.js:
+  - built-in node.js loader
+.json:
+  - built-in node.js loader
+.json5:
+  - json5/lib/register
+.jsx:
+  - '@babel/register'
+  - sucrase/register/jsx
+.litcoffee:
+  - coffeescript/register
+.mjs:
+  - interpret/mjs-stub
+.node:
+  - built-in node.js loader
+.sucrase.js:
+  - sucrase/dist/register
+.sucrase.jsx:
+  - sucrase/dist/register
+.sucrase.ts:
+  - sucrase/dist/register
+.sucrase.tsx:
+  - sucrase/dist/register
+.swc.js:
+  - '@swc/register'
+.swc.jsx:
+  - '@swc/register'
+.swc.ts:
+  - '@swc/register'
+.swc.tsx:
+  - '@swc/register'
+.toml:
+  - toml-require
+.ts:
+  - ts-node/register
+  - sucrase/register/ts
+  - '@babel/register'
+  - esbuild-register/dist/node
+  - '@swc/register'
+.tsx:
+  - ts-node/register
+  - sucrase/register/tsx
+  - '@babel/register'
+  - esbuild-register/dist/node
+  - '@swc/register'
+.yaml:
+  - yaml-hook/register
+.yml:
+  - yaml-hook/register
 ```
 
 ### `jsVariants`
@@ -69,6 +140,65 @@ The `jsVariants` is the same mapping as above, but only include the extensions w
 **Supported extensions and their hooks**
 
 ```yaml file=scripts/jsVariants.yaml
+.babel.js:
+  - '@babel/register'
+.babel.jsx:
+  - '@babel/register'
+.babel.ts:
+  - '@babel/register'
+.babel.tsx:
+  - '@babel/register'
+.coffee:
+  - coffeescript/register
+.coffee.md:
+  - coffeescript/register
+.esbuild.js:
+  - esbuild-register/dist/node
+.esbuild.jsx:
+  - esbuild-register/dist/node
+.esbuild.ts:
+  - esbuild-register/dist/node
+.esbuild.tsx:
+  - esbuild-register/dist/node
+.esm.js:
+  - esm
+.js:
+  - built-in node.js loader
+.jsx:
+  - '@babel/register'
+  - sucrase/register/jsx
+.litcoffee:
+  - coffeescript/register
+.mjs:
+  - interpret/mjs-stub
+.sucrase.js:
+  - sucrase/dist/register
+.sucrase.jsx:
+  - sucrase/dist/register
+.sucrase.ts:
+  - sucrase/dist/register
+.sucrase.tsx:
+  - sucrase/dist/register
+.swc.js:
+  - '@swc/register'
+.swc.jsx:
+  - '@swc/register'
+.swc.ts:
+  - '@swc/register'
+.swc.tsx:
+  - '@swc/register'
+.ts:
+  - ts-node/register
+  - sucrase/register/ts
+  - '@babel/register'
+  - esbuild-register/dist/node
+  - '@swc/register'
+.tsx:
+  - ts-node/register
+  - sucrase/register/tsx
+  - '@babel/register'
+  - esbuild-register/dist/node
+  - '@swc/register'
 ```
 
 ## License
@@ -76,19 +206,29 @@ The `jsVariants` is the same mapping as above, but only include the extensions w
 MIT
 
 <!-- prettier-ignore-start -->
+
 [downloads-image]: https://img.shields.io/npm/dm/interpret.svg?style=flat-square
+
 [npm-url]: https://www.npmjs.com/package/interpret
+
 [npm-image]: https://img.shields.io/npm/v/interpret.svg?style=flat-square
 
 [ci-url]: https://github.com/gulpjs/interpret/actions?query=workflow:dev
+
 [ci-image]: https://img.shields.io/github/workflow/status/gulpjs/interpret/dev?style=flat-square
 
 [coveralls-url]: https://coveralls.io/r/gulpjs/interpret
+
 [coveralls-image]: https://img.shields.io/coveralls/gulpjs/interpret/master.svg?style=flat-square
+
 <!-- prettier-ignore-end -->
 
 <!-- prettier-ignore-start -->
+
 [Liftoff]: http://github.com/gulpjs/liftoff
+
 [rechoir]: http://github.com/gulpjs/rechoir
+
 [require.extensions]: https://nodejs.org/api/modules.html#requireextensions
+
 <!-- prettier-ignore-end -->
