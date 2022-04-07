@@ -48,7 +48,9 @@ function cleanup() {
 }
 
 // These modules need newer node features
-var minVersions = {};
+var minVersions = {
+  '@mdx-js/register': { major: 12 }
+};
 
 var maxVersions = {};
 
