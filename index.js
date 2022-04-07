@@ -168,33 +168,33 @@ var extensions = {
     module: 'sucrase/dist/register',
     register: function (hook) {
       hook.registerJS({
-        matcher: endsInSucraseJs
+        matcher: endsInSucraseJs,
       });
-    }
+    },
   },
   '.sucrase.jsx': {
     module: 'sucrase/dist/register',
     register: function (hook) {
       hook.registerJSX({
-        matcher: endsInSucraseJsx
+        matcher: endsInSucraseJsx,
       });
-    }
+    },
   },
   '.sucrase.ts': {
     module: 'sucrase/dist/register',
     register: function (hook) {
       hook.registerTS({
-        matcher: endsInSucraseTs
+        matcher: endsInSucraseTs,
       });
-    }
+    },
   },
   '.sucrase.tsx': {
     module: 'sucrase/dist/register',
     register: function (hook) {
       hook.registerTSX({
-        matcher: endsInSucraseTsx
+        matcher: endsInSucraseTsx,
       });
-    }
+    },
   },
   '.toml': {
     module: 'toml-require',
