@@ -147,6 +147,7 @@ describe('interpret.extensions', function() {
       process.chdir(path.join(__dirname, fixtureDir));
 
       shell.exec('trash node_modules', { silent: true });
+      shell.exec('trash package-lock.json', { silent: true });
       shell.exec('npm install', { silent: true });
 
       // TODO: log failures
