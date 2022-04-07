@@ -1,7 +1,6 @@
 var path = require('path');
 
 // We only register on the final extension (like `.js`) due to https://github.com/joyent/node/blob/v0.12.0/lib/module.js#L353
-// which only captures the final extension (.esm.js -> .js)
 // However, we use these matchers to apply the transform only if the full extension matches
 function endsInJsx(filename) {
   return filename.endsWith('.jsx');
