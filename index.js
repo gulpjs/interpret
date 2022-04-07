@@ -64,7 +64,6 @@ var extensions = {
   },
   '.coffee': 'coffeescript/register',
   '.coffee.md': 'coffeescript/register',
-  '.csv': 'require-csv',
   '.eg': 'earlgrey/register',
   '.esbuild.js': {
     module: 'esbuild-register/dist/node',

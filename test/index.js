@@ -171,10 +171,6 @@ describe('interpret.extensions', function() {
           };
           expect(require(fixture)).toEqual(expected);
           break;
-        case '.csv':
-          expected = [['r1c1','r1c2'], ['r2c1','r2c2']];
-          expect(require(fixture)).toEqual(expected);
-          break;
         case '.ini':
           expected = {
             data: {
