@@ -93,7 +93,7 @@ var extensions = {
       mod.register({
         extensions: ['.js'],
         target: 'node' + process.version.slice(1),
-        hookMatcher: endsInEsbuildJs
+        hookMatcher: endsInEsbuildJs,
       });
     },
   },
@@ -103,7 +103,7 @@ var extensions = {
       mod.register({
         extensions: ['.jsx'],
         target: 'node' + process.version.slice(1),
-        hookMatcher: endsInEsbuildJsx
+        hookMatcher: endsInEsbuildJsx,
       });
     },
   },
@@ -113,7 +113,7 @@ var extensions = {
       mod.register({
         extensions: ['.ts'],
         target: 'node' + process.version.slice(1),
-        hookMatcher: endsInEsbuildTs
+        hookMatcher: endsInEsbuildTs,
       });
     },
   },
@@ -123,7 +123,7 @@ var extensions = {
       mod.register({
         extensions: ['.tsx'],
         target: 'node' + process.version.slice(1),
-        hookMatcher: endsInEsbuildTsx
+        hookMatcher: endsInEsbuildTsx,
       });
     },
   },
@@ -177,7 +177,7 @@ var extensions = {
         mod.register({
           extensions: ['.ts'],
           target: 'node' + process.version.slice(1),
-          hookMatcher: endsInTs
+          hookMatcher: endsInTs,
         });
       },
     },
@@ -211,7 +211,7 @@ var extensions = {
         mod.register({
           extensions: ['.tsx'],
           target: 'node' + process.version.slice(1),
-          hookMatcher: endsInTsx
+          hookMatcher: endsInTsx,
         });
       },
     },
