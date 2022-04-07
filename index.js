@@ -35,6 +35,18 @@ function endsInEsbuildTs(filename) {
 function endsInEsbuildTsx(filename) {
   return filename.endsWith('.esbuild.tsx');
 }
+function endsInSucraseJs(filename) {
+  return filename.endsWith('.sucrase.js');
+}
+function endsInSucraseJsx(filename) {
+  return filename.endsWith('.sucrase.jsx');
+}
+function endsInSucraseTs(filename) {
+  return filename.endsWith('.sucrase.ts');
+}
+function endsInSucraseTsx(filename) {
+  return filename.endsWith('.sucrase.tsx');
+}
 
 var mjsStub = path.join(__dirname, 'mjs-stub');
 
@@ -152,6 +164,38 @@ var extensions = {
   '.litcoffee': 'coffeescript/register',
   '.mjs': mjsStub,
   '.node': null,
+  '.sucrase.js': {
+    module: 'sucrase/dist/register',
+    register: function (hook) {
+      hook.registerJS({
+        matcher: endsInSucraseJs
+      });
+    }
+  },
+  '.sucrase.jsx': {
+    module: 'sucrase/dist/register',
+    register: function (hook) {
+      hook.registerJSX({
+        matcher: endsInSucraseJsx
+      });
+    }
+  },
+  '.sucrase.ts': {
+    module: 'sucrase/dist/register',
+    register: function (hook) {
+      hook.registerTS({
+        matcher: endsInSucraseTs
+      });
+    }
+  },
+  '.sucrase.tsx': {
+    module: 'sucrase/dist/register',
+    register: function (hook) {
+      hook.registerTSX({
+        matcher: endsInSucraseTsx
+      });
+    }
+  },
   '.toml': {
     module: 'toml-require',
     register: function (hook) {

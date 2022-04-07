@@ -158,6 +158,10 @@ describe('interpret.extensions', function () {
           case '.esbuild.jsx':
           case '.esbuild.ts':
           case '.esbuild.tsx':
+          case '.sucrase.js':
+          case '.sucrase.jsx':
+          case '.sucrase.ts':
+          case '.sucrase.tsx':
             expected = {
               default: {
                 data: {
