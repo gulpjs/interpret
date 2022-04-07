@@ -52,6 +52,8 @@ var minVersions = {};
 
 var maxVersions = {};
 
+var swcTested = false;
+
 describe('interpret.extensions', function() {
 
   beforeEach(cleanup);
@@ -127,8 +129,12 @@ describe('interpret.extensions', function() {
       }
 
       // Any swc test after the first will fail on linux due to https://github.com/swc-project/swc/issues/4107
-      if (process.platform === 'linux' && extension === '.tsx' && name === '@swc/register') {
-        this.skip();
+      if (name === '@swc/register') {
+        if (process.platform === 'linux' && swcTested) {
+          this.skip();
+        } else {
+          swcTested = true;
+        }
       }
 
       this.timeout(0);
