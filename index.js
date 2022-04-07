@@ -194,7 +194,7 @@ var extensions = {
   ],
   '.tsx': [
     'ts-node/register',
-    'sucrase/register',
+    'sucrase/register/tsx',
     {
       module: '@babel/register',
       register: function (hook) {
