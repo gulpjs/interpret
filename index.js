@@ -60,6 +60,7 @@ function endsInSwcTsx(filename) {
   return filename.endsWith('.swc.tsx');
 }
 
+var cjsStub = path.join(__dirname, 'cjs-stub');
 var mjsStub = path.join(__dirname, 'mjs-stub');
 
 function isNodeModules(file) {
@@ -109,7 +110,7 @@ var extensions = {
       });
     },
   },
-  '.cjs': null,
+  '.cjs': cjsStub,
   '.coffee': 'coffeescript/register',
   '.coffee.md': 'coffeescript/register',
   '.esbuild.js': {

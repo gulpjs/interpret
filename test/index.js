@@ -4,6 +4,7 @@ var expect = require('expect');
 
 var path = require('path');
 var Module = require('module');
+var child = require('child_process');
 var shell = require('shelljs');
 var rechoir = require('rechoir');
 
@@ -69,8 +70,8 @@ describe('interpret.extensions', function () {
       return attempts;
     }
 
-    // We will handle the .mjs tests separately
-    if (ext === '.mjs') {
+    // We will handle the .mjs & .cjs tests separately
+    if (ext === '.mjs' || ext === '.cjs') {
       return attempts;
     }
 
@@ -267,5 +268,17 @@ describe('interpret.extensions', function () {
     };
     expect(require(fixture)).toEqual(expected);
     done();
+  });
+
+  it('does not error with the .cjs extension when inside a type: module package', function (done) {
+    process.chdir(path.join(__dirname, 'fixtures/cjs/0'));
+
+    child.exec('node rechoir.js', done);
+  });
+
+  it('does not error with the .cjs extension when inside a type: commonjs package', function (done) {
+    process.chdir(path.join(__dirname, 'fixtures/cjs/0'));
+
+    child.exec('node rechoir.js', done);
   });
 });
