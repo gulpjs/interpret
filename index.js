@@ -60,6 +60,7 @@ function endsInSwcTsx(filename) {
   return filename.endsWith('.swc.tsx');
 }
 
+var cjsStub = path.join(__dirname, 'cjs-stub');
 var mjsStub = path.join(__dirname, 'mjs-stub');
 
 function isNodeModules(file) {
@@ -109,6 +110,7 @@ var extensions = {
       });
     },
   },
+  '.cjs': cjsStub,
   '.coffee': 'coffeescript/register',
   '.coffee.md': 'coffeescript/register',
   '.esbuild.js': {
@@ -339,6 +341,7 @@ var jsVariantExtensions = [
   '.esbuild.jsx',
   '.esbuild.ts',
   '.esbuild.tsx',
+  '.cjs',
   '.coffee',
   '.coffee.md',
   '.esm.js',
