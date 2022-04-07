@@ -138,7 +138,12 @@ describe('interpret.extensions', function() {
       shell.exec('npm ls');
 
       // TODO: log failures
-      rechoir.prepare(extensions, fixture);
+      try {
+        rechoir.prepare(extensions, fixture);
+      } catch (err) {
+        console.log(err.attempts);
+        throw err;
+      }
 
       switch (extension) {
         case '.ts':
