@@ -151,16 +151,19 @@ var extensions = {
   '.js': null,
   '.json': null,
   '.json5': 'json5/lib/register',
-  '.jsx': {
-    module: '@babel/register',
-    register: function (hook) {
-      hook({
-        extensions: '.jsx',
-        rootMode: 'upward-optional',
-        overrides: [{ only: [endsInJsx] }],
-      });
+  '.jsx': [
+    {
+      module: '@babel/register',
+      register: function (hook) {
+        hook({
+          extensions: '.jsx',
+          rootMode: 'upward-optional',
+          overrides: [{ only: [endsInJsx] }],
+        });
+      },
     },
-  },
+    'sucrase/register/jsx'
+  ],
   '.litcoffee': 'coffeescript/register',
   '.mjs': mjsStub,
   '.node': null,
