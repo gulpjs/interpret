@@ -14,69 +14,32 @@ A dictionary of file extensions and associated module loaders.
 
 This is used by [Liftoff] to automatically require dependencies for configuration files, and by [rechoir] for registering module loaders.
 
+## How to use it
+
+Consumers should use the exported `extensions` or `jsVariants` object to determine which module should be loaded for a given extension. If a matching extension is found, consumers should do the following:
+
+1.  If the value is null, do nothing.
+2.  If the value is a string, try to require it.
+3.  If the value is an object, try to require the `module` property. If successful, the `register` property (a function) should be called with the module passed as the first argument.
+4.  If the value is an array, iterate over it, attempting step #2 or #3 until one of the attempts does not throw.
+
 ## API
 
-### extensions
+This module provides two top-level properties: `extensions` and `jsVariants`.
 
-Map file types to modules which provide a [require.extensions] loader.
+**Note:** This module does not depend on any of the loaders it recommends; instead, end-users are expected to install the hooks they want to use for the file types they want to use. See supported extensions and their hooks in the sections below.
+
+### `extensions`
+
+A mapping of file extensions to modules which provide a [require.extensions] loader.
+
+File extension keys are all in the format of `'.foo'` or `'.foo.bar'` and module loader values are either `null` if the loader should fallthrough to node's loader,
+or a string representing the module to be required, an object of `{ module: 'foobar', register: function }`, or an array containing those strings and/or objects.
+
+A sample of an entry containing multiple hooks would look like:
 
 ```js
 {
-  '.babel.js': {
-    module: '@babel/register',
-    register: function(hook) {
-      hook({
-        extensions: '.js',
-        rootMode: 'upward-optional',
-        ignore: [ignoreNonBabelAndNodeModules],
-      });
-    },
-  },
-  '.babel.ts': [
-    {
-      module: '@babel/register',
-      register: function(hook) {
-        hook({
-          extensions: '.ts',
-          rootMode: 'upward-optional',
-          ignore: [ignoreNonBabelAndNodeModules],
-        });
-      },
-    },
-  ],
-  '.coffee': 'coffeescript/register',
-  '.coffee.md': 'coffeescript/register',
-  '.esm.js': {
-    module: 'esm',
-    register: function(hook) {
-      // register on .js extension due to https://github.com/joyent/node/blob/v0.12.0/lib/module.js#L353
-      // which only captures the final extension (.babel.js -> .js)
-      var esmLoader = hook(module);
-      require.extensions['.js'] = esmLoader('module')._extensions['.js'];
-    },
-  },
-  '.js': null,
-  '.json': null,
-  '.json5': 'json5/lib/register',
-  '.jsx': {
-    module: '@babel/register',
-    register: function(hook) {
-      hook({
-        extensions: '.jsx',
-        rootMode: 'upward-optional',
-        ignore: [ignoreNonBabelAndNodeModules],
-      });
-    },
-  },
-  '.litcoffee': 'coffeescript/register',
-  '.mjs': '/absolute/path/to/interpret/mjs-stub.js',
-  '.node': null,
-  '.toml': {
-    module: 'toml-require',
-    register: function(hook) {
-      hook.install();
-    },
-  },
   '.ts': [
     'ts-node/register',
     'sucrase/register/ts',
@@ -91,40 +54,22 @@ Map file types to modules which provide a [require.extensions] loader.
       },
     },
   ],
-  '.tsx': [
-    'ts-node/register',
-    'sucrase/register',
-    {
-      module: '@babel/register',
-      register: function(hook) {
-        hook({
-          extensions: '.tsx',
-          rootMode: 'upward-optional',
-          ignore: [ignoreNonBabelAndNodeModules],
-        });
-      },
-    },
-  ],
-  '.yaml': 'yaml-hook/register',
-  '.yml': 'yaml-hook/register',
 }
 ```
 
-### jsVariants
+**Supported extensions and their hooks**
 
-Same as above, but only include the extensions which are javascript variants.
+```yaml file=scripts/extensions.yaml
+```
 
-## How to use it
+### `jsVariants`
 
-Consumers should use the exported `extensions` or `jsVariants` object to determine which module should be loaded for a given extension. If a matching extension is found, consumers should do the following:
+The `jsVariants` is the same mapping as above, but only include the extensions which are variants of JavaScript.
 
-1. If the value is null, do nothing.
+**Supported extensions and their hooks**
 
-2. If the value is a string, try to require it.
-
-3. If the value is an object, try to require the `module` property. If successful, the `register` property (a function) should be called with the module passed as the first argument.
-
-4. If the value is an array, iterate over it, attempting step #2 or #3 until one of the attempts does not throw.
+```yaml file=scripts/jsVariants.yaml
+```
 
 ## License
 
