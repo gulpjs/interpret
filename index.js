@@ -1,27 +1,45 @@
 var path = require('path');
 
-var endsInJsx = /\.jsx$/;
-var endsInTs = /\.ts$/;
-var endsInTsx = /\.tsx$/;
-var endsInBabelJs = /\.babel\.js$/;
-var endsInBabelJsx = /\.babel\.jsx$/;
-var endsInBabelTs = /\.babel\.ts$/;
-var endsInBabelTsx = /\.babel\.tsx$/;
-var endsInEsbuildJs = /\.esbuild\.js$/;
-var endsInEsbuildJsx = /\.esbuild\.jsx$/;
-var endsInEsbuildTs = /\.esbuild\.ts$/;
-var endsInEsbuildTsx = /\.esbuild\.tsx$/;
+// We only register on the final extension (like `.js`) due to https://github.com/joyent/node/blob/v0.12.0/lib/module.js#L353
+// However, we use these matchers to apply the transform only if the full extension matches
+function endsInJsx(filename) {
+  return filename.endsWith('.jsx');
+}
+function endsInTs(filename) {
+  return filename.endsWith('.ts');
+}
+function endsInTsx(filename) {
+  return filename.endsWith('.tsx');
+}
+function endsInBabelJs(filename) {
+  return filename.endsWith('.babel.js');
+}
+function endsInBabelJsx(filename) {
+  return filename.endsWith('.babel.jsx');
+}
+function endsInBabelTs(filename) {
+  return filename.endsWith('.babel.ts');
+}
+function endsInBabelTsx(filename) {
+  return filename.endsWith('.babel.tsx');
+}
+function endsInEsbuildJs(filename) {
+  return filename.endsWith('.esbuild.js');
+}
+function endsInEsbuildJsx(filename) {
+  return filename.endsWith('.esbuild.jsx');
+}
+function endsInEsbuildTs(filename) {
+  return filename.endsWith('.esbuild.ts');
+}
+function endsInEsbuildTsx(filename) {
+  return filename.endsWith('.esbuild.tsx');
+}
 
 var mjsStub = path.join(__dirname, 'mjs-stub');
 
-// Not part of the above check because it seems broken
 function isNodeModules(file) {
-  return (
-    path
-      .relative(process.cwd(), file)
-      .split(path.sep)
-      .indexOf('node_modules') >= 0
-  );
+  return path.relative(process.cwd(), file).includes('node_modules');
 }
 
 var extensions = {
@@ -75,9 +93,7 @@ var extensions = {
       mod.register({
         extensions: ['.js'],
         target: 'node' + process.version.slice(1),
-        hookMatcher: function (file) {
-          return endsInEsbuildJs.test(file);
-        },
+        hookMatcher: endsInEsbuildJs
       });
     },
   },
@@ -87,9 +103,7 @@ var extensions = {
       mod.register({
         extensions: ['.jsx'],
         target: 'node' + process.version.slice(1),
-        hookMatcher: function (file) {
-          return endsInEsbuildJsx.test(file);
-        },
+        hookMatcher: endsInEsbuildJsx
       });
     },
   },
@@ -99,9 +113,7 @@ var extensions = {
       mod.register({
         extensions: ['.ts'],
         target: 'node' + process.version.slice(1),
-        hookMatcher: function (file) {
-          return endsInEsbuildTs.test(file);
-        },
+        hookMatcher: endsInEsbuildTs
       });
     },
   },
@@ -111,9 +123,7 @@ var extensions = {
       mod.register({
         extensions: ['.tsx'],
         target: 'node' + process.version.slice(1),
-        hookMatcher: function (file) {
-          return endsInEsbuildTsx.test(file);
-        },
+        hookMatcher: endsInEsbuildTsx
       });
     },
   },
@@ -167,9 +177,7 @@ var extensions = {
         mod.register({
           extensions: ['.ts'],
           target: 'node' + process.version.slice(1),
-          hookMatcher: function (file) {
-            return endsInTs.test(file);
-          },
+          hookMatcher: endsInTs
         });
       },
     },
@@ -203,9 +211,7 @@ var extensions = {
         mod.register({
           extensions: ['.tsx'],
           target: 'node' + process.version.slice(1),
-          hookMatcher: function (file) {
-            return endsInTsx.test(file);
-          },
+          hookMatcher: endsInTsx
         });
       },
     },
