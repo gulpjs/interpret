@@ -14,56 +14,22 @@ var endsInEsbuildTsx = /\.esbuild\.tsx$/;
 
 var mjsStub = path.join(__dirname, 'mjs-stub');
 
-function ignoreNonBabelAndNodeModules(file) {
-  return !endsInBabelJs.test(file) &&
-    path.relative(process.cwd(), file).split(path.sep).indexOf('node_modules') >= 0;
-}
-
 // Not part of the above check because it seems broken
 function isNodeModules(file) {
   return path.relative(process.cwd(), file).split(path.sep).indexOf('node_modules') >= 0;
 }
 
 var extensions = {
-  '.babel.js': [
-    {
-      module: '@babel/register',
-      register: function(hook) {
-        hook({
-          extensions: '.js',
-          rootMode: 'upward-optional',
-          overrides: [{ only: [endsInBabelJs] }],
-        });
-      },
+  '.babel.js': {
+    module: '@babel/register',
+    register: function(hook) {
+      hook({
+        extensions: '.js',
+        rootMode: 'upward-optional',
+        overrides: [{ only: [endsInBabelJs] }],
+      });
     },
-    {
-      module: 'babel-register',
-      register: function(hook) {
-        hook({
-          extensions: '.js',
-          ignore: ignoreNonBabelAndNodeModules,
-        });
-      },
-    },
-    {
-      module: 'babel-core/register',
-      register: function(hook) {
-        hook({
-          extensions: '.js',
-          ignore: ignoreNonBabelAndNodeModules,
-        });
-      },
-    },
-    {
-      module: 'babel/register',
-      register: function(hook) {
-        hook({
-          extensions: '.js',
-          ignore: ignoreNonBabelAndNodeModules,
-        });
-      },
-    },
-  ],
+  },
   '.babel.jsx': {
     module: '@babel/register',
     register: function(hook) {
@@ -96,14 +62,8 @@ var extensions = {
       });
     },
   },
-  '.buble.js': 'buble/register',
-  '.cirru': 'cirru-script/lib/register',
-  '.cjsx': 'node-cjsx/register',
-  '.co': 'coco',
-  '.coffee': ['coffeescript/register', 'coffee-script/register', 'coffeescript', 'coffee-script'],
-  '.coffee.md': ['coffeescript/register', 'coffee-script/register', 'coffeescript', 'coffee-script'],
-  '.csv': 'require-csv',
-  '.eg': 'earlgrey/register',
+  '.coffee': 'coffeescript/register',
+  '.coffee.md': 'coffeescript/register',
   '.esbuild.js': {
     module: 'esbuild-register/dist/node',
     register: function(mod) {
@@ -161,60 +121,20 @@ var extensions = {
       require.extensions['.js'] = esmLoader('module')._extensions['.js'];
     },
   },
-  '.iced': ['iced-coffee-script/register', 'iced-coffee-script'],
-  '.iced.md': 'iced-coffee-script/register',
-  '.ini': 'require-ini',
   '.js': null,
   '.json': null,
-  '.json5': ['json5/lib/register', 'json5/lib/require'],
-  '.jsx': [
-    {
-      module: '@babel/register',
-      register: function(hook) {
-        hook({
-          extensions: '.jsx',
-          rootMode: 'upward-optional',
-          overrides: [{ only: [endsInJsx] }],
-        });
-      },
+  '.json5': 'json5/lib/register',
+  '.jsx': {
+    module: '@babel/register',
+    register: function(hook) {
+      hook({
+        extensions: '.jsx',
+        rootMode: 'upward-optional',
+        overrides: [{ only: [endsInJsx] }],
+      });
     },
-    {
-      module: 'babel-register',
-      register: function(hook) {
-        hook({
-          extensions: '.jsx',
-          ignore: ignoreNonBabelAndNodeModules,
-        });
-      },
-    },
-    {
-      module: 'babel-core/register',
-      register: function(hook) {
-        hook({
-          extensions: '.jsx',
-          ignore: ignoreNonBabelAndNodeModules,
-        });
-      },
-    },
-    {
-      module: 'babel/register',
-      register: function(hook) {
-        hook({
-          extensions: '.jsx',
-          ignore: ignoreNonBabelAndNodeModules,
-        });
-      },
-    },
-    {
-      module: 'node-jsx',
-      register: function(hook) {
-        hook.install({ extension: '.jsx', harmony: true });
-      },
-    },
-  ],
-  '.litcoffee': ['coffeescript/register', 'coffee-script/register', 'coffeescript', 'coffee-script'],
-  '.liticed': 'iced-coffee-script/register',
-  '.ls': ['livescript', 'LiveScript'],
+  },
+  '.litcoffee': 'coffeescript/register',
   '.mjs': mjsStub,
   '.node': null,
   '.toml': {
@@ -225,9 +145,6 @@ var extensions = {
   },
   '.ts': [
     'ts-node/register',
-    'typescript-node/register',
-    'typescript-register',
-    'typescript-require',
     'sucrase/register/ts',
     {
       module: '@babel/register',
@@ -264,7 +181,6 @@ var extensions = {
   ],
   '.tsx': [
     'ts-node/register',
-    'typescript-node/register',
     'sucrase/register',
     {
       module: '@babel/register',
@@ -299,10 +215,8 @@ var extensions = {
       },
     },
   ],
-  '.wisp': 'wisp/engine/node',
-  '.xml': 'require-xml',
-  '.yaml': 'require-yaml',
-  '.yml': 'require-yaml',
+  '.yaml': 'yaml-hook/register',
+  '.yml': 'yaml-hook/register',
 };
 
 var jsVariantExtensions = [
@@ -315,24 +229,14 @@ var jsVariantExtensions = [
   '.esbuild.jsx',
   '.esbuild.ts',
   '.esbuild.tsx',
-  '.buble.js',
-  '.cirru',
-  '.cjsx',
-  '.co',
   '.coffee',
   '.coffee.md',
-  '.eg',
   '.esm.js',
-  '.iced',
-  '.iced.md',
   '.jsx',
   '.litcoffee',
-  '.liticed',
-  '.ls',
   '.mjs',
   '.ts',
   '.tsx',
-  '.wisp',
 ];
 
 module.exports = {

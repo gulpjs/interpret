@@ -1,19 +1,13 @@
-var trueKey: boolean = true;
-var falseKey: boolean = false;
-var subProp: number = 1;
+function add(x: number, y: number): number {
+  return x + y;
+}
 
-var test = {
+export default {
   data: {
-    trueKey: trueKey,
-    falseKey: falseKey,
+    trueKey: true as boolean,
+    falseKey: false as boolean,
     subKey: {
-      subProp: subProp
-    }
-  }
+      subProp: add(0.5, 0.5),
+    },
+  },
 };
-
-var main = {
-  default: test
-};
-
-export = main;

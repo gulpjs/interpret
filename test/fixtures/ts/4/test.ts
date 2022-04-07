@@ -1,12 +1,4 @@
-var test: {
-  data: {
-    trueKey: boolean,
-    falseKey: boolean,
-    subKey: {
-      subProp: number
-    }
-  }
-} = {
+var test = {
   data: {
     trueKey: true,
     falseKey: false,
@@ -16,9 +8,7 @@ var test: {
   }
 };
 
-var main: {
-  default: typeof test
-} = {
+var main = {
   default: test
 };
 

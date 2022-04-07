@@ -1,3 +1,5 @@
+import data from "./data"
+
 const React = {
   createElement(Component: () => any) {
     return Component()
@@ -12,7 +14,7 @@ const Component = () => {
 
   // Test harmony object short notation.
   return { data: { trueKey, falseKey, subKey } }
-};
+}
 
 // Test TSX syntax.
-export default <Component />
+export default <Component {...data} />

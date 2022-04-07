@@ -1,6 +1,5 @@
 {
   "dependencies": {
-    "typescript": "~1.6.0",
-    "typescript-node": "^0.1.3"
+    "sucrase": "^3.12.1"
   }
 }

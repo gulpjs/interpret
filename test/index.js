@@ -50,21 +50,15 @@ function cleanup() {
 // These modules need newer node features
 var minVersions = {
   '@babel/register': { major: 6, minor: 0 },
-  buble: { major: 4, minor: 0 },
   coffeescript: { major: 6, minor: 0 },
-  earlgrey: { major: 0, minor: 12 },
   esm: { major: 6, minor: 0 },
   json5: { major: 6, minor: 0 },
   sucrase: { major: 8, minor: 0 },
   'ts-node': { major: 4, minor: 0 },
-  wisp: { major: 0, minor: 12 },
-  'require-xml': { major: 6, minor: 0 },
   'toml-require': { major: 6, minor: 0 },
 };
 
-var maxVersions = {
-  'typescript-require': { major: 10, minor: 0 },
-};
+var maxVersions = {};
 
 describe('interpret.extensions', function() {
 
@@ -173,40 +167,7 @@ describe('interpret.extensions', function() {
               },
             },
           };
-          if (module === 'typescript-require') {
-            // This seems to cause an issue because they vm.runInNewContext so use .toMatch to compare
-            expect(require(fixture)).toMatch(expected);
-          } else {
-            expect(require(fixture)).toEqual(expected);
-          }
-          break;
-        case '.csv':
-          expected = [['r1c1','r1c2'], ['r2c1','r2c2']];
           expect(require(fixture)).toEqual(expected);
-          break;
-        case '.ini':
-          expected = {
-            data: {
-              trueKey: 'true',
-              falseKey: 'false',
-              subKey: {
-                subProp: '1',
-              },
-            },
-          };
-          expect(require(fixture)).toEqual(expected);
-          break;
-        case '.xml':
-          expected = {
-            data: {
-              trueKey: 'true',
-              falseKey: 'false',
-              subKey: {
-                subProp: '1',
-              },
-            },
-          };
-          expect(require(fixture)).toEqual(JSON.stringify(expected));
           break;
 
         case '.toml':

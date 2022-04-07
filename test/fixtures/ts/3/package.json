@@ -1,5 +1,6 @@
 {
   "dependencies": {
-    "typescript-require": "^0.2.10"
+    "esbuild": "^0.14.29",
+    "esbuild-register": "^3.3.2"
   }
 }

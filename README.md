@@ -26,45 +26,16 @@ Map file types to modules which provide a [require.extensions] loader.
 
 ```js
 {
-  '.babel.js': [
-    {
-      module: '@babel/register',
-      register: function(hook) {
-        hook({
-          extensions: '.js',
-          rootMode: 'upward-optional',
-          ignore: [ignoreNonBabelAndNodeModules],
-        });
-      },
+  '.babel.js': {
+    module: '@babel/register',
+    register: function(hook) {
+      hook({
+        extensions: '.js',
+        rootMode: 'upward-optional',
+        ignore: [ignoreNonBabelAndNodeModules],
+      });
     },
-    {
-      module: 'babel-register',
-      register: function(hook) {
-        hook({
-          extensions: '.js',
-          ignore: ignoreNonBabelAndNodeModules,
-        });
-      },
-    },
-    {
-      module: 'babel-core/register',
-      register: function(hook) {
-        hook({
-          extensions: '.js',
-          ignore: ignoreNonBabelAndNodeModules,
-        });
-      },
-    },
-    {
-      module: 'babel/register',
-      register: function(hook) {
-        hook({
-          extensions: '.js',
-          ignore: ignoreNonBabelAndNodeModules,
-        });
-      },
-    },
-  ],
+  },
   '.babel.ts': [
     {
       module: '@babel/register',
@@ -77,14 +48,8 @@ Map file types to modules which provide a [require.extensions] loader.
       },
     },
   ],
-  '.buble.js': 'buble/register',
-  '.cirru': 'cirru-script/lib/register',
-  '.cjsx': 'node-cjsx/register',
-  '.co': 'coco',
-  '.coffee': ['coffeescript/register', 'coffee-script/register', 'coffeescript', 'coffee-script'],
-  '.coffee.md': ['coffeescript/register', 'coffee-script/register', 'coffeescript', 'coffee-script'],
-  '.csv': 'require-csv',
-  '.eg': 'earlgrey/register',
+  '.coffee': 'coffeescript/register',
+  '.coffee.md': 'coffeescript/register',
   '.esm.js': {
     module: 'esm',
     register: function(hook) {
@@ -94,60 +59,20 @@ Map file types to modules which provide a [require.extensions] loader.
       require.extensions['.js'] = esmLoader('module')._extensions['.js'];
     },
   },
-  '.iced': ['iced-coffee-script/register', 'iced-coffee-script'],
-  '.iced.md': 'iced-coffee-script/register',
-  '.ini': 'require-ini',
   '.js': null,
   '.json': null,
-  '.json5': ['json5/lib/register', 'json5/lib/require'],
-  '.jsx': [
-    {
-      module: '@babel/register',
-      register: function(hook) {
-        hook({
-          extensions: '.jsx',
-          rootMode: 'upward-optional',
-          ignore: [ignoreNonBabelAndNodeModules],
-        });
-      },
+  '.json5': 'json5/lib/register',
+  '.jsx': {
+    module: '@babel/register',
+    register: function(hook) {
+      hook({
+        extensions: '.jsx',
+        rootMode: 'upward-optional',
+        ignore: [ignoreNonBabelAndNodeModules],
+      });
     },
-    {
-      module: 'babel-register',
-      register: function(hook) {
-        hook({
-          extensions: '.jsx',
-          ignore: ignoreNonBabelAndNodeModules,
-        });
-      },
-    },
-    {
-      module: 'babel-core/register',
-      register: function(hook) {
-        hook({
-          extensions: '.jsx',
-          ignore: ignoreNonBabelAndNodeModules,
-        });
-      },
-    },
-    {
-      module: 'babel/register',
-      register: function(hook) {
-        hook({
-          extensions: '.jsx',
-          ignore: ignoreNonBabelAndNodeModules,
-        });
-      },
-    },
-    {
-      module: 'node-jsx',
-      register: function(hook) {
-        hook.install({ extension: '.jsx', harmony: true });
-      },
-    },
-  ],
-  '.litcoffee': ['coffeescript/register', 'coffee-script/register', 'coffeescript', 'coffee-script'],
-  '.liticed': 'iced-coffee-script/register',
-  '.ls': ['livescript', 'LiveScript'],
+  },
+  '.litcoffee': 'coffeescript/register',
   '.mjs': '/absolute/path/to/interpret/mjs-stub.js',
   '.node': null,
   '.toml': {
@@ -158,9 +83,6 @@ Map file types to modules which provide a [require.extensions] loader.
   },
   '.ts': [
     'ts-node/register',
-    'typescript-node/register',
-    'typescript-register',
-    'typescript-require',
     'sucrase/register/ts',
     {
       module: '@babel/register',
@@ -175,7 +97,6 @@ Map file types to modules which provide a [require.extensions] loader.
   ],
   '.tsx': [
     'ts-node/register',
-    'typescript-node/register',
     'sucrase/register',
     {
       module: '@babel/register',
@@ -188,10 +109,8 @@ Map file types to modules which provide a [require.extensions] loader.
       },
     },
   ],
-  '.wisp': 'wisp/engine/node',
-  '.xml': 'require-xml',
-  '.yaml': 'require-yaml',
-  '.yml': 'require-yaml',
+  '.yaml': 'yaml-hook/register',
+  '.yml': 'yaml-hook/register',
 }
 ```
 

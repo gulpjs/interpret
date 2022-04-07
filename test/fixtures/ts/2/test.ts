@@ -1,19 +1,5 @@
-var trueKey: boolean = true;
-var falseKey: boolean = false;
-var subProp: number = 1;
+import Component from "./component"
 
-var test = {
-  data: {
-    trueKey: trueKey,
-    falseKey: falseKey,
-    subKey: {
-      subProp: subProp
-    }
-  }
-};
+var test: typeof Component = { ...Component }
 
-var main = {
-  default: test
-};
-
-export = main;
+export default test

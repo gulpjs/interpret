@@ -14,12 +14,6 @@ var test: {
       subProp: 1
     }
   }
-};
+}
 
-var main: {
-  default: typeof test
-} = {
-  default: test
-};
-
-export = main;
+export default test
