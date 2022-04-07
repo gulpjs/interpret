@@ -123,7 +123,7 @@ var extensions = {
   },
   '.js': null,
   '.json': null,
-  '.json5': ['json5/lib/register', 'json5/lib/require'],
+  '.json5': 'json5/lib/register',
   '.jsx': {
     module: '@babel/register',
     register: function(hook) {
