@@ -47,6 +47,18 @@ function endsInSucraseTs(filename) {
 function endsInSucraseTsx(filename) {
   return filename.endsWith('.sucrase.tsx');
 }
+function endsInSwcJs(filename) {
+  return filename.endsWith('.swc.js');
+}
+function endsInSwcJsx(filename) {
+  return filename.endsWith('.swc.jsx');
+}
+function endsInSwcTs(filename) {
+  return filename.endsWith('.swc.ts');
+}
+function endsInSwcTsx(filename) {
+  return filename.endsWith('.swc.tsx');
+}
 
 var mjsStub = path.join(__dirname, 'mjs-stub');
 
@@ -199,6 +211,46 @@ var extensions = {
       });
     },
   },
+  '.swc.js': {
+    module: '@swc/register',
+    register: function (hook) {
+      hook({
+        extensions: '.js',
+        only: [endsInSwcJs],
+        ignore: [isNodeModules],
+      });
+    },
+  },
+  '.swc.jsx': {
+    module: '@swc/register',
+    register: function (hook) {
+      hook({
+        extensions: '.jsx',
+        only: [endsInSwcJsx],
+        ignore: [isNodeModules],
+      });
+    },
+  },
+  '.swc.ts': {
+    module: '@swc/register',
+    register: function (hook) {
+      hook({
+        extensions: '.ts',
+        only: [endsInSwcTs],
+        ignore: [isNodeModules],
+      });
+    },
+  },
+  '.swc.tsx': {
+    module: '@swc/register',
+    register: function (hook) {
+      hook({
+        extensions: '.tsx',
+        only: [endsInSwcTsx],
+        ignore: [isNodeModules],
+      });
+    },
+  },
   '.toml': {
     module: 'toml-require',
     register: function (hook) {
@@ -293,6 +345,14 @@ var jsVariantExtensions = [
   '.jsx',
   '.litcoffee',
   '.mjs',
+  '.sucrase.js',
+  '.sucrase.jsx',
+  '.sucrase.ts',
+  '.sucrase.tsx',
+  '.swc.js',
+  '.swc.jsx',
+  '.swc.ts',
+  '.swc.tsx',
   '.ts',
   '.tsx',
 ];

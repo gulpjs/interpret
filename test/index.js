@@ -162,6 +162,10 @@ describe('interpret.extensions', function () {
           case '.sucrase.jsx':
           case '.sucrase.ts':
           case '.sucrase.tsx':
+          case '.swc.js':
+          case '.swc.jsx':
+          case '.swc.ts':
+          case '.swc.tsx':
             expected = {
               default: {
                 data: {
