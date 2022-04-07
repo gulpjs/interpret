@@ -59,8 +59,6 @@ Map file types to modules which provide a [require.extensions] loader.
       require.extensions['.js'] = esmLoader('module')._extensions['.js'];
     },
   },
-  '.iced': ['iced-coffee-script/register', 'iced-coffee-script'],
-  '.iced.md': 'iced-coffee-script/register',
   '.ini': 'require-ini',
   '.js': null,
   '.json': null,
@@ -76,7 +74,6 @@ Map file types to modules which provide a [require.extensions] loader.
     },
   },
   '.litcoffee': 'coffeescript/register',
-  '.liticed': 'iced-coffee-script/register',
   '.ls': ['livescript', 'LiveScript'],
   '.mjs': '/absolute/path/to/interpret/mjs-stub.js',
   '.node': null,
