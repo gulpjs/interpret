@@ -52,8 +52,6 @@ var minVersions = {};
 
 var maxVersions = {};
 
-var swcTested = false;
-
 describe('interpret.extensions', function() {
 
   beforeEach(cleanup);
@@ -128,13 +126,9 @@ describe('interpret.extensions', function() {
         }
       }
 
-      // Any swc test after the first will fail on linux due to https://github.com/swc-project/swc/issues/4107
-      if (name === '@swc/register') {
-        if (process.platform === 'linux' && swcTested) {
-          this.skip();
-        } else {
-          swcTested = true;
-        }
+      // Skip any swc test on linux due to https://github.com/swc-project/swc/issues/4107
+      if (name === '@swc/register' && process.platform === 'linux') {
+        this.skip();
       }
 
       this.timeout(0);
