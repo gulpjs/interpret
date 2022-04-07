@@ -84,7 +84,12 @@ var extensions = {
       hook({
         extensions: '.jsx',
         rootMode: 'upward-optional',
-        overrides: [{ only: [endsInBabelJsx], presets: ['@babel/preset-env', '@babel/preset-react'] }],
+        overrides: [
+          {
+            only: [endsInBabelJsx],
+            presets: ['@babel/preset-env', '@babel/preset-react'],
+          },
+        ],
       });
     },
   },
@@ -95,7 +100,12 @@ var extensions = {
         hook({
           extensions: '.ts',
           rootMode: 'upward-optional',
-          overrides: [{ only: [endsInBabelTs], presets: ['@babel/preset-env', '@babel/preset-typescript'] }],
+          overrides: [
+            {
+              only: [endsInBabelTs],
+              presets: ['@babel/preset-env', '@babel/preset-typescript'],
+            },
+          ],
         });
       },
     },
@@ -106,15 +116,22 @@ var extensions = {
       hook({
         extensions: '.tsx',
         rootMode: 'upward-optional',
-        overrides: [{
-          only: [endsInBabelTsx], presets: ['@babel/preset-env', '@babel/preset-react', [
-            "@babel/preset-typescript",
-            {
-              "isTSX": true,
-              "allExtensions": true
-            }
-          ]]
-        }],
+        overrides: [
+          {
+            only: [endsInBabelTsx],
+            presets: [
+              '@babel/preset-env',
+              '@babel/preset-react',
+              [
+                '@babel/preset-typescript',
+                {
+                  isTSX: true,
+                  allExtensions: true,
+                },
+              ],
+            ],
+          },
+        ],
       });
     },
   },
@@ -180,7 +197,12 @@ var extensions = {
         hook({
           extensions: '.jsx',
           rootMode: 'upward-optional',
-          overrides: [{ only: [endsInJsx], presets: ['@babel/preset-env', '@babel/preset-react'] }],
+          overrides: [
+            {
+              only: [endsInJsx],
+              presets: ['@babel/preset-env', '@babel/preset-react'],
+            },
+          ],
         });
       },
     },
@@ -233,12 +255,12 @@ var extensions = {
         ignore: [isNodeModules],
         jsc: {
           parser: {
-            syntax: 'ecmascript'
-          }
+            syntax: 'ecmascript',
+          },
         },
         module: {
-          type: 'commonjs'
-        }
+          type: 'commonjs',
+        },
       });
     },
   },
@@ -252,12 +274,12 @@ var extensions = {
         jsc: {
           parser: {
             syntax: 'ecmascript',
-            jsx: true
-          }
+            jsx: true,
+          },
         },
         module: {
-          type: 'commonjs'
-        }
+          type: 'commonjs',
+        },
       });
     },
   },
@@ -270,12 +292,12 @@ var extensions = {
         ignore: [isNodeModules],
         jsc: {
           parser: {
-            syntax: 'typescript'
-          }
+            syntax: 'typescript',
+          },
         },
         module: {
-          type: 'commonjs'
-        }
+          type: 'commonjs',
+        },
       });
     },
   },
@@ -289,12 +311,12 @@ var extensions = {
         jsc: {
           parser: {
             syntax: 'typescript',
-            tsx: true
-          }
+            tsx: true,
+          },
         },
         module: {
-          type: 'commonjs'
-        }
+          type: 'commonjs',
+        },
       });
     },
   },
@@ -313,7 +335,12 @@ var extensions = {
         hook({
           extensions: '.ts',
           rootMode: 'upward-optional',
-          overrides: [{ only: [endsInTs], presets: ['@babel/preset-env', '@babel/preset-typescript'] }],
+          overrides: [
+            {
+              only: [endsInTs],
+              presets: ['@babel/preset-env', '@babel/preset-typescript'],
+            },
+          ],
         });
       },
     },
@@ -336,12 +363,12 @@ var extensions = {
           ignore: [isNodeModules],
           jsc: {
             parser: {
-              syntax: 'typescript'
-            }
+              syntax: 'typescript',
+            },
           },
           module: {
-            type: 'commonjs'
-          }
+            type: 'commonjs',
+          },
         });
       },
     },
@@ -355,15 +382,22 @@ var extensions = {
         hook({
           extensions: '.tsx',
           rootMode: 'upward-optional',
-          overrides: [{
-            only: [endsInTsx], presets: ['@babel/preset-env', '@babel/preset-react', [
-              "@babel/preset-typescript",
-              {
-                "isTSX": true,
-                "allExtensions": true
-              }
-            ]]
-          }],
+          overrides: [
+            {
+              only: [endsInTsx],
+              presets: [
+                '@babel/preset-env',
+                '@babel/preset-react',
+                [
+                  '@babel/preset-typescript',
+                  {
+                    isTSX: true,
+                    allExtensions: true,
+                  },
+                ],
+              ],
+            },
+          ],
         });
       },
     },
@@ -387,12 +421,12 @@ var extensions = {
           jsc: {
             parser: {
               syntax: 'typescript',
-              tsx: true
-            }
+              tsx: true,
+            },
           },
           module: {
-            type: 'commonjs'
-          }
+            type: 'commonjs',
+          },
         });
       },
     },
