@@ -1,25 +1,25 @@
 var test: {
   data: {
-    trueKey: boolean,
-    falseKey: boolean,
+    trueKey: boolean;
+    falseKey: boolean;
     subKey: {
-      subProp: number
-    }
-  }
+      subProp: number;
+    };
+  };
 } = {
   data: {
     trueKey: true,
     falseKey: false,
     subKey: {
-      subProp: 1
-    }
-  }
+      subProp: 1,
+    },
+  },
 };
 
 var main: {
-  default: typeof test
+  default: typeof test;
 } = {
-  default: test
+  default: test,
 };
 
 export = main;

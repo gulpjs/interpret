@@ -1,12 +1,12 @@
 const React = {
   createElement(Component) {
-    return Component()
-  }
-}
+    return Component();
+  },
+};
 
 class Foo {
-  #x = 1
-  #y = 2
+  #x = 1;
+  #y = 2;
 }
 
 function Bar() {
@@ -15,7 +15,7 @@ function Bar() {
   return foo;
 }
 
-const a = <Bar />
+const a = <Bar />;
 
 export default {
   data: {

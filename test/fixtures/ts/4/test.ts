@@ -3,13 +3,13 @@ var test = {
     trueKey: true,
     falseKey: false,
     subKey: {
-      subProp: 1
-    }
-  }
+      subProp: 1,
+    },
+  },
 };
 
 var main = {
-  default: test
+  default: test,
 };
 
 export = main;

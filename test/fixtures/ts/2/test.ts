@@ -1,5 +1,5 @@
-import Component from "./component"
+import Component from './component';
 
-var test: typeof Component = { ...Component }
+var test: typeof Component = { ...Component };
 
-export default test
+export default test;

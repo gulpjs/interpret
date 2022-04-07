@@ -1,9 +1,9 @@
 export const data: {
-  trueKey: boolean,
-  falseKey: boolean,
+  trueKey: boolean;
+  falseKey: boolean;
   subKey: {
-    subProp: number
-  }
+    subProp: number;
+  };
 } = {
   trueKey: true,
   falseKey: false,

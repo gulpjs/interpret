@@ -1,6 +1,6 @@
 class Foo {
-  #x: number = 1
-  #y: number = 2
+  #x: number = 1;
+  #y: number = 2;
 }
 
 export default {

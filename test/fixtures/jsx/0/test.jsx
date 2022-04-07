@@ -1,7 +1,7 @@
 const React = {
-  createElement: function(Component){
+  createElement: function (Component) {
     return Component();
-  }
+  },
 };
 
 // Test harmony arrow functions
@@ -10,7 +10,7 @@ const Component = () => {
   var falseKey = false;
   var subKey = { subProp: 1 };
   // Test harmony object short notation
-  return { data: { trueKey, falseKey, subKey}};
+  return { data: { trueKey, falseKey, subKey } };
 };
 
 // Test JSX syntax

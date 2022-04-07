@@ -1,7 +1,7 @@
 const React = {
   createElement: function (Component) {
     return Component();
-  }
+  },
 };
 
 // Test harmony arrow functions

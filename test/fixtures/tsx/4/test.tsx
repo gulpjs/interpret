@@ -1,18 +1,18 @@
 const React = {
   createElement(Component: () => any) {
-    return Component()
-  }
-}
+    return Component();
+  },
+};
 
 // Test harmony arrow functions.
 const Component = () => {
-  var trueKey: boolean = true
-  var falseKey: boolean = false
-  var subKey = { subProp: 1 }
+  var trueKey: boolean = true;
+  var falseKey: boolean = false;
+  var subKey = { subProp: 1 };
 
   // Test harmony object short notation.
-  return { data: { trueKey, falseKey, subKey } }
+  return { data: { trueKey, falseKey, subKey } };
 };
 
 // Test TSX syntax.
-export default <Component />
+export default <Component />;

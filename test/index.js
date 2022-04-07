@@ -12,7 +12,7 @@ var extensions = require('../').extensions;
 
 // Save the original Module._extensions
 var originalExtensions = Object.keys(Module._extensions);
-var original = originalExtensions.reduce(function(result, key) {
+var original = originalExtensions.reduce(function (result, key) {
   result[key] = require.extensions[key];
   return result;
 }, {});
@@ -52,13 +52,12 @@ var minVersions = {};
 
 var maxVersions = {};
 
-describe('interpret.extensions', function() {
-
+describe('interpret.extensions', function () {
   beforeEach(cleanup);
 
   var exts = Object.keys(extensions);
 
-  var attempts = exts.reduce(function(attempts, ext) {
+  var attempts = exts.reduce(function (attempts, ext) {
     var modules = extensions[ext];
     if (!Array.isArray(modules)) {
       modules = [modules];
@@ -75,7 +74,7 @@ describe('interpret.extensions', function() {
       return attempts;
     }
 
-    modules.forEach(function(mod, idx) {
+    modules.forEach(function (mod, idx) {
       if (mod && typeof mod !== 'string') {
         mod = mod.module;
       }
@@ -99,7 +98,7 @@ describe('interpret.extensions', function() {
     return attempts;
   }, []);
 
-  attempts.forEach(function(attempt) {
+  attempts.forEach(function (attempt) {
     var extension = attempt.extension;
     var module = attempt.module;
     var name = attempt.name;
@@ -107,58 +106,84 @@ describe('interpret.extensions', function() {
     var fixtureDir = path.dirname(fixture);
     var idx = attempt.index;
 
-    it('can require ' + extension + ' using ' + name + ' (' + idx + ')', function(done) {
-      var minVersion = minVersions[module];
+    it(
+      'can require ' + extension + ' using ' + name + ' (' + idx + ')',
+      function (done) {
+        var minVersion = minVersions[module];
 
-      if (minVersion) {
-        if (nodeVersion.major === 0 && nodeVersion.minor < minVersion.minor) {
-          this.skip();
-        } else if (nodeVersion.major < minVersion.major) {
+        if (minVersion) {
+          if (nodeVersion.major === 0 && nodeVersion.minor < minVersion.minor) {
+            this.skip();
+          } else if (nodeVersion.major < minVersion.major) {
+            this.skip();
+          }
+        }
+
+        var maxVersion = maxVersions[module];
+
+        if (maxVersion) {
+          if (nodeVersion.major > maxVersion.major) {
+            this.skip();
+          }
+        }
+
+        // Skip any swc test on linux due to https://github.com/swc-project/swc/issues/4107
+        if (name === '@swc/register' && process.platform === 'linux') {
           this.skip();
         }
-      }
 
-      var maxVersion = maxVersions[module];
+        this.timeout(0);
 
-      if (maxVersion) {
-        if (nodeVersion.major > maxVersion.major) {
-          this.skip();
+        var expected;
+
+        process.chdir(path.join(__dirname, fixtureDir));
+
+        shell.exec('rm -r node_modules', { silent: true });
+        shell.exec('rm package-lock.json', { silent: true });
+        shell.exec('npm install', { silent: true });
+
+        try {
+          rechoir.prepare(extensions, fixture);
+        } catch (err) {
+          console.error(err.failures);
+          throw err;
         }
-      }
 
-      // Skip any swc test on linux due to https://github.com/swc-project/swc/issues/4107
-      if (name === '@swc/register' && process.platform === 'linux') {
-        this.skip();
-      }
+        switch (extension) {
+          case '.ts':
+          case '.tsx':
+          case '.esm.js':
+          case '.babel.tsx':
+          case '.esbuild.js':
+          case '.esbuild.jsx':
+          case '.esbuild.ts':
+          case '.esbuild.tsx':
+            expected = {
+              default: {
+                data: {
+                  trueKey: true,
+                  falseKey: false,
+                  subKey: {
+                    subProp: 1,
+                  },
+                },
+              },
+            };
+            expect(require(fixture)).toEqual(expected);
+            break;
 
-      this.timeout(0);
+          case '.toml':
+            expected = Object.create(null);
+            expected.data = Object.create(null);
+            expected.data.trueKey = true;
+            expected.data.falseKey = false;
+            expected.data.subKey = Object.create(null);
+            expected.data.subKey.subProp = 1;
+            expect(require(fixture)).toEqual(expected);
+            break;
 
-      var expected;
-
-      process.chdir(path.join(__dirname, fixtureDir));
-
-      shell.exec('rm -r node_modules', { silent: true });
-      shell.exec('rm package-lock.json', { silent: true });
-      shell.exec('npm install', { silent: true });
-
-      try {
-        rechoir.prepare(extensions, fixture);
-      } catch (err) {
-        console.error(err.failures);
-        throw err;
-      }
-
-      switch (extension) {
-        case '.ts':
-        case '.tsx':
-        case '.esm.js':
-        case '.babel.tsx':
-        case '.esbuild.js':
-        case '.esbuild.jsx':
-        case '.esbuild.ts':
-        case '.esbuild.tsx':
-          expected = {
-            default: {
+          default:
+            expected = {
               data: {
                 trueKey: true,
                 falseKey: false,
@@ -166,38 +191,15 @@ describe('interpret.extensions', function() {
                   subProp: 1,
                 },
               },
-            },
-          };
-          expect(require(fixture)).toEqual(expected);
-          break;
-
-        case '.toml':
-          expected = Object.create(null);
-          expected.data = Object.create(null);
-          expected.data.trueKey = true;
-          expected.data.falseKey = false;
-          expected.data.subKey = Object.create(null);
-          expected.data.subKey.subProp = 1;
-          expect(require(fixture)).toEqual(expected);
-          break;
-
-        default:
-          expected = {
-            data: {
-              trueKey: true,
-              falseKey: false,
-              subKey: {
-                subProp: 1,
-              },
-            },
-          };
-          expect(require(fixture)).toEqual(expected);
+            };
+            expect(require(fixture)).toEqual(expected);
+        }
+        done();
       }
-      done();
-    });
+    );
   });
 
-  it('does not error with the .mjs extension', function(done) {
+  it('does not error with the .mjs extension', function (done) {
     var ext = '.mjs';
     var fixture = './fixtures/' + ext.slice(1) + '/0/test' + ext;
 
@@ -208,7 +210,7 @@ describe('interpret.extensions', function() {
     done();
   });
 
-  it('the module can be loaded with import(), ignoring the loader', function() {
+  it('the module can be loaded with import(), ignoring the loader', function () {
     if (nodeVersion.major < 12) {
       this.skip();
     }
@@ -231,13 +233,12 @@ describe('interpret.extensions', function() {
     // This avoid SyntaxError when parsing on old node versions
     var imprt = new Function('a', 'return import(a)');
 
-    return imprt(fixture)
-      .then(function(result) {
-        expect(result.default).toEqual(expected);
-      });
+    return imprt(fixture).then(function (result) {
+      expect(result.default).toEqual(expected);
+    });
   });
 
-  it('stubs .mjs extension with null on old node that do not care about it', function(done) {
+  it('stubs .mjs extension with null on old node that do not care about it', function (done) {
     if (nodeVersion.major > 10) {
       this.skip();
     }

@@ -11,11 +11,13 @@
 A dictionary of file extensions and associated module loaders.
 
 ## What is it
+
 This is used by [Liftoff] to automatically require dependencies for configuration files, and by [rechoir] for registering module loaders.
 
 ## API
 
 ### extensions
+
 Map file types to modules which provide a [require.extensions] loader.
 
 ```js
@@ -109,6 +111,7 @@ Map file types to modules which provide a [require.extensions] loader.
 ```
 
 ### jsVariants
+
 Same as above, but only include the extensions which are javascript variants.
 
 ## How to use it

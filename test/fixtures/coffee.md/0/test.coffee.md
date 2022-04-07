@@ -1,5 +1,4 @@
-Test Fixture
-============
+# Test Fixture
 
     module.exports =
       data:
@@ -7,4 +6,3 @@ Test Fixture
         falseKey: false
         subKey:
           subProp: 1
-

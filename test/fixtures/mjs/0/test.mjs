@@ -3,7 +3,7 @@ export default {
     trueKey: true,
     falseKey: false,
     subKey: {
-      subProp: 1
-    }
-  }
+      subProp: 1,
+    },
+  },
 };

@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { data } from "./data";
+import { data } from './data';
 
 const Component = (props: object) => ({ data: props });
 
