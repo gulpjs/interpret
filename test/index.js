@@ -275,12 +275,16 @@ describe('interpret.extensions', function () {
       this.skip();
     }
 
+    this.timeout(0);
+
     process.chdir(path.join(__dirname, 'fixtures/cjs/0'));
 
     child.exec('node rechoir.js', done);
   });
 
   it('does not error with the .cjs extension when inside a type: commonjs package', function (done) {
+    this.timeout(0);
+
     process.chdir(path.join(__dirname, 'fixtures/cjs/1'));
 
     child.exec('node rechoir.js', done);
