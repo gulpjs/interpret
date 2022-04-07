@@ -141,7 +141,7 @@ describe('interpret.extensions', function() {
       try {
         rechoir.prepare(extensions, fixture);
       } catch (err) {
-        console.log(err.attempts);
+        console.log(err.failures);
         throw err;
       }
 
