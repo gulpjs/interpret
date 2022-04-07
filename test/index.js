@@ -271,13 +271,9 @@ describe('interpret.extensions', function () {
   });
 
   it('does not error with the .cjs extension when inside a type: module package', function (done) {
-    if (nodeVersion.major < 12) {
-      this.skip();
-    }
-
     process.chdir(path.join(__dirname, 'fixtures/cjs/0'));
 
-    child.exec('node rechoir.js', done);
+    child.exec('node --harmony-top-level-await --experimental-modules rechoir.js', done);
   });
 
   it('does not error with the .cjs extension when inside a type: commonjs package', function (done) {
