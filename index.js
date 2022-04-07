@@ -135,7 +135,6 @@ var extensions = {
     },
   },
   '.litcoffee': 'coffeescript/register',
-  '.ls': ['livescript', 'LiveScript'],
   '.mjs': mjsStub,
   '.node': null,
   '.toml': {
@@ -236,7 +235,6 @@ var jsVariantExtensions = [
   '.esm.js',
   '.jsx',
   '.litcoffee',
-  '.ls',
   '.mjs',
   '.ts',
   '.tsx',

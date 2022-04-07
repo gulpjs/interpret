@@ -73,7 +73,6 @@ Map file types to modules which provide a [require.extensions] loader.
     },
   },
   '.litcoffee': 'coffeescript/register',
-  '.ls': ['livescript', 'LiveScript'],
   '.mjs': '/absolute/path/to/interpret/mjs-stub.js',
   '.node': null,
   '.toml': {
