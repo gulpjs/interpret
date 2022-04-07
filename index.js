@@ -215,7 +215,6 @@ var extensions = {
       },
     },
   ],
-  '.wisp': 'wisp/engine/node',
   '.yaml': 'yaml-hook/register',
   '.yml': 'yaml-hook/register',
 };
@@ -238,7 +237,6 @@ var jsVariantExtensions = [
   '.mjs',
   '.ts',
   '.tsx',
-  '.wisp',
 ];
 
 module.exports = {

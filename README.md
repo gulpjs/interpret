@@ -109,7 +109,6 @@ Map file types to modules which provide a [require.extensions] loader.
       },
     },
   ],
-  '.wisp': 'wisp/engine/node',
   '.yaml': 'yaml-hook/register',
   '.yml': 'yaml-hook/register',
 }

@@ -55,7 +55,6 @@ var minVersions = {
   json5: { major: 6, minor: 0 },
   sucrase: { major: 8, minor: 0 },
   'ts-node': { major: 4, minor: 0 },
-  wisp: { major: 0, minor: 12 },
   'toml-require': { major: 6, minor: 0 },
 };
 
