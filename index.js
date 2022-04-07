@@ -121,7 +121,6 @@ var extensions = {
       require.extensions['.js'] = esmLoader('module')._extensions['.js'];
     },
   },
-  '.ini': 'require-ini',
   '.js': null,
   '.json': null,
   '.json5': ['json5/lib/register', 'json5/lib/require'],

@@ -170,18 +170,6 @@ describe('interpret.extensions', function() {
           };
           expect(require(fixture)).toEqual(expected);
           break;
-        case '.ini':
-          expected = {
-            data: {
-              trueKey: 'true',
-              falseKey: 'false',
-              subKey: {
-                subProp: '1',
-              },
-            },
-          };
-          expect(require(fixture)).toEqual(expected);
-          break;
 
         case '.toml':
           expected = Object.create(null);
