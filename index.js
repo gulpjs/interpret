@@ -162,7 +162,7 @@ var extensions = {
         });
       },
     },
-    'sucrase/register/jsx'
+    'sucrase/register/jsx',
   ],
   '.litcoffee': 'coffeescript/register',
   '.mjs': mjsStub,
