@@ -180,6 +180,21 @@ describe('interpret.extensions', function () {
             expect(require(fixture)).toEqual(expected);
             break;
 
+          case '.mdx':
+            expected = {
+              data: {
+                trueKey: true,
+                falseKey: false,
+                subKey: {
+                  subProp: 1,
+                },
+              },
+            };
+            var component = require(fixture);
+            // React internals :shrug:
+            expect(component().type()).toEqual(expected);
+            break;
+
           case '.toml':
             expected = Object.create(null);
             expected.data = Object.create(null);

@@ -177,6 +177,9 @@ var extensions = {
     'sucrase/register/jsx',
   ],
   '.litcoffee': 'coffeescript/register',
+  // The mdx loader hooks both `.md` and `.mdx` when it is imported
+  // but we only install the hook if `.mdx` is the first file
+  '.mdx': '@mdx-js/register',
   '.mjs': mjsStub,
   '.node': null,
   '.sucrase.js': {
@@ -344,6 +347,7 @@ var jsVariantExtensions = [
   '.esm.js',
   '.jsx',
   '.litcoffee',
+  '.mdx',
   '.mjs',
   '.sucrase.js',
   '.sucrase.jsx',
