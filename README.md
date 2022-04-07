@@ -50,7 +50,6 @@ Map file types to modules which provide a [require.extensions] loader.
   ],
   '.coffee': 'coffeescript/register',
   '.coffee.md': 'coffeescript/register',
-  '.eg': 'earlgrey/register',
   '.esm.js': {
     module: 'esm',
     register: function(hook) {

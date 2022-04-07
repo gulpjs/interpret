@@ -64,7 +64,6 @@ var extensions = {
   },
   '.coffee': 'coffeescript/register',
   '.coffee.md': 'coffeescript/register',
-  '.eg': 'earlgrey/register',
   '.esbuild.js': {
     module: 'esbuild-register/dist/node',
     register: function(mod) {
@@ -238,7 +237,6 @@ var jsVariantExtensions = [
   '.esbuild.tsx',
   '.coffee',
   '.coffee.md',
-  '.eg',
   '.esm.js',
   '.iced',
   '.iced.md',
