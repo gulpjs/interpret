@@ -7,8 +7,8 @@ const React = {
 function Bar() {
   const foo: {
     bar?: {
-      baz?: boolean
-    }
+      baz?: boolean;
+    };
   } = {};
 
   const bar = foo?.bar?.baz;
