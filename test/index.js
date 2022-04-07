@@ -48,15 +48,7 @@ function cleanup() {
 }
 
 // These modules need newer node features
-var minVersions = {
-  '@babel/register': { major: 6, minor: 0 },
-  coffeescript: { major: 6, minor: 0 },
-  esm: { major: 6, minor: 0 },
-  json5: { major: 6, minor: 0 },
-  sucrase: { major: 8, minor: 0 },
-  'ts-node': { major: 4, minor: 0 },
-  'toml-require': { major: 6, minor: 0 },
-};
+var minVersions = {};
 
 var maxVersions = {};
 
@@ -134,18 +126,27 @@ describe('interpret.extensions', function() {
         }
       }
 
+      // Skip any swc test on linux due to https://github.com/swc-project/swc/issues/4107
+      if (name === '@swc/register' && process.platform === 'linux') {
+        this.skip();
+      }
+
       this.timeout(0);
 
       var expected;
 
       process.chdir(path.join(__dirname, fixtureDir));
 
-      shell.exec('trash node_modules', { silent: true });
-      shell.exec('trash package-lock.json', { silent: true });
+      shell.exec('rm -r node_modules', { silent: true });
+      shell.exec('rm package-lock.json', { silent: true });
       shell.exec('npm install', { silent: true });
 
-      // TODO: log failures
-      rechoir.prepare(extensions, fixture);
+      try {
+        rechoir.prepare(extensions, fixture);
+      } catch (err) {
+        console.error(err.failures);
+        throw err;
+      }
 
       switch (extension) {
         case '.ts':
@@ -258,5 +259,4 @@ describe('interpret.extensions', function() {
     expect(require(fixture)).toEqual(expected);
     done();
   });
-
 });

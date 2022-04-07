@@ -6,18 +6,12 @@
 
 # interpret
 
-[![NPM version][npm-image]][npm-url] [![Downloads][downloads-image]][npm-url] [![Travis Build Status][travis-image]][travis-url] [![AppVeyor Build Status][appveyor-image]][appveyor-url] [![Coveralls Status][coveralls-image]][coveralls-url] [![Gitter chat][gitter-image]][gitter-url]
+[![NPM version][npm-image]][npm-url] [![Downloads][downloads-image]][npm-url] [![Build Status][ci-image]][ci-url] [![Coveralls Status][coveralls-image]][coveralls-url]
 
 A dictionary of file extensions and associated module loaders.
 
 ## What is it
-This is used by [Liftoff](http://github.com/tkellen/node-liftoff) to automatically require dependencies for configuration files, and by [rechoir](http://github.com/tkellen/node-rechoir) for registering module loaders.
-
-## interpret for enterprise
-
-Available as part of the Tidelift Subscription
-
-The maintainers of interpret and thousands of other packages are working with Tidelift to deliver commercial support and maintenance for the open source dependencies you use to build your applications. Save time, reduce risk, and improve code health, while paying the maintainers of the exact dependencies you use. [Learn more.](https://tidelift.com/subscription/pkg/npm-interpret?utm_source=npm-interpret&utm_medium=referral&utm_campaign=enterprise&utm_term=repo)
+This is used by [Liftoff] to automatically require dependencies for configuration files, and by [rechoir] for registering module loaders.
 
 ## API
 
@@ -129,20 +123,24 @@ Consumers should use the exported `extensions` or `jsVariants` object to determi
 
 4. If the value is an array, iterate over it, attempting step #2 or #3 until one of the attempts does not throw.
 
-[require.extensions]: http://nodejs.org/api/globals.html#globals_require_extensions
+## License
 
-[downloads-image]: http://img.shields.io/npm/dm/interpret.svg
+MIT
+
+<!-- prettier-ignore-start -->
+[downloads-image]: https://img.shields.io/npm/dm/interpret.svg?style=flat-square
 [npm-url]: https://www.npmjs.com/package/interpret
-[npm-image]: http://img.shields.io/npm/v/interpret.svg
+[npm-image]: https://img.shields.io/npm/v/interpret.svg?style=flat-square
 
-[travis-url]: https://travis-ci.org/gulpjs/interpret
-[travis-image]: http://img.shields.io/travis/gulpjs/interpret.svg?label=travis-ci
-
-[appveyor-url]: https://ci.appveyor.com/project/gulpjs/interpret
-[appveyor-image]: https://img.shields.io/appveyor/ci/gulpjs/interpret.svg?label=appveyor
+[ci-url]: https://github.com/gulpjs/interpret/actions?query=workflow:dev
+[ci-image]: https://img.shields.io/github/workflow/status/gulpjs/interpret/dev?style=flat-square
 
 [coveralls-url]: https://coveralls.io/r/gulpjs/interpret
-[coveralls-image]: http://img.shields.io/coveralls/gulpjs/interpret/master.svg
+[coveralls-image]: https://img.shields.io/coveralls/gulpjs/interpret/master.svg?style=flat-square
+<!-- prettier-ignore-end -->
 
-[gitter-url]: https://gitter.im/gulpjs/gulp
-[gitter-image]: https://badges.gitter.im/gulpjs/gulp.svg
+<!-- prettier-ignore-start -->
+[Liftoff]: http://github.com/gulpjs/liftoff
+[rechoir]: http://github.com/gulpjs/rechoir
+[require.extensions]: https://nodejs.org/api/modules.html#requireextensions
+<!-- prettier-ignore-end -->
