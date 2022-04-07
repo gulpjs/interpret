@@ -208,6 +208,8 @@ describe('interpret.extensions', function () {
   });
 
   it('does not error with the .mjs extension', function (done) {
+    this.timeout(0);
+
     var ext = '.mjs';
     var fixture = './fixtures/' + ext.slice(1) + '/0/test' + ext;
 
@@ -222,6 +224,8 @@ describe('interpret.extensions', function () {
     if (nodeVersion.major < 12) {
       this.skip();
     }
+
+    this.timeout(0);
 
     var ext = '.mjs';
     var fixture = './fixtures/' + ext.slice(1) + '/0/test' + ext;
@@ -250,6 +254,8 @@ describe('interpret.extensions', function () {
     if (nodeVersion.major > 10) {
       this.skip();
     }
+
+    this.timeout(0);
 
     var ext = '.mjs';
     var fixture = './fixtures/' + ext.slice(1) + '/1/test' + ext;
