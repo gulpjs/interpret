@@ -4,15 +4,16 @@ const React = {
   },
 };
 
-class Foo {
-  #x: number = 1;
-  #y: number = 2;
-}
-
 function Bar() {
-  const foo = new Foo();
+  const foo: {
+    bar?: {
+      baz?: boolean
+    }
+  } = {};
 
-  return foo;
+  const bar = foo?.bar?.baz;
+
+  return bar;
 }
 
 const a = <Bar />;

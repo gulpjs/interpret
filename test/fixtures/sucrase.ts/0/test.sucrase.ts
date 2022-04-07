@@ -1,7 +1,10 @@
-class Foo {
-  #x: number = 1;
-  #y: number = 2;
-}
+const foo: {
+  bar?: {
+    baz?: boolean
+  }
+} = {};
+
+const bar = foo?.bar?.baz;
 
 export default {
   data: {

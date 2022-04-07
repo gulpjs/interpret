@@ -1,7 +1,6 @@
-class Foo {
-  #x = 1;
-  #y = 2;
-}
+const foo = {};
+
+const bar = foo?.bar?.baz;
 
 export default {
   data: {
