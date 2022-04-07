@@ -74,7 +74,7 @@ var extensions = {
       hook({
         extensions: '.js',
         rootMode: 'upward-optional',
-        overrides: [{ only: [endsInBabelJs] }],
+        overrides: [{ only: [endsInBabelJs], presets: ['@babel/preset-env'] }],
       });
     },
   },
@@ -84,7 +84,7 @@ var extensions = {
       hook({
         extensions: '.jsx',
         rootMode: 'upward-optional',
-        overrides: [{ only: [endsInBabelJsx] }],
+        overrides: [{ only: [endsInBabelJsx], presets: ['@babel/preset-env', '@babel/preset-react'] }],
       });
     },
   },
@@ -95,7 +95,7 @@ var extensions = {
         hook({
           extensions: '.ts',
           rootMode: 'upward-optional',
-          overrides: [{ only: [endsInBabelTs] }],
+          overrides: [{ only: [endsInBabelTs], presets: ['@babel/preset-env', '@babel/preset-typescript'] }],
         });
       },
     },
@@ -106,7 +106,15 @@ var extensions = {
       hook({
         extensions: '.tsx',
         rootMode: 'upward-optional',
-        overrides: [{ only: [endsInBabelTsx] }],
+        overrides: [{
+          only: [endsInBabelTsx], presets: ['@babel/preset-env', '@babel/preset-react', [
+            "@babel/preset-typescript",
+            {
+              "isTSX": true,
+              "allExtensions": true
+            }
+          ]]
+        }],
       });
     },
   },
@@ -172,7 +180,7 @@ var extensions = {
         hook({
           extensions: '.jsx',
           rootMode: 'upward-optional',
-          overrides: [{ only: [endsInJsx] }],
+          overrides: [{ only: [endsInJsx], presets: ['@babel/preset-env', '@babel/preset-react'] }],
         });
       },
     },
@@ -223,6 +231,14 @@ var extensions = {
         extensions: '.js',
         only: [endsInSwcJs],
         ignore: [isNodeModules],
+        jsc: {
+          parser: {
+            syntax: 'ecmascript'
+          }
+        },
+        module: {
+          type: 'commonjs'
+        }
       });
     },
   },
@@ -233,6 +249,15 @@ var extensions = {
         extensions: '.jsx',
         only: [endsInSwcJsx],
         ignore: [isNodeModules],
+        jsc: {
+          parser: {
+            syntax: 'ecmascript',
+            jsx: true
+          }
+        },
+        module: {
+          type: 'commonjs'
+        }
       });
     },
   },
@@ -243,6 +268,14 @@ var extensions = {
         extensions: '.ts',
         only: [endsInSwcTs],
         ignore: [isNodeModules],
+        jsc: {
+          parser: {
+            syntax: 'typescript'
+          }
+        },
+        module: {
+          type: 'commonjs'
+        }
       });
     },
   },
@@ -253,6 +286,15 @@ var extensions = {
         extensions: '.tsx',
         only: [endsInSwcTsx],
         ignore: [isNodeModules],
+        jsc: {
+          parser: {
+            syntax: 'typescript',
+            tsx: true
+          }
+        },
+        module: {
+          type: 'commonjs'
+        }
       });
     },
   },
@@ -271,7 +313,7 @@ var extensions = {
         hook({
           extensions: '.ts',
           rootMode: 'upward-optional',
-          overrides: [{ only: [endsInTs] }],
+          overrides: [{ only: [endsInTs], presets: ['@babel/preset-env', '@babel/preset-typescript'] }],
         });
       },
     },
@@ -292,6 +334,14 @@ var extensions = {
           extensions: '.ts',
           only: [endsInTs],
           ignore: [isNodeModules],
+          jsc: {
+            parser: {
+              syntax: 'typescript'
+            }
+          },
+          module: {
+            type: 'commonjs'
+          }
         });
       },
     },
@@ -305,7 +355,15 @@ var extensions = {
         hook({
           extensions: '.tsx',
           rootMode: 'upward-optional',
-          overrides: [{ only: [endsInTsx] }],
+          overrides: [{
+            only: [endsInTsx], presets: ['@babel/preset-env', '@babel/preset-react', [
+              "@babel/preset-typescript",
+              {
+                "isTSX": true,
+                "allExtensions": true
+              }
+            ]]
+          }],
         });
       },
     },
@@ -326,6 +384,15 @@ var extensions = {
           extensions: '.tsx',
           only: [endsInTsx],
           ignore: [isNodeModules],
+          jsc: {
+            parser: {
+              syntax: 'typescript',
+              tsx: true
+            }
+          },
+          module: {
+            type: 'commonjs'
+          }
         });
       },
     },
