@@ -126,6 +126,11 @@ describe('interpret.extensions', function() {
         }
       }
 
+      // Any swc test after the first will fail on linux due to https://github.com/swc-project/swc/issues/4107
+      if (process.platform === 'linux' && extension === '.tsx' && name === '@swc/register') {
+        this.skip();
+      }
+
       this.timeout(0);
 
       var expected;
@@ -136,11 +141,10 @@ describe('interpret.extensions', function() {
       shell.exec('rm package-lock.json', { silent: true });
       shell.exec('npm install', { silent: true });
 
-      // TODO: log failures
       try {
         rechoir.prepare(extensions, fixture);
       } catch (err) {
-        console.log(err.failures);
+        console.error(err.failures);
         throw err;
       }
 
