@@ -68,6 +68,8 @@ A sample of an entry containing multiple hooks would look like:
   - '@babel/register'
 .babel.tsx:
   - '@babel/register'
+.cjs:
+  - interpret/cjs-stub
 .coffee:
   - coffeescript/register
 .coffee.md:
@@ -93,6 +95,8 @@ A sample of an entry containing multiple hooks would look like:
   - sucrase/register/jsx
 .litcoffee:
   - coffeescript/register
+.mdx:
+  - '@mdx-js/register'
 .mjs:
   - interpret/mjs-stub
 .node:
@@ -148,6 +152,8 @@ The `jsVariants` is the same mapping as above, but only include the extensions w
   - '@babel/register'
 .babel.tsx:
   - '@babel/register'
+.cjs:
+  - interpret/cjs-stub
 .coffee:
   - coffeescript/register
 .coffee.md:
@@ -169,6 +175,8 @@ The `jsVariants` is the same mapping as above, but only include the extensions w
   - sucrase/register/jsx
 .litcoffee:
   - coffeescript/register
+.mdx:
+  - '@mdx-js/register'
 .mjs:
   - interpret/mjs-stub
 .sucrase.js:
