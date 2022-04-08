@@ -49,7 +49,9 @@ function cleanup() {
 }
 
 // These modules need newer node features
-var minVersions = {};
+var minVersions = {
+  '@mdx-js/register': { major: 12 }
+};
 
 var maxVersions = {};
 
@@ -179,6 +181,21 @@ describe('interpret.extensions', function () {
               },
             };
             expect(require(fixture)).toEqual(expected);
+            break;
+
+          case '.mdx':
+            expected = {
+              data: {
+                trueKey: true,
+                falseKey: false,
+                subKey: {
+                  subProp: 1,
+                },
+              },
+            };
+            var component = require(fixture);
+            // React internals :shrug:
+            expect(component().type()).toEqual(expected);
             break;
 
           case '.toml':
