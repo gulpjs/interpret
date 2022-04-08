@@ -19,6 +19,7 @@
     "mjs-stub.js"
   ],
   "scripts": {
+    "readme": "remark README.md --use ./scripts/plugin.mjs --output",
     "lint": "eslint .",
     "pretest": "npm run lint",
     "test": "nyc mocha --async-only"
@@ -28,10 +29,13 @@
     "eslint-config-gulp": "^5.0.0",
     "eslint-plugin-node": "^11.1.0",
     "expect": "^27.0.0",
+    "js-yaml": "^4.1.0",
     "mocha": "^8.0.0",
     "nyc": "^15.0.0",
     "parse-node-version": "^2.0.0",
     "rechoir": "^0.8.0",
+    "remark-cli": "^10.0.1",
+    "remark-code-import": "^1.1.0",
     "shelljs": "0.8.5"
   },
   "nyc": {
