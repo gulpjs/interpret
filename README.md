@@ -20,7 +20,7 @@ Consumers should use the exported `extensions` or `jsVariants` object to determi
 
 1.  If the value is null, do nothing.
 2.  If the value is a string, try to require it.
-3.  If the value is an object, try to require the `module` property. If successful, the `register` property (a function) should be called with the module passed as the first argument.
+3.  If the value is an object, try to require the `module` property. If successful, the `register` property (a function) should be called with the module passed as the first argument. **Advanced:** An optional second argument can be provided to replace the default configuration for a hook.
 4.  If the value is an array, iterate over it, attempting step #2 or #3 until one of the attempts does not throw.
 
 ## API
