@@ -70,19 +70,19 @@ function isNodeModules(file) {
 var extensions = {
   '.babel.js': {
     module: '@babel/register',
-    register: function (hook) {
-      hook({
-        extensions: '.js',
+    register: function (hook, config) {
+      config = config || {
         rootMode: 'upward-optional',
         overrides: [{ only: [endsInBabelJs], presets: ['@babel/preset-env'] }],
-      });
+      };
+
+      hook(Object.assign({}, config, { extensions: '.js' }));
     },
   },
   '.babel.jsx': {
     module: '@babel/register',
-    register: function (hook) {
-      hook({
-        extensions: '.jsx',
+    register: function (hook, config) {
+      config = config || {
         rootMode: 'upward-optional',
         overrides: [
           {
@@ -90,15 +90,16 @@ var extensions = {
             presets: ['@babel/preset-env', '@babel/preset-react'],
           },
         ],
-      });
+      };
+
+      hook(Object.assign({}, config, { extensions: '.jsx' }));
     },
   },
   '.babel.ts': [
     {
       module: '@babel/register',
-      register: function (hook) {
-        hook({
-          extensions: '.ts',
+      register: function (hook, config) {
+        config = config || {
           rootMode: 'upward-optional',
           overrides: [
             {
@@ -106,15 +107,16 @@ var extensions = {
               presets: ['@babel/preset-env', '@babel/preset-typescript'],
             },
           ],
-        });
+        };
+
+        hook(Object.assign({}, config, { extensions: '.ts' }));
       },
     },
   ],
   '.babel.tsx': {
     module: '@babel/register',
-    register: function (hook) {
-      hook({
-        extensions: '.tsx',
+    register: function (hook, config) {
+      config = config || {
         rootMode: 'upward-optional',
         overrides: [
           {
@@ -132,7 +134,9 @@ var extensions = {
             ],
           },
         ],
-      });
+      };
+
+      hook(Object.assign({}, config, { extensions: '.tsx' }));
     },
   },
   '.cjs': cjsStub,
@@ -140,42 +144,46 @@ var extensions = {
   '.coffee.md': 'coffeescript/register',
   '.esbuild.js': {
     module: 'esbuild-register/dist/node',
-    register: function (mod) {
-      mod.register({
-        extensions: ['.js'],
+    register: function (mod, config) {
+      config = config || {
         target: 'node' + process.version.slice(1),
         hookMatcher: endsInEsbuildJs,
-      });
+      };
+
+      mod.register(Object.assign({}, config, { extensions: ['.js'] }));
     },
   },
   '.esbuild.jsx': {
     module: 'esbuild-register/dist/node',
-    register: function (mod) {
-      mod.register({
-        extensions: ['.jsx'],
+    register: function (mod, config) {
+      config = config || {
         target: 'node' + process.version.slice(1),
         hookMatcher: endsInEsbuildJsx,
-      });
+      };
+
+      mod.register(Object.assign({}, config, { extensions: ['.jsx'] }));
     },
   },
   '.esbuild.ts': {
     module: 'esbuild-register/dist/node',
-    register: function (mod) {
-      mod.register({
-        extensions: ['.ts'],
+    register: function (mod, config) {
+      config = config || {
         target: 'node' + process.version.slice(1),
         hookMatcher: endsInEsbuildTs,
-      });
+      };
+
+      mod.register(Object.assign({}, config, { extensions: ['.ts'] }));
     },
   },
   '.esbuild.tsx': {
     module: 'esbuild-register/dist/node',
-    register: function (mod) {
-      mod.register({
-        extensions: ['.tsx'],
+    register: function (mod, config) {
+      config = config || {
         target: 'node' + process.version.slice(1),
         hookMatcher: endsInEsbuildTsx,
-      });
+      };
+
+      mod.register(Object.assign({}, config, { extensions: ['.tsx'] }));
     },
   },
   '.esm.js': {
@@ -193,9 +201,8 @@ var extensions = {
   '.jsx': [
     {
       module: '@babel/register',
-      register: function (hook) {
-        hook({
-          extensions: '.jsx',
+      register: function (hook, config) {
+        config = config || {
           rootMode: 'upward-optional',
           overrides: [
             {
@@ -203,7 +210,9 @@ var extensions = {
               presets: ['@babel/preset-env', '@babel/preset-react'],
             },
           ],
-        });
+        };
+
+        hook(Object.assign({}, config, { extensions: '.jsx' }));
       },
     },
     'sucrase/register/jsx',
@@ -216,41 +225,48 @@ var extensions = {
   '.node': null,
   '.sucrase.js': {
     module: 'sucrase/dist/register',
-    register: function (hook) {
-      hook.registerJS({
+    register: function (hook, config) {
+      config = config || {
         matcher: endsInSucraseJs,
-      });
+      };
+
+      hook.registerJS(config);
     },
   },
   '.sucrase.jsx': {
     module: 'sucrase/dist/register',
-    register: function (hook) {
-      hook.registerJSX({
+    register: function (hook, config) {
+      config = config || {
         matcher: endsInSucraseJsx,
-      });
+      };
+
+      hook.registerJSX(config);
     },
   },
   '.sucrase.ts': {
     module: 'sucrase/dist/register',
-    register: function (hook) {
-      hook.registerTS({
+    register: function (hook, config) {
+      config = config || {
         matcher: endsInSucraseTs,
-      });
+      };
+
+      hook.registerTS(config);
     },
   },
   '.sucrase.tsx': {
     module: 'sucrase/dist/register',
-    register: function (hook) {
-      hook.registerTSX({
+    register: function (hook, config) {
+      config = config || {
         matcher: endsInSucraseTsx,
-      });
+      };
+
+      hook.registerTSX(config);
     },
   },
   '.swc.js': {
     module: '@swc/register',
-    register: function (hook) {
-      hook({
-        extensions: '.js',
+    register: function (hook, config) {
+      config = config || {
         only: [endsInSwcJs],
         ignore: [isNodeModules],
         jsc: {
@@ -261,14 +277,19 @@ var extensions = {
         module: {
           type: 'commonjs',
         },
-      });
+      };
+
+      hook(
+        Object.assign({}, config, {
+          extensions: '.js',
+        })
+      );
     },
   },
   '.swc.jsx': {
     module: '@swc/register',
-    register: function (hook) {
-      hook({
-        extensions: '.jsx',
+    register: function (hook, config) {
+      config = config || {
         only: [endsInSwcJsx],
         ignore: [isNodeModules],
         jsc: {
@@ -280,14 +301,19 @@ var extensions = {
         module: {
           type: 'commonjs',
         },
-      });
+      };
+
+      hook(
+        Object.assign({}, config, {
+          extensions: '.jsx',
+        })
+      );
     },
   },
   '.swc.ts': {
     module: '@swc/register',
-    register: function (hook) {
-      hook({
-        extensions: '.ts',
+    register: function (hook, config) {
+      config = config || {
         only: [endsInSwcTs],
         ignore: [isNodeModules],
         jsc: {
@@ -298,14 +324,19 @@ var extensions = {
         module: {
           type: 'commonjs',
         },
-      });
+      };
+
+      hook(
+        Object.assign({}, config, {
+          extensions: '.ts',
+        })
+      );
     },
   },
   '.swc.tsx': {
     module: '@swc/register',
-    register: function (hook) {
-      hook({
-        extensions: '.tsx',
+    register: function (hook, config) {
+      config = config || {
         only: [endsInSwcTsx],
         ignore: [isNodeModules],
         jsc: {
@@ -317,13 +348,19 @@ var extensions = {
         module: {
           type: 'commonjs',
         },
-      });
+      };
+
+      hook(
+        Object.assign({}, config, {
+          extensions: '.tsx',
+        })
+      );
     },
   },
   '.toml': {
     module: 'toml-require',
-    register: function (hook) {
-      hook.install();
+    register: function (hook, config) {
+      hook.install(config);
     },
   },
   '.ts': [
@@ -331,9 +368,8 @@ var extensions = {
     'sucrase/register/ts',
     {
       module: '@babel/register',
-      register: function (hook) {
-        hook({
-          extensions: '.ts',
+      register: function (hook, config) {
+        config = config || {
           rootMode: 'upward-optional',
           overrides: [
             {
@@ -341,24 +377,34 @@ var extensions = {
               presets: ['@babel/preset-env', '@babel/preset-typescript'],
             },
           ],
-        });
+        };
+
+        hook(
+          Object.assign({}, config, {
+            extensions: '.ts',
+          })
+        );
       },
     },
     {
       module: 'esbuild-register/dist/node',
-      register: function (mod) {
-        mod.register({
-          extensions: ['.ts'],
+      register: function (mod, config) {
+        config = config || {
           target: 'node' + process.version.slice(1),
           hookMatcher: endsInTs,
-        });
+        };
+
+        mod.register(
+          Object.assign({}, config, {
+            extensions: ['.ts'],
+          })
+        );
       },
     },
     {
       module: '@swc/register',
-      register: function (hook) {
-        hook({
-          extensions: '.ts',
+      register: function (hook, config) {
+        config = config || {
           only: [endsInTs],
           ignore: [isNodeModules],
           jsc: {
@@ -369,7 +415,13 @@ var extensions = {
           module: {
             type: 'commonjs',
           },
-        });
+        };
+
+        hook(
+          Object.assign({}, config, {
+            extensions: '.ts',
+          })
+        );
       },
     },
   ],
@@ -378,9 +430,8 @@ var extensions = {
     'sucrase/register/tsx',
     {
       module: '@babel/register',
-      register: function (hook) {
-        hook({
-          extensions: '.tsx',
+      register: function (hook, config) {
+        config = config || {
           rootMode: 'upward-optional',
           overrides: [
             {
@@ -398,24 +449,34 @@ var extensions = {
               ],
             },
           ],
-        });
+        };
+
+        hook(
+          Object.assign({}, config, {
+            extensions: '.tsx',
+          })
+        );
       },
     },
     {
       module: 'esbuild-register/dist/node',
-      register: function (mod) {
-        mod.register({
-          extensions: ['.tsx'],
+      register: function (mod, config) {
+        config = config || {
           target: 'node' + process.version.slice(1),
           hookMatcher: endsInTsx,
-        });
+        };
+
+        mod.register(
+          Object.assign({}, config, {
+            extensions: ['.tsx'],
+          })
+        );
       },
     },
     {
       module: '@swc/register',
-      register: function (hook) {
-        hook({
-          extensions: '.tsx',
+      register: function (hook, config) {
+        config = config || {
           only: [endsInTsx],
           ignore: [isNodeModules],
           jsc: {
@@ -427,7 +488,13 @@ var extensions = {
           module: {
             type: 'commonjs',
           },
-        });
+        };
+
+        hook(
+          Object.assign({}, config, {
+            extensions: '.tsx',
+          })
+        );
       },
     },
   ],
