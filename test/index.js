@@ -130,11 +130,6 @@ describe('interpret.extensions', function () {
           }
         }
 
-        // Skip any swc test on linux due to https://github.com/swc-project/swc/issues/4107
-        if (name === '@swc/register' && process.platform === 'linux') {
-          this.skip();
-        }
-
         this.timeout(0);
 
         var expected;

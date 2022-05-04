@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "@swc/core": "^1.2.110",
+    "@swc/core": "^1.2.117",
     "@swc/register": "^0.1.7"
   }
 }
