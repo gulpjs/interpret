@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "ts-node": "^7.0.1",
+    "ts-node": "^10.7.0",
     "typescript": "^3.2.2"
   }
 }
