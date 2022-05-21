@@ -430,42 +430,6 @@ var extensions = {
   ],
   '.cts': [
     'ts-node/register',
-    'sucrase/register/ts',
-    {
-      module: '@babel/register',
-      register: function (hook, config) {
-        config = config || {
-          rootMode: 'upward-optional',
-          overrides: [
-            {
-              only: [endsInCts],
-              presets: ['@babel/preset-env', '@babel/preset-typescript'],
-            },
-          ],
-        };
-
-        hook(
-          Object.assign({}, config, {
-            extensions: '.cts',
-          })
-        );
-      },
-    },
-    {
-      module: 'esbuild-register/dist/node',
-      register: function (mod, config) {
-        config = config || {
-          target: 'node' + process.version.slice(1),
-          hookMatcher: endsInTs,
-        };
-
-        mod.register(
-          Object.assign({}, config, {
-            extensions: ['.cts'],
-          })
-        );
-      },
-    },
     {
       module: '@swc/register',
       register: function (hook, config) {
