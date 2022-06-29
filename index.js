@@ -8,9 +8,6 @@ function endsInJsx(filename) {
 function endsInTs(filename) {
   return filename.endsWith('.ts');
 }
-function endsInCts(filename) {
-  return filename.endsWith('.cts');
-}
 function endsInTsx(filename) {
   return filename.endsWith('.tsx');
 }
@@ -428,32 +425,7 @@ var extensions = {
       },
     },
   ],
-  '.cts': [
-    'ts-node/register',
-    {
-      module: '@swc/register',
-      register: function (hook, config) {
-        config = config || {
-          only: [endsInCts],
-          ignore: [isNodeModules],
-          jsc: {
-            parser: {
-              syntax: 'typescript',
-            },
-          },
-          module: {
-            type: 'commonjs',
-          },
-        };
-
-        hook(
-          Object.assign({}, config, {
-            extensions: '.cts',
-          })
-        );
-      },
-    },
-  ],
+  '.cts': ['ts-node/register'],
   '.tsx': [
     'ts-node/register',
     'sucrase/register/tsx',
