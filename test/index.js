@@ -154,6 +154,7 @@ describe('interpret.extensions', function () {
 
         switch (extension) {
           case '.ts':
+          case '.cts':
           case '.tsx':
           case '.esm.js':
           case '.babel.tsx':

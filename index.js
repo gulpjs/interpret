@@ -425,6 +425,7 @@ var extensions = {
       },
     },
   ],
+  '.cts': ['ts-node/register'],
   '.tsx': [
     'ts-node/register',
     'sucrase/register/tsx',
