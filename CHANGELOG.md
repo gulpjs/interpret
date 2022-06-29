@@ -1,5 +1,12 @@
 # Changelog
 
+### [3.1.1](https://www.github.com/gulpjs/interpret/compare/v3.1.0...v3.1.1) (2022-06-29)
+
+
+### Bug Fixes
+
+* Include cjs-stub in npm bundle ([4f7d798](https://www.github.com/gulpjs/interpret/commit/4f7d7981565a704af9ded99eb953faa1a838f8af))
+
 ## [3.1.0](https://www.github.com/gulpjs/interpret/compare/v3.0.0...v3.1.0) (2022-06-29)
 
 
