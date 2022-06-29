@@ -74,6 +74,8 @@ A sample of an entry containing multiple hooks would look like:
   - coffeescript/register
 .coffee.md:
   - coffeescript/register
+.cts:
+  - ts-node/register
 .esbuild.js:
   - esbuild-register/dist/node
 .esbuild.jsx:
