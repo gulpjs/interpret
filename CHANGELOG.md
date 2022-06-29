@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.1.0](https://www.github.com/gulpjs/interpret/compare/v3.0.0...v3.1.0) (2022-06-29)
+
+
+### Features
+
+* Add `.cts` to support typescript 4.7 ([#90](https://www.github.com/gulpjs/interpret/issues/90)) ([c1ffa36](https://www.github.com/gulpjs/interpret/commit/c1ffa36fbd1088f2dbdb00c9500eecfce70eafc0))
+
 ## [3.0.0](https://www.github.com/gulpjs/interpret/compare/v2.2.0...v3.0.0) (2022-04-12)
 
 
