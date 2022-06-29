@@ -16,6 +16,7 @@
   "files": [
     "LICENSE",
     "index.js",
+    "cjs-stub.js",
     "mjs-stub.js"
   ],
   "scripts": {
