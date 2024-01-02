@@ -401,6 +401,7 @@ var extensions = {
         );
       },
     },
+    'tsx/dist/esm/index.cjs',
     {
       module: '@swc/register',
       register: function (hook, config) {
@@ -498,6 +499,7 @@ var extensions = {
         );
       },
     },
+    'tsx/dist/esm/index.cjs',
   ],
   '.yaml': 'yaml-hook/register',
   '.yml': 'yaml-hook/register',
