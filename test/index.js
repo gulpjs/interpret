@@ -135,6 +135,7 @@ describe('interpret.extensions', function () {
           this.skip();
         }
 
+        // if (name === '')
         this.timeout(0);
 
         var expected;
