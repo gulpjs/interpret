@@ -263,100 +263,203 @@ var extensions = {
       hook.registerTSX(config);
     },
   },
-  '.swc.js': {
-    module: '@swc/register',
-    register: function (hook, config) {
-      config = config || {
-        only: [endsInSwcJs],
-        ignore: [isNodeModules],
-        jsc: {
-          parser: {
-            syntax: 'ecmascript',
+  '.swc.js': [
+    {
+      module: '@swc-node/register',
+      register: function (mod, config) {
+        config = config || {
+          only: [endsInSwcJs],
+          ignore: [isNodeModules],
+          jsc: {
+            parser: {
+              syntax: 'ecmascript',
+            },
           },
-        },
-        module: {
-          type: 'commonjs',
-        },
-      };
-
-      hook(
-        Object.assign({}, config, {
-          extensions: '.js',
-        })
-      );
-    },
-  },
-  '.swc.jsx': {
-    module: '@swc/register',
-    register: function (hook, config) {
-      config = config || {
-        only: [endsInSwcJsx],
-        ignore: [isNodeModules],
-        jsc: {
-          parser: {
-            syntax: 'ecmascript',
-            jsx: true,
+          module: {
+            type: 'commonjs',
           },
-        },
-        module: {
-          type: 'commonjs',
-        },
-      };
+        };
 
-      hook(
-        Object.assign({}, config, {
-          extensions: '.jsx',
-        })
-      );
+        mod.register(
+          Object.assign({}, config, {
+            extensions: '.js',
+          })
+        );
+      },
     },
-  },
-  '.swc.ts': {
-    module: '@swc/register',
-    register: function (hook, config) {
-      config = config || {
-        only: [endsInSwcTs],
-        ignore: [isNodeModules],
-        jsc: {
-          parser: {
-            syntax: 'typescript',
+    {
+      module: '@swc/register',
+      register: function (hook, config) {
+        config = config || {
+          only: [endsInSwcJs],
+          ignore: [isNodeModules],
+          jsc: {
+            parser: {
+              syntax: 'ecmascript',
+            },
           },
-        },
-        module: {
-          type: 'commonjs',
-        },
-      };
-
-      hook(
-        Object.assign({}, config, {
-          extensions: '.ts',
-        })
-      );
-    },
-  },
-  '.swc.tsx': {
-    module: '@swc/register',
-    register: function (hook, config) {
-      config = config || {
-        only: [endsInSwcTsx],
-        ignore: [isNodeModules],
-        jsc: {
-          parser: {
-            syntax: 'typescript',
-            tsx: true,
+          module: {
+            type: 'commonjs',
           },
-        },
-        module: {
-          type: 'commonjs',
-        },
-      };
+        };
 
-      hook(
-        Object.assign({}, config, {
-          extensions: '.tsx',
-        })
-      );
+
+        hook(
+          Object.assign({}, config, {
+            extensions: '.js',
+          })
+        );
+      },
+    }
+  ],
+  '.swc.jsx': [
+    {
+      module: '@swc-node/register',
+      register: function (mod, config) {
+        config = config || {
+          only: [endsInSwcJsx],
+          ignore: [isNodeModules],
+          jsc: {
+            parser: {
+              syntax: 'ecmascript',
+              jsx: true,
+            },
+          },
+          module: {
+            type: 'commonjs',
+          },
+        };
+
+        mod.register(
+          Object.assign({}, config, {
+            extensions: '.jsx',
+          })
+        );
+      },
     },
-  },
+    {
+      module: '@swc/register',
+      register: function (hook, config) {
+        config = config || {
+          only: [endsInSwcJsx],
+          ignore: [isNodeModules],
+          jsc: {
+            parser: {
+              syntax: 'ecmascript',
+              jsx: true,
+            },
+          },
+          module: {
+            type: 'commonjs',
+          },
+        };
+
+        hook(
+          Object.assign({}, config, {
+            extensions: '.jsx',
+          })
+        );
+      },
+    }
+  ],
+  '.swc.ts': [
+    {
+      module: '@swc-node/register',
+      register: function (mod, config) {
+        config = config || {
+          only: [endsInSwcTs],
+          ignore: [isNodeModules],
+          jsc: {
+            parser: {
+              syntax: 'typescript',
+            },
+          },
+          module: {
+            type: 'commonjs',
+          },
+        };
+
+        mod.register(
+          Object.assign({}, config, {
+            extensions: '.ts',
+          })
+        );
+      },
+    },
+    {
+      module: '@swc/register',
+      register: function (hook, config) {
+        config = config || {
+          only: [endsInSwcTs],
+          ignore: [isNodeModules],
+          jsc: {
+            parser: {
+              syntax: 'typescript',
+            },
+          },
+          module: {
+            type: 'commonjs',
+          },
+        };
+
+        hook(
+          Object.assign({}, config, {
+            extensions: '.ts',
+          })
+        );
+      },
+    }
+  ],
+  '.swc.tsx': [
+    {
+      module: '@swc-node/register',
+      register: function (mod, config) {
+        config = config || {
+          only: [endsInSwcTsx],
+          ignore: [isNodeModules],
+          jsc: {
+            parser: {
+              syntax: 'typescript',
+              tsx: true,
+            },
+          },
+          module: {
+            type: 'commonjs',
+          },
+        };
+
+        mod.register(
+          Object.assign({}, config, {
+            extensions: '.tsx',
+          })
+        );
+      },
+    },
+    {
+      module: '@swc/register',
+      register: function (hook, config) {
+        config = config || {
+          only: [endsInSwcTsx],
+          ignore: [isNodeModules],
+          jsc: {
+            parser: {
+              syntax: 'typescript',
+              tsx: true,
+            },
+          },
+          module: {
+            type: 'commonjs',
+          },
+        };
+
+        hook(
+          Object.assign({}, config, {
+            extensions: '.tsx',
+          })
+        );
+      },
+    }
+  ],
   '.toml': {
     module: 'toml-require',
     register: function (hook, config) {
@@ -397,6 +500,29 @@ var extensions = {
         mod.register(
           Object.assign({}, config, {
             extensions: ['.ts'],
+          })
+        );
+      },
+    },
+    {
+      module: '@swc-node/register',
+      register: function (mod, config) {
+        config = config || {
+          only: [endsInTs],
+          ignore: [isNodeModules],
+          jsc: {
+            parser: {
+              syntax: 'typescript',
+            },
+          },
+          module: {
+            type: 'commonjs',
+          },
+        };
+
+        mod.register(
+          Object.assign({}, config, {
+            extensions: '.ts',
           })
         );
       },
@@ -470,6 +596,30 @@ var extensions = {
         mod.register(
           Object.assign({}, config, {
             extensions: ['.tsx'],
+          })
+        );
+      },
+    },
+    {
+      module: '@swc-node/register',
+      register: function (mod, config) {
+        config = config || {
+          only: [endsInTsx],
+          ignore: [isNodeModules],
+          jsc: {
+            parser: {
+              syntax: 'typescript',
+              tsx: true,
+            },
+          },
+          module: {
+            type: 'commonjs',
+          },
+        };
+
+        mod.register(
+          Object.assign({}, config, {
+            extensions: '.tsx',
           })
         );
       },
