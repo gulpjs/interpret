@@ -303,7 +303,6 @@ var extensions = {
           },
         };
 
-        console.log(hook)
 
         hook(
           Object.assign({}, config, {
