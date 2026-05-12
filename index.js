@@ -67,6 +67,10 @@ function isNodeModules(file) {
   return path.relative(process.cwd(), file).includes('node_modules');
 }
 
+function registerTsx() {
+  require(require.resolve('tsx/cjs', { paths: [process.cwd()] }));
+}
+
 var extensions = {
   '.babel.js': {
     module: '@babel/register',
@@ -424,6 +428,10 @@ var extensions = {
         );
       },
     },
+    {
+      module: 'tsx/package.json',
+      register: registerTsx,
+    },
   ],
   '.cts': ['ts-node/register'],
   '.tsx': [
@@ -497,6 +505,10 @@ var extensions = {
           })
         );
       },
+    },
+    {
+      module: 'tsx/package.json',
+      register: registerTsx,
     },
   ],
   '.yaml': 'yaml-hook/register',

@@ -51,6 +51,7 @@ function cleanup() {
 // These modules need newer node features
 var minVersions = {
   '@mdx-js/register': { major: 12 },
+  tsx: { major: 18 },
 };
 
 var maxVersions = {};
@@ -83,7 +84,13 @@ describe('interpret.extensions', function () {
       }
 
       var name = mod || 'no loader';
-      var fixture = './fixtures/' + ext.slice(1) + '/' + idx + '/test' + ext;
+      var fixture = path.join(
+        __dirname,
+        'fixtures',
+        ext.slice(1),
+        String(idx),
+        'test' + ext
+      );
 
       if (mod && mod[0] !== '@') {
         mod = mod.split('/')[0];
@@ -139,7 +146,7 @@ describe('interpret.extensions', function () {
 
         var expected;
 
-        process.chdir(path.join(__dirname, fixtureDir));
+        process.chdir(fixtureDir);
 
         shell.exec('rm -r node_modules', { silent: true });
         shell.exec('rm package-lock.json', { silent: true });
