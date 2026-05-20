@@ -424,6 +424,7 @@ var extensions = {
         );
       },
     },
+    'tsx/dist/cjs/index.cjs',
   ],
   '.cts': ['ts-node/register'],
   '.tsx': [
@@ -498,6 +499,7 @@ var extensions = {
         );
       },
     },
+    'tsx/dist/cjs/index.cjs',
   ],
   '.yaml': 'yaml-hook/register',
   '.yml': 'yaml-hook/register',
