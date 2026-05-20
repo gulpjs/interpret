@@ -127,12 +127,14 @@ A sample of an entry containing multiple hooks would look like:
   - '@babel/register'
   - esbuild-register/dist/node
   - '@swc/register'
+  - tsx/dist/cjs/index.cjs
 .tsx:
   - ts-node/register
   - sucrase/register/tsx
   - '@babel/register'
   - esbuild-register/dist/node
   - '@swc/register'
+  - tsx/dist/cjs/index.cjs
 .yaml:
   - yaml-hook/register
 .yml:
@@ -203,12 +205,14 @@ The `jsVariants` is the same mapping as above, but only include the extensions w
   - '@babel/register'
   - esbuild-register/dist/node
   - '@swc/register'
+  - tsx/dist/cjs/index.cjs
 .tsx:
   - ts-node/register
   - sucrase/register/tsx
   - '@babel/register'
   - esbuild-register/dist/node
   - '@swc/register'
+  - tsx/dist/cjs/index.cjs
 ```
 
 ## License
