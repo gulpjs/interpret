@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="http://gulpjs.com">
+  <a href="https://gulpjs.com">
     <img height="257" width="114" src="https://raw.githubusercontent.com/gulpjs/artwork/master/gulp-2x.png">
   </a>
 </p>
@@ -211,6 +211,16 @@ The `jsVariants` is the same mapping as above, but only include the extensions w
   - '@swc/register'
 ```
 
+## Strict No LLM / No AI Policy
+
+No LLMs for issues.
+
+No LLMs for patches / pull requests.
+
+No LLMs for comments on the bug tracker, including translation.
+
+English is encouraged, but not required. You are welcome to post in your native language and rely on others to have their own translation tools of choice to interpret your words.
+
 ## License
 
 MIT
@@ -223,22 +233,9 @@ MIT
 
 [npm-image]: https://img.shields.io/npm/v/interpret.svg?style=flat-square
 
-[ci-url]: https://github.com/gulpjs/interpret/actions?query=workflow:dev
-
-[ci-image]: https://img.shields.io/github/workflow/status/gulpjs/interpret/dev?style=flat-square
+[ci-url]: https://github.com/gulpjs/interpret/actions/workflows/dev.yml
+[ci-image]: https://img.shields.io/github/actions/workflow/status/gulpjs/interpret/dev.yml?style=flat-square
 
 [coveralls-url]: https://coveralls.io/r/gulpjs/interpret
-
-[coveralls-image]: https://img.shields.io/coveralls/gulpjs/interpret/master.svg?style=flat-square
-
-<!-- prettier-ignore-end -->
-
-<!-- prettier-ignore-start -->
-
-[Liftoff]: http://github.com/gulpjs/liftoff
-
-[rechoir]: http://github.com/gulpjs/rechoir
-
-[require.extensions]: https://nodejs.org/api/modules.html#requireextensions
-
+[coveralls-image]: https://img.shields.io/coveralls/gulpjs/interpret/main.svg?style=flat-square
 <!-- prettier-ignore-end -->

@@ -1,6 +1,0 @@
-{
-  "extends": "gulp",
-  "rules": {
-    "max-len": ["error", { "code": 110, "ignoreComments": true }]
-  }
-}

@@ -7,12 +7,16 @@
     "Blaine Bublitz <blaine.bublitz@gmail.com>",
     "Tyler Kellen <tyler@sleekcode.net> (http://goingslowly.com/)"
   ],
-  "repository": "gulpjs/interpret",
+  "funding": "https://github.com/sponsors/gulpjs",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gulpjs/interpret.git"
+  },
   "license": "MIT",
   "engines": {
-    "node": ">=10.13.0"
+    "node": ">= 22.15.0"
   },
-  "main": "index.js",
+  "main": "./index.js",
   "files": [
     "LICENSE",
     "index.js",
@@ -21,19 +25,22 @@
   ],
   "scripts": {
     "readme": "remark README.md --use ./scripts/plugin.mjs --output",
+    "format-check": "prettier . --check",
+    "format-write": "prettier . --write",
     "lint": "eslint .",
     "pretest": "npm run lint",
     "test": "nyc mocha --async-only"
   },
   "devDependencies": {
-    "eslint": "^7.0.0",
-    "eslint-config-gulp": "^5.0.0",
+    "eslint": "10.11.0",
+    "eslint-config-gulp": "7.0.0",
     "eslint-plugin-node": "^11.1.0",
     "expect": "^27.0.0",
     "js-yaml": "^4.1.0",
     "mocha": "^8.0.0",
     "nyc": "^15.0.0",
     "parse-node-version": "^2.0.0",
+    "prettier": "3.9.6",
     "rechoir": "^0.8.0",
     "remark-cli": "^10.0.1",
     "remark-code-import": "^1.1.0",
@@ -47,9 +54,6 @@
       "lcov",
       "text-summary"
     ]
-  },
-  "prettier": {
-    "singleQuote": true
   },
   "keywords": [
     "coffee",
