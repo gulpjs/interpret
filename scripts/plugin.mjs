@@ -1,9 +1,9 @@
-import fs from 'fs';
-import path from 'path';
-import yaml from 'js-yaml';
-import { codeImport } from 'remark-code-import';
+import fs from "fs";
+import path from "path";
+import yaml from "js-yaml";
+import { codeImport } from "remark-code-import";
 
-import interpret from '../index.js';
+import interpret from "../index.js";
 
 // Exporting this so it can be used by remark-cli
 export default codeImport;
@@ -14,28 +14,28 @@ var config = {
   skipInvalid: true,
   replacer: function (key, value) {
     // Top-level object
-    if (key === '') {
+    if (key === "") {
       return value;
     }
 
-    if (key.startsWith('.')) {
+    if (key.startsWith(".")) {
       return Array.isArray(value) ? value : [value];
     }
 
     if (value === null) {
-      return 'built-in node.js loader';
+      return "built-in node.js loader";
     }
 
-    if (typeof value !== 'string') {
+    if (typeof value !== "string") {
       return value.module;
     }
 
-    if (value.includes('mjs-stub')) {
-      return 'interpret/mjs-stub';
+    if (value.includes("mjs-stub")) {
+      return "interpret/mjs-stub";
     }
 
-    if (value.includes('cjs-stub')) {
-      return 'interpret/cjs-stub';
+    if (value.includes("cjs-stub")) {
+      return "interpret/cjs-stub";
     }
 
     return value;
@@ -46,12 +46,12 @@ var extensions = yaml.dump(interpret.extensions, config);
 var jsVariants = yaml.dump(interpret.jsVariants, config);
 
 fs.writeFileSync(
-  new URL('./extensions.yaml', import.meta.url),
+  new URL("./extensions.yaml", import.meta.url),
   extensions,
-  'utf8'
+  "utf8",
 );
 fs.writeFileSync(
-  new URL('./jsVariants.yaml', import.meta.url),
+  new URL("./jsVariants.yaml", import.meta.url),
   jsVariants,
-  'utf8'
+  "utf8",
 );

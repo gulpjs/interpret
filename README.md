@@ -61,13 +61,13 @@ A sample of an entry containing multiple hooks would look like:
 
 ```yaml file=scripts/extensions.yaml
 .babel.js:
-  - '@babel/register'
+  - "@babel/register"
 .babel.jsx:
-  - '@babel/register'
+  - "@babel/register"
 .babel.ts:
-  - '@babel/register'
+  - "@babel/register"
 .babel.tsx:
-  - '@babel/register'
+  - "@babel/register"
 .cjs:
   - interpret/cjs-stub
 .coffee:
@@ -93,12 +93,12 @@ A sample of an entry containing multiple hooks would look like:
 .json5:
   - json5/lib/register
 .jsx:
-  - '@babel/register'
+  - "@babel/register"
   - sucrase/register/jsx
 .litcoffee:
   - coffeescript/register
 .mdx:
-  - '@mdx-js/register'
+  - "@mdx-js/register"
 .mjs:
   - interpret/mjs-stub
 .node:
@@ -112,27 +112,27 @@ A sample of an entry containing multiple hooks would look like:
 .sucrase.tsx:
   - sucrase/dist/register
 .swc.js:
-  - '@swc/register'
+  - "@swc/register"
 .swc.jsx:
-  - '@swc/register'
+  - "@swc/register"
 .swc.ts:
-  - '@swc/register'
+  - "@swc/register"
 .swc.tsx:
-  - '@swc/register'
+  - "@swc/register"
 .toml:
   - toml-require
 .ts:
   - ts-node/register
   - sucrase/register/ts
-  - '@babel/register'
+  - "@babel/register"
   - esbuild-register/dist/node
-  - '@swc/register'
+  - "@swc/register"
 .tsx:
   - ts-node/register
   - sucrase/register/tsx
-  - '@babel/register'
+  - "@babel/register"
   - esbuild-register/dist/node
-  - '@swc/register'
+  - "@swc/register"
 .yaml:
   - yaml-hook/register
 .yml:
@@ -147,13 +147,13 @@ The `jsVariants` is the same mapping as above, but only include the extensions w
 
 ```yaml file=scripts/jsVariants.yaml
 .babel.js:
-  - '@babel/register'
+  - "@babel/register"
 .babel.jsx:
-  - '@babel/register'
+  - "@babel/register"
 .babel.ts:
-  - '@babel/register'
+  - "@babel/register"
 .babel.tsx:
-  - '@babel/register'
+  - "@babel/register"
 .cjs:
   - interpret/cjs-stub
 .coffee:
@@ -173,12 +173,12 @@ The `jsVariants` is the same mapping as above, but only include the extensions w
 .js:
   - built-in node.js loader
 .jsx:
-  - '@babel/register'
+  - "@babel/register"
   - sucrase/register/jsx
 .litcoffee:
   - coffeescript/register
 .mdx:
-  - '@mdx-js/register'
+  - "@mdx-js/register"
 .mjs:
   - interpret/mjs-stub
 .sucrase.js:
@@ -190,25 +190,25 @@ The `jsVariants` is the same mapping as above, but only include the extensions w
 .sucrase.tsx:
   - sucrase/dist/register
 .swc.js:
-  - '@swc/register'
+  - "@swc/register"
 .swc.jsx:
-  - '@swc/register'
+  - "@swc/register"
 .swc.ts:
-  - '@swc/register'
+  - "@swc/register"
 .swc.tsx:
-  - '@swc/register'
+  - "@swc/register"
 .ts:
   - ts-node/register
   - sucrase/register/ts
-  - '@babel/register'
+  - "@babel/register"
   - esbuild-register/dist/node
-  - '@swc/register'
+  - "@swc/register"
 .tsx:
   - ts-node/register
   - sucrase/register/tsx
-  - '@babel/register'
+  - "@babel/register"
   - esbuild-register/dist/node
-  - '@swc/register'
+  - "@swc/register"
 ```
 
 ## Strict No LLM / No AI Policy

@@ -1,1 +1,1 @@
-require.extensions['.cjs'] = null;
+require.extensions[".cjs"] = null;
