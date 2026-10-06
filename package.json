@@ -34,7 +34,6 @@
   "devDependencies": {
     "eslint": "10.11.0",
     "eslint-config-gulp": "7.0.0",
-    "eslint-plugin-node": "^11.1.0",
     "expect": "^27.0.0",
     "js-yaml": "^4.1.0",
     "mocha": "^8.0.0",
