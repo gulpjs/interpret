@@ -1,5 +1,18 @@
 # Changelog
 
+## [4.0.0](https://github.com/gulpjs/interpret/compare/v3.1.1...v4.0.0) (2026-10-15)
+
+
+### ⚠ BREAKING CHANGES
+
+* Normalize repository, dropping Node <22.15.0 ([#109](https://github.com/gulpjs/interpret/issues/109))
+* Remove support for `.esm.js` extension and the esm package
+
+### Miscellaneous Chores
+
+* Normalize repository, dropping Node &lt;22.15.0 ([#109](https://github.com/gulpjs/interpret/issues/109)) ([1a808ce](https://github.com/gulpjs/interpret/commit/1a808cebee9d7f35519ff8e2e71ced6262db6338))
+* Remove support for `.esm.js` extension and the esm package ([1a808ce](https://github.com/gulpjs/interpret/commit/1a808cebee9d7f35519ff8e2e71ced6262db6338))
+
 ### [3.1.1](https://www.github.com/gulpjs/interpret/compare/v3.1.0...v3.1.1) (2022-06-29)
 
 
