@@ -186,15 +186,6 @@ var extensions = {
       mod.register(Object.assign({}, config, { extensions: [".tsx"] }));
     },
   },
-  ".esm.js": {
-    module: "esm",
-    register: function (hook) {
-      // register on .js extension due to https://github.com/joyent/node/blob/v0.12.0/lib/module.js#L353
-      // which only captures the final extension (.esm.js -> .js)
-      var esmLoader = hook(module);
-      require.extensions[".js"] = esmLoader("module")._extensions[".js"];
-    },
-  },
   ".js": null,
   ".json": null,
   ".json5": "json5/lib/register",
@@ -516,7 +507,6 @@ var jsVariantExtensions = [
   ".cjs",
   ".coffee",
   ".coffee.md",
-  ".esm.js",
   ".jsx",
   ".litcoffee",
   ".mdx",

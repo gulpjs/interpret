@@ -84,8 +84,6 @@ A sample of an entry containing multiple hooks would look like:
   - esbuild-register/dist/node
 .esbuild.tsx:
   - esbuild-register/dist/node
-.esm.js:
-  - esm
 .js:
   - built-in node.js loader
 .json:
@@ -168,8 +166,6 @@ The `jsVariants` is the same mapping as above, but only include the extensions w
   - esbuild-register/dist/node
 .esbuild.tsx:
   - esbuild-register/dist/node
-.esm.js:
-  - esm
 .js:
   - built-in node.js loader
 .jsx:
