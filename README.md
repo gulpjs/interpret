@@ -235,3 +235,9 @@ MIT
 [coveralls-url]: https://coveralls.io/r/gulpjs/interpret
 [coveralls-image]: https://img.shields.io/coveralls/gulpjs/interpret/main.svg?style=flat-square
 <!-- prettier-ignore-end -->
+
+<!-- prettier-ignore-start -->
+[Liftoff]: http://github.com/gulpjs/liftoff
+[rechoir]: http://github.com/gulpjs/rechoir
+[require.extensions]: https://nodejs.org/api/modules.html#requireextensions
+<!-- prettier-ignore-end -->
