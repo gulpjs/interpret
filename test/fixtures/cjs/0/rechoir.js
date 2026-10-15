@@ -1,11 +1,11 @@
-import assert from 'assert';
-import path from 'path';
-import url from 'url';
+import assert from "assert";
+import path from "path";
+import url from "url";
 
-import rechoir from 'rechoir';
-import { extensions } from '../../../../index.js';
+import rechoir from "rechoir";
+import { extensions } from "../../../../index.js";
 
-var fixture = path.resolve('test.cjs');
+var fixture = path.resolve("test.cjs");
 
 rechoir.prepare(extensions, fixture);
 

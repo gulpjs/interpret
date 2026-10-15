@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="http://gulpjs.com">
+  <a href="https://gulpjs.com">
     <img height="257" width="114" src="https://raw.githubusercontent.com/gulpjs/artwork/master/gulp-2x.png">
   </a>
 </p>
@@ -61,13 +61,13 @@ A sample of an entry containing multiple hooks would look like:
 
 ```yaml file=scripts/extensions.yaml
 .babel.js:
-  - '@babel/register'
+  - "@babel/register"
 .babel.jsx:
-  - '@babel/register'
+  - "@babel/register"
 .babel.ts:
-  - '@babel/register'
+  - "@babel/register"
 .babel.tsx:
-  - '@babel/register'
+  - "@babel/register"
 .cjs:
   - interpret/cjs-stub
 .coffee:
@@ -84,8 +84,6 @@ A sample of an entry containing multiple hooks would look like:
   - esbuild-register/dist/node
 .esbuild.tsx:
   - esbuild-register/dist/node
-.esm.js:
-  - esm
 .js:
   - built-in node.js loader
 .json:
@@ -93,12 +91,12 @@ A sample of an entry containing multiple hooks would look like:
 .json5:
   - json5/lib/register
 .jsx:
-  - '@babel/register'
+  - "@babel/register"
   - sucrase/register/jsx
 .litcoffee:
   - coffeescript/register
 .mdx:
-  - '@mdx-js/register'
+  - "@mdx-js/register"
 .mjs:
   - interpret/mjs-stub
 .node:
@@ -112,27 +110,27 @@ A sample of an entry containing multiple hooks would look like:
 .sucrase.tsx:
   - sucrase/dist/register
 .swc.js:
-  - '@swc/register'
+  - "@swc/register"
 .swc.jsx:
-  - '@swc/register'
+  - "@swc/register"
 .swc.ts:
-  - '@swc/register'
+  - "@swc/register"
 .swc.tsx:
-  - '@swc/register'
+  - "@swc/register"
 .toml:
   - toml-require
 .ts:
   - ts-node/register
   - sucrase/register/ts
-  - '@babel/register'
+  - "@babel/register"
   - esbuild-register/dist/node
-  - '@swc/register'
+  - "@swc/register"
 .tsx:
   - ts-node/register
   - sucrase/register/tsx
-  - '@babel/register'
+  - "@babel/register"
   - esbuild-register/dist/node
-  - '@swc/register'
+  - "@swc/register"
 .yaml:
   - yaml-hook/register
 .yml:
@@ -147,13 +145,13 @@ The `jsVariants` is the same mapping as above, but only include the extensions w
 
 ```yaml file=scripts/jsVariants.yaml
 .babel.js:
-  - '@babel/register'
+  - "@babel/register"
 .babel.jsx:
-  - '@babel/register'
+  - "@babel/register"
 .babel.ts:
-  - '@babel/register'
+  - "@babel/register"
 .babel.tsx:
-  - '@babel/register'
+  - "@babel/register"
 .cjs:
   - interpret/cjs-stub
 .coffee:
@@ -168,17 +166,15 @@ The `jsVariants` is the same mapping as above, but only include the extensions w
   - esbuild-register/dist/node
 .esbuild.tsx:
   - esbuild-register/dist/node
-.esm.js:
-  - esm
 .js:
   - built-in node.js loader
 .jsx:
-  - '@babel/register'
+  - "@babel/register"
   - sucrase/register/jsx
 .litcoffee:
   - coffeescript/register
 .mdx:
-  - '@mdx-js/register'
+  - "@mdx-js/register"
 .mjs:
   - interpret/mjs-stub
 .sucrase.js:
@@ -190,26 +186,36 @@ The `jsVariants` is the same mapping as above, but only include the extensions w
 .sucrase.tsx:
   - sucrase/dist/register
 .swc.js:
-  - '@swc/register'
+  - "@swc/register"
 .swc.jsx:
-  - '@swc/register'
+  - "@swc/register"
 .swc.ts:
-  - '@swc/register'
+  - "@swc/register"
 .swc.tsx:
-  - '@swc/register'
+  - "@swc/register"
 .ts:
   - ts-node/register
   - sucrase/register/ts
-  - '@babel/register'
+  - "@babel/register"
   - esbuild-register/dist/node
-  - '@swc/register'
+  - "@swc/register"
 .tsx:
   - ts-node/register
   - sucrase/register/tsx
-  - '@babel/register'
+  - "@babel/register"
   - esbuild-register/dist/node
-  - '@swc/register'
+  - "@swc/register"
 ```
+
+## Strict No LLM / No AI Policy
+
+No LLMs for issues.
+
+No LLMs for patches / pull requests.
+
+No LLMs for comments on the bug tracker, including translation.
+
+English is encouraged, but not required. You are welcome to post in your native language and rely on others to have their own translation tools of choice to interpret your words.
 
 ## License
 
@@ -223,22 +229,15 @@ MIT
 
 [npm-image]: https://img.shields.io/npm/v/interpret.svg?style=flat-square
 
-[ci-url]: https://github.com/gulpjs/interpret/actions?query=workflow:dev
-
-[ci-image]: https://img.shields.io/github/workflow/status/gulpjs/interpret/dev?style=flat-square
+[ci-url]: https://github.com/gulpjs/interpret/actions/workflows/dev.yml
+[ci-image]: https://img.shields.io/github/actions/workflow/status/gulpjs/interpret/dev.yml?style=flat-square
 
 [coveralls-url]: https://coveralls.io/r/gulpjs/interpret
-
-[coveralls-image]: https://img.shields.io/coveralls/gulpjs/interpret/master.svg?style=flat-square
-
+[coveralls-image]: https://img.shields.io/coveralls/gulpjs/interpret/main.svg?style=flat-square
 <!-- prettier-ignore-end -->
 
 <!-- prettier-ignore-start -->
-
 [Liftoff]: http://github.com/gulpjs/liftoff
-
 [rechoir]: http://github.com/gulpjs/rechoir
-
 [require.extensions]: https://nodejs.org/api/modules.html#requireextensions
-
 <!-- prettier-ignore-end -->

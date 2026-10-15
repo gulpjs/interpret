@@ -1,131 +1,131 @@
-var path = require('path');
+var path = require("path");
 
 // We only register on the final extension (like `.js`) due to https://github.com/joyent/node/blob/v0.12.0/lib/module.js#L353
 // However, we use these matchers to apply the transform only if the full extension matches
 function endsInJsx(filename) {
-  return filename.endsWith('.jsx');
+  return filename.endsWith(".jsx");
 }
 function endsInTs(filename) {
-  return filename.endsWith('.ts');
+  return filename.endsWith(".ts");
 }
 function endsInTsx(filename) {
-  return filename.endsWith('.tsx');
+  return filename.endsWith(".tsx");
 }
 function endsInBabelJs(filename) {
-  return filename.endsWith('.babel.js');
+  return filename.endsWith(".babel.js");
 }
 function endsInBabelJsx(filename) {
-  return filename.endsWith('.babel.jsx');
+  return filename.endsWith(".babel.jsx");
 }
 function endsInBabelTs(filename) {
-  return filename.endsWith('.babel.ts');
+  return filename.endsWith(".babel.ts");
 }
 function endsInBabelTsx(filename) {
-  return filename.endsWith('.babel.tsx');
+  return filename.endsWith(".babel.tsx");
 }
 function endsInEsbuildJs(filename) {
-  return filename.endsWith('.esbuild.js');
+  return filename.endsWith(".esbuild.js");
 }
 function endsInEsbuildJsx(filename) {
-  return filename.endsWith('.esbuild.jsx');
+  return filename.endsWith(".esbuild.jsx");
 }
 function endsInEsbuildTs(filename) {
-  return filename.endsWith('.esbuild.ts');
+  return filename.endsWith(".esbuild.ts");
 }
 function endsInEsbuildTsx(filename) {
-  return filename.endsWith('.esbuild.tsx');
+  return filename.endsWith(".esbuild.tsx");
 }
 function endsInSucraseJs(filename) {
-  return filename.endsWith('.sucrase.js');
+  return filename.endsWith(".sucrase.js");
 }
 function endsInSucraseJsx(filename) {
-  return filename.endsWith('.sucrase.jsx');
+  return filename.endsWith(".sucrase.jsx");
 }
 function endsInSucraseTs(filename) {
-  return filename.endsWith('.sucrase.ts');
+  return filename.endsWith(".sucrase.ts");
 }
 function endsInSucraseTsx(filename) {
-  return filename.endsWith('.sucrase.tsx');
+  return filename.endsWith(".sucrase.tsx");
 }
 function endsInSwcJs(filename) {
-  return filename.endsWith('.swc.js');
+  return filename.endsWith(".swc.js");
 }
 function endsInSwcJsx(filename) {
-  return filename.endsWith('.swc.jsx');
+  return filename.endsWith(".swc.jsx");
 }
 function endsInSwcTs(filename) {
-  return filename.endsWith('.swc.ts');
+  return filename.endsWith(".swc.ts");
 }
 function endsInSwcTsx(filename) {
-  return filename.endsWith('.swc.tsx');
+  return filename.endsWith(".swc.tsx");
 }
 
-var cjsStub = path.join(__dirname, 'cjs-stub');
-var mjsStub = path.join(__dirname, 'mjs-stub');
+var cjsStub = path.join(__dirname, "cjs-stub");
+var mjsStub = path.join(__dirname, "mjs-stub");
 
 function isNodeModules(file) {
-  return path.relative(process.cwd(), file).includes('node_modules');
+  return path.relative(process.cwd(), file).includes("node_modules");
 }
 
 var extensions = {
-  '.babel.js': {
-    module: '@babel/register',
+  ".babel.js": {
+    module: "@babel/register",
     register: function (hook, config) {
       config = config || {
-        rootMode: 'upward-optional',
-        overrides: [{ only: [endsInBabelJs], presets: ['@babel/preset-env'] }],
+        rootMode: "upward-optional",
+        overrides: [{ only: [endsInBabelJs], presets: ["@babel/preset-env"] }],
       };
 
-      hook(Object.assign({}, config, { extensions: '.js' }));
+      hook(Object.assign({}, config, { extensions: ".js" }));
     },
   },
-  '.babel.jsx': {
-    module: '@babel/register',
+  ".babel.jsx": {
+    module: "@babel/register",
     register: function (hook, config) {
       config = config || {
-        rootMode: 'upward-optional',
+        rootMode: "upward-optional",
         overrides: [
           {
             only: [endsInBabelJsx],
-            presets: ['@babel/preset-env', '@babel/preset-react'],
+            presets: ["@babel/preset-env", "@babel/preset-react"],
           },
         ],
       };
 
-      hook(Object.assign({}, config, { extensions: '.jsx' }));
+      hook(Object.assign({}, config, { extensions: ".jsx" }));
     },
   },
-  '.babel.ts': [
+  ".babel.ts": [
     {
-      module: '@babel/register',
+      module: "@babel/register",
       register: function (hook, config) {
         config = config || {
-          rootMode: 'upward-optional',
+          rootMode: "upward-optional",
           overrides: [
             {
               only: [endsInBabelTs],
-              presets: ['@babel/preset-env', '@babel/preset-typescript'],
+              presets: ["@babel/preset-env", "@babel/preset-typescript"],
             },
           ],
         };
 
-        hook(Object.assign({}, config, { extensions: '.ts' }));
+        hook(Object.assign({}, config, { extensions: ".ts" }));
       },
     },
   ],
-  '.babel.tsx': {
-    module: '@babel/register',
+  ".babel.tsx": {
+    module: "@babel/register",
     register: function (hook, config) {
       config = config || {
-        rootMode: 'upward-optional',
+        rootMode: "upward-optional",
         overrides: [
           {
             only: [endsInBabelTsx],
             presets: [
-              '@babel/preset-env',
-              '@babel/preset-react',
+              "@babel/preset-env",
+              "@babel/preset-react",
               [
-                '@babel/preset-typescript',
+                "@babel/preset-typescript",
                 {
                   isTSX: true,
                   allExtensions: true,
@@ -136,95 +136,86 @@ var extensions = {
         ],
       };
 
-      hook(Object.assign({}, config, { extensions: '.tsx' }));
+      hook(Object.assign({}, config, { extensions: ".tsx" }));
     },
   },
-  '.cjs': cjsStub,
-  '.coffee': 'coffeescript/register',
-  '.coffee.md': 'coffeescript/register',
-  '.esbuild.js': {
-    module: 'esbuild-register/dist/node',
+  ".cjs": cjsStub,
+  ".coffee": "coffeescript/register",
+  ".coffee.md": "coffeescript/register",
+  ".esbuild.js": {
+    module: "esbuild-register/dist/node",
     register: function (mod, config) {
       config = config || {
-        target: 'node' + process.version.slice(1),
+        target: "node" + process.version.slice(1),
         hookMatcher: endsInEsbuildJs,
       };
 
-      mod.register(Object.assign({}, config, { extensions: ['.js'] }));
+      mod.register(Object.assign({}, config, { extensions: [".js"] }));
     },
   },
-  '.esbuild.jsx': {
-    module: 'esbuild-register/dist/node',
+  ".esbuild.jsx": {
+    module: "esbuild-register/dist/node",
     register: function (mod, config) {
       config = config || {
-        target: 'node' + process.version.slice(1),
+        target: "node" + process.version.slice(1),
         hookMatcher: endsInEsbuildJsx,
       };
 
-      mod.register(Object.assign({}, config, { extensions: ['.jsx'] }));
+      mod.register(Object.assign({}, config, { extensions: [".jsx"] }));
     },
   },
-  '.esbuild.ts': {
-    module: 'esbuild-register/dist/node',
+  ".esbuild.ts": {
+    module: "esbuild-register/dist/node",
     register: function (mod, config) {
       config = config || {
-        target: 'node' + process.version.slice(1),
+        target: "node" + process.version.slice(1),
         hookMatcher: endsInEsbuildTs,
       };
 
-      mod.register(Object.assign({}, config, { extensions: ['.ts'] }));
+      mod.register(Object.assign({}, config, { extensions: [".ts"] }));
     },
   },
-  '.esbuild.tsx': {
-    module: 'esbuild-register/dist/node',
+  ".esbuild.tsx": {
+    module: "esbuild-register/dist/node",
     register: function (mod, config) {
       config = config || {
-        target: 'node' + process.version.slice(1),
+        target: "node" + process.version.slice(1),
         hookMatcher: endsInEsbuildTsx,
       };
 
-      mod.register(Object.assign({}, config, { extensions: ['.tsx'] }));
+      mod.register(Object.assign({}, config, { extensions: [".tsx"] }));
     },
   },
-  '.esm.js': {
-    module: 'esm',
-    register: function (hook) {
-      // register on .js extension due to https://github.com/joyent/node/blob/v0.12.0/lib/module.js#L353
-      // which only captures the final extension (.esm.js -> .js)
-      var esmLoader = hook(module);
-      require.extensions['.js'] = esmLoader('module')._extensions['.js'];
-    },
-  },
-  '.js': null,
-  '.json': null,
-  '.json5': 'json5/lib/register',
-  '.jsx': [
+  ".js": null,
+  ".json": null,
+  ".json5": "json5/lib/register",
+  ".jsx": [
     {
-      module: '@babel/register',
+      module: "@babel/register",
       register: function (hook, config) {
         config = config || {
-          rootMode: 'upward-optional',
+          rootMode: "upward-optional",
           overrides: [
             {
               only: [endsInJsx],
-              presets: ['@babel/preset-env', '@babel/preset-react'],
+              presets: ["@babel/preset-env", "@babel/preset-react"],
             },
           ],
         };
 
-        hook(Object.assign({}, config, { extensions: '.jsx' }));
+        hook(Object.assign({}, config, { extensions: ".jsx" }));
       },
     },
-    'sucrase/register/jsx',
+    "sucrase/register/jsx",
   ],
-  '.litcoffee': 'coffeescript/register',
+  ".litcoffee": "coffeescript/register",
   // The mdx loader hooks both `.md` and `.mdx` when it is imported
   // but we only install the hook if `.mdx` is the first file
-  '.mdx': '@mdx-js/register',
-  '.mjs': mjsStub,
-  '.node': null,
-  '.sucrase.js': {
-    module: 'sucrase/dist/register',
+  ".mdx": "@mdx-js/register",
+  ".mjs": mjsStub,
+  ".node": null,
+  ".sucrase.js": {
+    module: "sucrase/dist/register",
     register: function (hook, config) {
       config = config || {
         matcher: endsInSucraseJs,
@@ -233,8 +224,8 @@ var extensions = {
       hook.registerJS(config);
     },
   },
-  '.sucrase.jsx': {
-    module: 'sucrase/dist/register',
+  ".sucrase.jsx": {
+    module: "sucrase/dist/register",
     register: function (hook, config) {
       config = config || {
         matcher: endsInSucraseJsx,
@@ -243,8 +234,8 @@ var extensions = {
       hook.registerJSX(config);
     },
   },
-  '.sucrase.ts': {
-    module: 'sucrase/dist/register',
+  ".sucrase.ts": {
+    module: "sucrase/dist/register",
     register: function (hook, config) {
       config = config || {
         matcher: endsInSucraseTs,
@@ -253,8 +244,8 @@ var extensions = {
       hook.registerTS(config);
     },
   },
-  '.sucrase.tsx': {
-    module: 'sucrase/dist/register',
+  ".sucrase.tsx": {
+    module: "sucrase/dist/register",
     register: function (hook, config) {
       config = config || {
         matcher: endsInSucraseTsx,
@@ -263,185 +254,185 @@ var extensions = {
       hook.registerTSX(config);
     },
   },
-  '.swc.js': {
-    module: '@swc/register',
+  ".swc.js": {
+    module: "@swc/register",
     register: function (hook, config) {
       config = config || {
         only: [endsInSwcJs],
         ignore: [isNodeModules],
         jsc: {
           parser: {
-            syntax: 'ecmascript',
+            syntax: "ecmascript",
           },
         },
         module: {
-          type: 'commonjs',
+          type: "commonjs",
         },
       };
 
       hook(
         Object.assign({}, config, {
-          extensions: '.js',
-        })
+          extensions: ".js",
+        }),
       );
     },
   },
-  '.swc.jsx': {
-    module: '@swc/register',
+  ".swc.jsx": {
+    module: "@swc/register",
     register: function (hook, config) {
       config = config || {
         only: [endsInSwcJsx],
         ignore: [isNodeModules],
         jsc: {
           parser: {
-            syntax: 'ecmascript',
+            syntax: "ecmascript",
             jsx: true,
           },
         },
         module: {
-          type: 'commonjs',
+          type: "commonjs",
         },
       };
 
       hook(
         Object.assign({}, config, {
-          extensions: '.jsx',
-        })
+          extensions: ".jsx",
+        }),
       );
     },
   },
-  '.swc.ts': {
-    module: '@swc/register',
+  ".swc.ts": {
+    module: "@swc/register",
     register: function (hook, config) {
       config = config || {
         only: [endsInSwcTs],
         ignore: [isNodeModules],
         jsc: {
           parser: {
-            syntax: 'typescript',
+            syntax: "typescript",
           },
         },
         module: {
-          type: 'commonjs',
+          type: "commonjs",
         },
       };
 
       hook(
         Object.assign({}, config, {
-          extensions: '.ts',
-        })
+          extensions: ".ts",
+        }),
       );
     },
   },
-  '.swc.tsx': {
-    module: '@swc/register',
+  ".swc.tsx": {
+    module: "@swc/register",
     register: function (hook, config) {
       config = config || {
         only: [endsInSwcTsx],
         ignore: [isNodeModules],
         jsc: {
           parser: {
-            syntax: 'typescript',
+            syntax: "typescript",
             tsx: true,
           },
         },
         module: {
-          type: 'commonjs',
+          type: "commonjs",
         },
       };
 
       hook(
         Object.assign({}, config, {
-          extensions: '.tsx',
-        })
+          extensions: ".tsx",
+        }),
       );
     },
   },
-  '.toml': {
-    module: 'toml-require',
+  ".toml": {
+    module: "toml-require",
     register: function (hook, config) {
       hook.install(config);
     },
   },
-  '.ts': [
-    'ts-node/register',
-    'sucrase/register/ts',
+  ".ts": [
+    "ts-node/register",
+    "sucrase/register/ts",
     {
-      module: '@babel/register',
+      module: "@babel/register",
       register: function (hook, config) {
         config = config || {
-          rootMode: 'upward-optional',
+          rootMode: "upward-optional",
           overrides: [
             {
               only: [endsInTs],
-              presets: ['@babel/preset-env', '@babel/preset-typescript'],
+              presets: ["@babel/preset-env", "@babel/preset-typescript"],
             },
           ],
         };
 
         hook(
           Object.assign({}, config, {
-            extensions: '.ts',
-          })
+            extensions: ".ts",
+          }),
         );
       },
     },
     {
-      module: 'esbuild-register/dist/node',
+      module: "esbuild-register/dist/node",
       register: function (mod, config) {
         config = config || {
-          target: 'node' + process.version.slice(1),
+          target: "node" + process.version.slice(1),
           hookMatcher: endsInTs,
         };
 
         mod.register(
           Object.assign({}, config, {
-            extensions: ['.ts'],
-          })
+            extensions: [".ts"],
+          }),
         );
       },
     },
     {
-      module: '@swc/register',
+      module: "@swc/register",
       register: function (hook, config) {
         config = config || {
           only: [endsInTs],
           ignore: [isNodeModules],
           jsc: {
             parser: {
-              syntax: 'typescript',
+              syntax: "typescript",
             },
           },
           module: {
-            type: 'commonjs',
+            type: "commonjs",
           },
         };
 
         hook(
           Object.assign({}, config, {
-            extensions: '.ts',
-          })
+            extensions: ".ts",
+          }),
         );
       },
     },
   ],
-  '.cts': ['ts-node/register'],
-  '.tsx': [
-    'ts-node/register',
-    'sucrase/register/tsx',
+  ".cts": ["ts-node/register"],
+  ".tsx": [
+    "ts-node/register",
+    "sucrase/register/tsx",
     {
-      module: '@babel/register',
+      module: "@babel/register",
       register: function (hook, config) {
         config = config || {
-          rootMode: 'upward-optional',
+          rootMode: "upward-optional",
           overrides: [
             {
               only: [endsInTsx],
               presets: [
-                '@babel/preset-env',
-                '@babel/preset-react',
+                "@babel/preset-env",
+                "@babel/preset-react",
                 [
-                  '@babel/preset-typescript',
+                  "@babel/preset-typescript",
                   {
                     isTSX: true,
                     allExtensions: true,
@@ -454,83 +445,82 @@ var extensions = {
 
         hook(
           Object.assign({}, config, {
-            extensions: '.tsx',
-          })
+            extensions: ".tsx",
+          }),
         );
       },
     },
     {
-      module: 'esbuild-register/dist/node',
+      module: "esbuild-register/dist/node",
       register: function (mod, config) {
         config = config || {
-          target: 'node' + process.version.slice(1),
+          target: "node" + process.version.slice(1),
           hookMatcher: endsInTsx,
         };
 
         mod.register(
           Object.assign({}, config, {
-            extensions: ['.tsx'],
-          })
+            extensions: [".tsx"],
+          }),
         );
       },
     },
     {
-      module: '@swc/register',
+      module: "@swc/register",
       register: function (hook, config) {
         config = config || {
           only: [endsInTsx],
           ignore: [isNodeModules],
           jsc: {
             parser: {
-              syntax: 'typescript',
+              syntax: "typescript",
               tsx: true,
             },
           },
           module: {
-            type: 'commonjs',
+            type: "commonjs",
           },
         };
 
         hook(
           Object.assign({}, config, {
-            extensions: '.tsx',
-          })
+            extensions: ".tsx",
+          }),
         );
       },
     },
   ],
-  '.yaml': 'yaml-hook/register',
-  '.yml': 'yaml-hook/register',
+  ".yaml": "yaml-hook/register",
+  ".yml": "yaml-hook/register",
 };
 
 var jsVariantExtensions = [
-  '.js',
-  '.babel.js',
-  '.babel.jsx',
-  '.babel.ts',
-  '.babel.tsx',
-  '.esbuild.js',
-  '.esbuild.jsx',
-  '.esbuild.ts',
-  '.esbuild.tsx',
-  '.cjs',
-  '.coffee',
-  '.coffee.md',
-  '.esm.js',
-  '.jsx',
-  '.litcoffee',
-  '.mdx',
-  '.mjs',
-  '.sucrase.js',
-  '.sucrase.jsx',
-  '.sucrase.ts',
-  '.sucrase.tsx',
-  '.swc.js',
-  '.swc.jsx',
-  '.swc.ts',
-  '.swc.tsx',
-  '.ts',
-  '.tsx',
+  ".js",
+  ".babel.js",
+  ".babel.jsx",
+  ".babel.ts",
+  ".babel.tsx",
+  ".esbuild.js",
+  ".esbuild.jsx",
+  ".esbuild.ts",
+  ".esbuild.tsx",
+  ".cjs",
+  ".coffee",
+  ".coffee.md",
+  ".jsx",
+  ".litcoffee",
+  ".mdx",
+  ".mjs",
+  ".sucrase.js",
+  ".sucrase.jsx",
+  ".sucrase.ts",
+  ".sucrase.tsx",
+  ".swc.js",
+  ".swc.jsx",
+  ".swc.ts",
+  ".swc.tsx",
+  ".ts",
+  ".tsx",
 ];
 
 module.exports = {

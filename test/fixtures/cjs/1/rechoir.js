@@ -1,10 +1,10 @@
-var assert = require('assert');
-var path = require('path');
+var assert = require("assert");
+var path = require("path");
 
-var rechoir = require('rechoir');
-var { extensions } = require('../../../../index.js');
+var rechoir = require("rechoir");
+var { extensions } = require("../../../../index.js");
 
-var fixture = path.resolve('test.cjs');
+var fixture = path.resolve("test.cjs");
 
 rechoir.prepare(extensions, fixture);
 

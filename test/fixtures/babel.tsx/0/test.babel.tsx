@@ -1,4 +1,4 @@
-import data from './data.babel';
+import data from "./data.babel";
 
 const React = {
   createElement(Component: () => any) {

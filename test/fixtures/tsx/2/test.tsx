@@ -1,4 +1,4 @@
-import data from './data';
+import data from "./data";
 
 const React = {
   createElement(Component: () => any) {
