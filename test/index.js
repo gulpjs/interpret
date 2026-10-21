@@ -6,6 +6,8 @@ var { beforeEach, describe, it } = require("node:test");
 var path = require("node:path");
 var Module = require("node:module");
 var child = require("node:child_process");
+const { execFileSync } = require("node:child_process");
+
 var shell = require("shelljs");
 var rechoir = require("rechoir");
 
@@ -74,7 +76,7 @@ describe("interpret.extensions", function () {
     }
 
     // We will handle the .mjs & .cjs tests separately
-    if (ext === ".mjs" || ext === ".cjs") {
+    if (ext === ".mjs" || ext === ".cjs" || ext === ".mdx") {
       return attempts;
     }
 
@@ -111,15 +113,15 @@ describe("interpret.extensions", function () {
     var idx = attempt.index;
 
     it(
-      "can require " + extension + " using " + name + " (" + idx + ")",
-      function (t) {
+      "can require " + extension + " using " + name + " (" + idx + ")", function () {
+
         var minVersion = minVersions[module];
 
         if (minVersion) {
           if (nodeVersion.major === 0 && nodeVersion.minor < minVersion.minor) {
-            t.skip();
+            return;
           } else if (nodeVersion.major < minVersion.major) {
-            t.skip();
+            return;
           }
         }
 
@@ -127,16 +129,14 @@ describe("interpret.extensions", function () {
 
         if (maxVersion) {
           if (nodeVersion.major > maxVersion.major) {
-            t.skip();
+            return;
           }
         }
 
         // Skip any swc test on linux due to https://github.com/swc-project/swc/issues/4107
         if (name === "@swc/register" && process.platform === "linux") {
-          t.skip();
+          return;
         }
-
-        
 
         var expected;
 
@@ -231,15 +231,17 @@ describe("interpret.extensions", function () {
 
     var result = rechoir.prepare(extensions, fixture);
 
-    assert.deepStrictEqual(Array.isArray(result), true)
-    assert.deepStrictEqual(result[0].moduleName, path.join(__dirname, "../mjs-stub"))
+    assert.deepStrictEqual(Array.isArray(result), true);
+    assert.deepStrictEqual(
+      result[0].moduleName,
+      path.join(__dirname, "../mjs-stub"),
+    );
   });
 
   it("the module can be loaded with import(), ignoring the loader", function (t) {
     if (nodeVersion.major < 12) {
-      t.skip();
+      return;
     }
-
 
     var ext = ".mjs";
     var fixture = "./fixtures/" + ext.slice(1) + "/0/test" + ext;
@@ -260,13 +262,14 @@ describe("interpret.extensions", function () {
     var imprt = new Function("a", "return import(a)");
 
     return imprt(fixture).then(function (result) {
-      assert.deepStrictEqual(result.default, expected)
+      assert.deepStrictEqual(result.default, expected);
     });
   });
 
   it("stubs .mjs extension with null on old node that do not care about it", function (t) {
     if (nodeVersion.major > 10) {
       t.skip();
+      return;
     }
 
     var ext = ".mjs";
@@ -283,23 +286,29 @@ describe("interpret.extensions", function () {
         },
       },
     };
-    assert.deepStrictEqual(require(fixture), expected)
+    assert.deepStrictEqual(require(fixture), expected);
   });
 
-  it("does not error with the .cjs extension when inside a type: module package", function (t) {
+  it("does not error with the .cjs extension when inside a type: module package", function () {
     if (nodeVersion.major < 14) {
-      t.skip();
+      return;
     }
 
     process.chdir(path.join(__dirname, "fixtures/cjs/0"));
 
-    child.exec("node rechoir.js", t);
+    child.exec("node rechoir.js");
   });
 
-  it("does not error with the .cjs extension when inside a type: commonjs package", function (t) {
-
+  it("does not error with the .cjs extension when inside a type: commonjs package", function () {
     process.chdir(path.join(__dirname, "fixtures/cjs/1"));
 
-    child.exec("node rechoir.js", t);
+    child.exec("node rechoir.js");
   });
+
+  it("does not error with the .mdx extension when inside a type: module package", function () {
+    process.chdir(path.join(__dirname, "fixtures/mdx/0"));
+
+    child.exec("node rechoir.js");
+  });
+
 });
