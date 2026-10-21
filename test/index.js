@@ -56,7 +56,7 @@ var minVersions = {
 
 var maxVersions = {};
 
-describe("interpret.extensions", function (t) {
+describe("interpret.extensions", function () {
   beforeEach(cleanup);
 
   var exts = Object.keys(extensions);
@@ -102,7 +102,7 @@ describe("interpret.extensions", function (t) {
     return attempts;
   }, []);
 
-  attempts.forEach(function (attempt, t) {
+  attempts.forEach(function (attempt) {
     var extension = attempt.extension;
     var module = attempt.module;
     var name = attempt.name;
@@ -112,7 +112,7 @@ describe("interpret.extensions", function (t) {
 
     it(
       "can require " + extension + " using " + name + " (" + idx + ")",
-      function () {
+      function (t) {
         var minVersion = minVersions[module];
 
         if (minVersion) {
