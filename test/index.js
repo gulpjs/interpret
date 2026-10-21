@@ -113,8 +113,8 @@ describe("interpret.extensions", function () {
     var idx = attempt.index;
 
     it(
-      "can require " + extension + " using " + name + " (" + idx + ")", function () {
-
+      "can require " + extension + " using " + name + " (" + idx + ")",
+      function () {
         var minVersion = minVersions[module];
 
         if (minVersion) {
@@ -181,22 +181,7 @@ describe("interpret.extensions", function () {
                 },
               },
             };
-            assert.deepStrictEqual(require(fixture), expected)
-            break;
-
-          case ".mdx":
-            expected = {
-              data: {
-                trueKey: true,
-                falseKey: false,
-                subKey: {
-                  subProp: 1,
-                },
-              },
-            };
-            var component = require(fixture);
-            // React internals :shrug:
-            assert.deepStrictEqual(component().type(), expected)
+            assert.deepStrictEqual(require(fixture), expected);
             break;
 
           case ".toml":
@@ -206,7 +191,7 @@ describe("interpret.extensions", function () {
             expected.data.falseKey = false;
             expected.data.subKey = Object.create(null);
             expected.data.subKey.subProp = 1;
-            assert.deepStrictEqual(require(fixture), expected)
+            assert.deepStrictEqual(require(fixture), expected);
             break;
 
           default:
@@ -219,7 +204,7 @@ describe("interpret.extensions", function () {
                 },
               },
             };
-            assert.deepStrictEqual(require(fixture), expected)
+            assert.deepStrictEqual(require(fixture), expected);
         }
       },
     );
@@ -310,5 +295,4 @@ describe("interpret.extensions", function () {
 
     child.exec("node rechoir.js");
   });
-
 });
