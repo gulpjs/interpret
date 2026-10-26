@@ -6,12 +6,10 @@ var { beforeEach, describe, it } = require("node:test");
 var path = require("node:path");
 var Module = require("node:module");
 var child = require("node:child_process");
-const { execFileSync } = require("node:child_process");
 
 var shell = require("shelljs");
 var rechoir = require("rechoir");
 
-var nodeVersion = require("parse-node-version")(process.version);
 var extensions = require("../").extensions;
 
 // Save the original Module._extensions
@@ -50,13 +48,6 @@ function cleanup() {
   // Cleanup babel global
   delete global._babelPolyfill;
 }
-
-// These modules need newer node features
-var minVersions = {
-  "@mdx-js/register": { major: 12 },
-};
-
-var maxVersions = {};
 
 describe("interpret.extensions", function () {
   beforeEach(cleanup);
@@ -106,7 +97,6 @@ describe("interpret.extensions", function () {
 
   attempts.forEach(function (attempt) {
     var extension = attempt.extension;
-    var module = attempt.module;
     var name = attempt.name;
     var fixture = attempt.fixture;
     var fixtureDir = path.dirname(fixture);
@@ -115,24 +105,6 @@ describe("interpret.extensions", function () {
     it(
       "can require " + extension + " using " + name + " (" + idx + ")",
       function () {
-        var minVersion = minVersions[module];
-
-        if (minVersion) {
-          if (nodeVersion.major === 0 && nodeVersion.minor < minVersion.minor) {
-            return;
-          } else if (nodeVersion.major < minVersion.major) {
-            return;
-          }
-        }
-
-        var maxVersion = maxVersions[module];
-
-        if (maxVersion) {
-          if (nodeVersion.major > maxVersion.major) {
-            return;
-          }
-        }
-
         // Skip any swc test on linux due to https://github.com/swc-project/swc/issues/4107
         if (name === "@swc/register" && process.platform === "linux") {
           return;
@@ -223,11 +195,7 @@ describe("interpret.extensions", function () {
     );
   });
 
-  it("the module can be loaded with import(), ignoring the loader", function (t) {
-    if (nodeVersion.major < 12) {
-      return;
-    }
-
+  it("the module can be loaded with import(), ignoring the loader", function () {
     var ext = ".mjs";
     var fixture = "./fixtures/" + ext.slice(1) + "/0/test" + ext;
 
@@ -251,34 +219,7 @@ describe("interpret.extensions", function () {
     });
   });
 
-  it("stubs .mjs extension with null on old node that do not care about it", function (t) {
-    if (nodeVersion.major > 10) {
-      t.skip();
-      return;
-    }
-
-    var ext = ".mjs";
-    var fixture = "./fixtures/" + ext.slice(1) + "/1/test" + ext;
-
-    rechoir.prepare(extensions, fixture);
-
-    var expected = {
-      data: {
-        trueKey: true,
-        falseKey: false,
-        subKey: {
-          subProp: 1,
-        },
-      },
-    };
-    assert.deepStrictEqual(require(fixture), expected);
-  });
-
   it("does not error with the .cjs extension when inside a type: module package", function () {
-    if (nodeVersion.major < 14) {
-      return;
-    }
-
     process.chdir(path.join(__dirname, "fixtures/cjs/0"));
 
     child.exec("node rechoir.js");
