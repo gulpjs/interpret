@@ -1,11 +1,10 @@
 "use strict";
 
-var assert = require("node:assert");
-var { beforeEach, describe, it } = require("node:test");
-
 var path = require("node:path");
 var Module = require("node:module");
 var child = require("node:child_process");
+var assert = require("node:assert");
+var { beforeEach, describe, it } = require("node:test");
 
 var shell = require("shelljs");
 var rechoir = require("rechoir");
