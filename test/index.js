@@ -103,12 +103,9 @@ describe("interpret.extensions", function () {
 
     it(
       "can require " + extension + " using " + name + " (" + idx + ")",
+      // Skip any swc test on linux due to https://github.com/swc-project/swc/issues/4107
+      { skip: name === "@swc/register" && process.platform === "linux" },
       function () {
-        // Skip any swc test on linux due to https://github.com/swc-project/swc/issues/4107
-        if (name === "@swc/register" && process.platform === "linux") {
-          return;
-        }
-
         var expected;
 
         process.chdir(path.join(__dirname, fixtureDir));
