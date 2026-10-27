@@ -67,7 +67,7 @@ describe("interpret.extensions", function () {
     }
 
     // We will handle the .mjs & .cjs tests separately
-    if (ext === ".mjs" || ext === ".cjs" || ext === ".mdx") {
+    if (ext === ".mjs" || ext === ".cjs") {
       return attempts;
     }
 
@@ -155,7 +155,20 @@ describe("interpret.extensions", function () {
             };
             assert.deepStrictEqual(require(fixture), expected);
             break;
-
+          case ".mdx":
+            expected = {
+              data: {
+                trueKey: true,
+                falseKey: false,
+                subKey: {
+                  subProp: 1,
+                },
+              },
+            };
+            var component = require(fixture);
+            // React internals :shrug:
+            assert.deepStrictEqua(component().type(), expected);
+            break;
           case ".toml":
             expected = Object.create(null);
             expected.data = Object.create(null);
@@ -227,12 +240,6 @@ describe("interpret.extensions", function () {
 
   it("does not error with the .cjs extension when inside a type: commonjs package", function () {
     process.chdir(path.join(__dirname, "fixtures/cjs/1"));
-
-    child.exec("node rechoir.js");
-  });
-
-  it("does not error with the .mdx extension when inside a type: module package", function () {
-    process.chdir(path.join(__dirname, "fixtures/mdx/0"));
 
     child.exec("node rechoir.js");
   });
