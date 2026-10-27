@@ -1,14 +1,14 @@
 "use strict";
 
-var expect = require("expect");
+var path = require("node:path");
+var Module = require("node:module");
+var child = require("node:child_process");
+var assert = require("node:assert");
+var { beforeEach, describe, it } = require("node:test");
 
-var path = require("path");
-var Module = require("module");
-var child = require("child_process");
 var shell = require("shelljs");
 var rechoir = require("rechoir");
 
-var nodeVersion = require("parse-node-version")(process.version);
 var extensions = require("../").extensions;
 
 // Save the original Module._extensions
@@ -47,13 +47,6 @@ function cleanup() {
   // Cleanup babel global
   delete global._babelPolyfill;
 }
-
-// These modules need newer node features
-var minVersions = {
-  "@mdx-js/register": { major: 12 },
-};
-
-var maxVersions = {};
 
 describe("interpret.extensions", function () {
   beforeEach(cleanup);
@@ -103,7 +96,6 @@ describe("interpret.extensions", function () {
 
   attempts.forEach(function (attempt) {
     var extension = attempt.extension;
-    var module = attempt.module;
     var name = attempt.name;
     var fixture = attempt.fixture;
     var fixtureDir = path.dirname(fixture);
@@ -111,32 +103,9 @@ describe("interpret.extensions", function () {
 
     it(
       "can require " + extension + " using " + name + " (" + idx + ")",
-      function (done) {
-        var minVersion = minVersions[module];
-
-        if (minVersion) {
-          if (nodeVersion.major === 0 && nodeVersion.minor < minVersion.minor) {
-            this.skip();
-          } else if (nodeVersion.major < minVersion.major) {
-            this.skip();
-          }
-        }
-
-        var maxVersion = maxVersions[module];
-
-        if (maxVersion) {
-          if (nodeVersion.major > maxVersion.major) {
-            this.skip();
-          }
-        }
-
-        // Skip any swc test on linux due to https://github.com/swc-project/swc/issues/4107
-        if (name === "@swc/register" && process.platform === "linux") {
-          this.skip();
-        }
-
-        this.timeout(0);
-
+      // Skip any swc test on linux due to https://github.com/swc-project/swc/issues/4107
+      { skip: name === "@swc/register" && process.platform === "linux" },
+      function () {
         var expected;
 
         process.chdir(path.join(__dirname, fixtureDir));
@@ -180,7 +149,7 @@ describe("interpret.extensions", function () {
                 },
               },
             };
-            expect(require(fixture)).toEqual(expected);
+            assert.deepStrictEqual(require(fixture), expected);
             break;
 
           case ".mdx":
@@ -195,7 +164,7 @@ describe("interpret.extensions", function () {
             };
             var component = require(fixture);
             // React internals :shrug:
-            expect(component().type()).toEqual(expected);
+            assert.deepStrictEqual(component().type(), expected);
             break;
 
           case ".toml":
@@ -205,7 +174,7 @@ describe("interpret.extensions", function () {
             expected.data.falseKey = false;
             expected.data.subKey = Object.create(null);
             expected.data.subKey.subProp = 1;
-            expect(require(fixture)).toEqual(expected);
+            assert.deepStrictEqual(require(fixture), expected);
             break;
 
           default:
@@ -218,33 +187,26 @@ describe("interpret.extensions", function () {
                 },
               },
             };
-            expect(require(fixture)).toEqual(expected);
+            assert.deepStrictEqual(require(fixture), expected);
         }
-        done();
       },
     );
   });
 
-  it("does not error with the .mjs extension", function (done) {
-    this.timeout(0);
-
+  it("does not error with the .mjs extension", function () {
     var ext = ".mjs";
     var fixture = "./fixtures/" + ext.slice(1) + "/0/test" + ext;
 
     var result = rechoir.prepare(extensions, fixture);
 
-    expect(Array.isArray(result)).toEqual(true);
-    expect(result[0].moduleName).toEqual(path.join(__dirname, "../mjs-stub"));
-    done();
+    assert.deepStrictEqual(Array.isArray(result), true);
+    assert.deepStrictEqual(
+      result[0].moduleName,
+      path.join(__dirname, "../mjs-stub"),
+    );
   });
 
   it("the module can be loaded with import(), ignoring the loader", function () {
-    if (nodeVersion.major < 12) {
-      this.skip();
-    }
-
-    this.timeout(0);
-
     var ext = ".mjs";
     var fixture = "./fixtures/" + ext.slice(1) + "/0/test" + ext;
 
@@ -264,50 +226,17 @@ describe("interpret.extensions", function () {
     var imprt = new Function("a", "return import(a)");
 
     return imprt(fixture).then(function (result) {
-      expect(result.default).toEqual(expected);
+      assert.deepStrictEqual(result.default, expected);
     });
   });
 
-  it("stubs .mjs extension with null on old node that do not care about it", function (done) {
-    if (nodeVersion.major > 10) {
-      this.skip();
-    }
-
-    this.timeout(0);
-
-    var ext = ".mjs";
-    var fixture = "./fixtures/" + ext.slice(1) + "/1/test" + ext;
-
-    rechoir.prepare(extensions, fixture);
-
-    var expected = {
-      data: {
-        trueKey: true,
-        falseKey: false,
-        subKey: {
-          subProp: 1,
-        },
-      },
-    };
-    expect(require(fixture)).toEqual(expected);
-    done();
-  });
-
-  it("does not error with the .cjs extension when inside a type: module package", function (done) {
-    if (nodeVersion.major < 14) {
-      this.skip();
-    }
-
-    this.timeout(0);
-
+  it("does not error with the .cjs extension when inside a type: module package", function (t, done) {
     process.chdir(path.join(__dirname, "fixtures/cjs/0"));
 
     child.exec("node rechoir.js", done);
   });
 
-  it("does not error with the .cjs extension when inside a type: commonjs package", function (done) {
-    this.timeout(0);
-
+  it("does not error with the .cjs extension when inside a type: commonjs package", function (t, done) {
     process.chdir(path.join(__dirname, "fixtures/cjs/1"));
 
     child.exec("node rechoir.js", done);

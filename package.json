@@ -28,31 +28,17 @@
     "format-check": "prettier . --check",
     "format-write": "prettier . --write",
     "lint": "eslint .",
-    "pretest": "npm run lint",
-    "test": "nyc mocha --async-only"
+    "test": "node --test --experimental-test-coverage --test-reporter=spec --test-reporter-destination=stdout --test-reporter=lcov --test-reporter-destination=test/lcov.info \"test/*.js\""
   },
   "devDependencies": {
     "eslint": "10.11.0",
     "eslint-config-gulp": "7.0.0",
-    "expect": "^27.0.0",
     "js-yaml": "^4.1.0",
-    "mocha": "^8.0.0",
-    "nyc": "^15.0.0",
-    "parse-node-version": "^2.0.0",
     "prettier": "3.9.6",
     "rechoir": "^0.8.0",
     "remark-cli": "^10.0.1",
     "remark-code-import": "^1.1.0",
     "shelljs": "0.8.5"
-  },
-  "nyc": {
-    "extension": [
-      ".js"
-    ],
-    "reporter": [
-      "lcov",
-      "text-summary"
-    ]
   },
   "keywords": [
     "coffee",

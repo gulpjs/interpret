@@ -1,6 +1,12 @@
 {
   "dependencies": {
     "@mdx-js/register": "^2.1.1",
+    "deasync": "file:./desync-just-require",
     "react": "^18.0.0"
+  },
+  "overrides": {
+    "@mdx-js/register": {
+      "deasync": "$deasync"
+    }
   }
 }
