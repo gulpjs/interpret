@@ -151,6 +151,7 @@ describe("interpret.extensions", function () {
             };
             assert.deepStrictEqual(require(fixture), expected);
             break;
+
           case ".mdx":
             expected = {
               data: {
@@ -165,6 +166,7 @@ describe("interpret.extensions", function () {
             // React internals :shrug:
             assert.deepStrictEqual(component().type(), expected);
             break;
+
           case ".toml":
             expected = Object.create(null);
             expected.data = Object.create(null);
