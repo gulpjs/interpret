@@ -167,7 +167,7 @@ describe("interpret.extensions", function () {
             };
             var component = require(fixture);
             // React internals :shrug:
-            assert.deepStrictEqua(component().type(), expected);
+            assert.deepStrictEqual(component().type(), expected);
             break;
           case ".toml":
             expected = Object.create(null);
